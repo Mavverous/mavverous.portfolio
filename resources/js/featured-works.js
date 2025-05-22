@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dataPath = isInSubfolder ? '../resources/data/gallery-data.json' : 'resources/data/gallery-data.json';
     const imagePlaceholder = isInSubfolder ? '../resources/images/placeholder.jpg' : 'resources/images/placeholder.jpg';
       // Log for debugging
-    console.log('Loading gallery data from:', dataPath);
-      // Load gallery data
+    console.log('Loading gallery data from:', dataPath);        // Load gallery data
     fetch(dataPath)
         .then(response => {
             console.log('Gallery data response:', response.status, response.statusText);
@@ -31,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         .filter(line => !line.trim().startsWith('//'))
                         .join('\n');
                     
-                    console.log('Cleaned JSON text:', cleanText);
+                    // For debugging
+                    window.galleryDataText = cleanText;
                     
                     // Try to parse the cleaned JSON
                     return JSON.parse(cleanText);

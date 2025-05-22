@@ -5,35 +5,45 @@
       "title": "CRT",
       "description": "Digital Illustration, 2023",
       "category": "Digital Sketch Character Commission",
-      "imagePath": "resources/images/artwork/television.png"
+      "imagePath": "resources/images/artwork/television.png",
+      "yearCreated": "2023",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac sem ut ipsum maximus tincidunt. Proin ultricies ex at quam condimentum convallis. Praesent fermentum sagittis tellus a tempus. Proin a orci sapien. Proin pharetra, neque vitae congue aliquet, nisl arcu posuere mi, pharetra pharetra nunc mauris id odio. Ut sed."
     },
     {
       "id": "2",
       "title": "ULTRAKILL Fan Poster",
       "description": "Digital Illustration, 2024",
       "category": "Digital Illustration Character FanArt",
-      "imagePath": "resources/images/artwork/ultra.png"
+      "imagePath": "resources/images/artwork/ultra.png",
+      "yearCreated": "2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac sem ut ipsum maximus tincidunt. Proin ultricies ex at quam condimentum convallis. Praesent fermentum sagittis tellus a tempus. Proin a orci sapien. Proin pharetra, neque vitae congue aliquet, nisl arcu posuere mi, pharetra pharetra nunc mauris id odio. Ut sed."
     },
     {
       "id": "3",
       "title": "HexVR Knight",
       "description": "Digital Illustration, 2024",
       "category": "Digital Painting HexVR FanArt",
-      "imagePath": "resources/images/artwork/Hex_Painting_1.png"
+      "imagePath": "resources/images/artwork/Hex_Painting_1.png",
+      "yearCreated": "2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac sem ut ipsum maximus tincidunt. Proin ultricies ex at quam condimentum convallis. Praesent fermentum sagittis tellus a tempus. Proin a orci sapien. Proin pharetra, neque vitae congue aliquet, nisl arcu posuere mi, pharetra pharetra nunc mauris id odio. Ut sed."
     },
     {
       "id": "4",
       "title": "Magi Concept Art",
       "description": "Digital Illustration, 2023",
       "category": "Digital Illustration HexVR Concept",
-      "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Magi.jpg"
+      "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Magi.jpg",
+      "yearCreated": "2023",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac sem ut ipsum maximus tincidunt. Proin ultricies ex at quam condimentum convallis. Praesent fermentum sagittis tellus a tempus. Proin a orci sapien. Proin pharetra, neque vitae congue aliquet, nisl arcu posuere mi, pharetra pharetra nunc mauris id odio. Ut sed."
     },
     {
       "id": "5",
       "title": "Kepler Concept Art",
       "description": "Digital Illustration, 2023",
       "category": "Digital Illustration HexVR Concept",
-      "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Kepler.jpg"
+      "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Kepler.jpg",
+      "yearCreated": "2023",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac sem ut ipsum maximus tincidunt. Proin ultricies ex at quam condimentum convallis. Praesent fermentum sagittis tellus a tempus. Proin a orci sapien. Proin pharetra, neque vitae congue aliquet, nisl arcu posuere mi, pharetra pharetra nunc mauris id odio. Ut sed."
     }
   ]
 }

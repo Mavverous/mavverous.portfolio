@@ -1,25 +1,24 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand home-link" href="#" id="brand-link">
-                <img src="resources/images/logo.png" alt="Logo" class="logo" width="30" height="30" padding-right="100px">
+        <div class="container">            <a class="navbar-brand home-link" href="#" id="brand-link">
+                <img src="" alt="Logo" class="logo-img" width="30" height="30" padding-right="100px">
                 MAVVEROUS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">                <ul class="navbar-nav ms-auto">
+            </button>            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link home-link" href="#" data-path="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link works-link" href="#works" data-path="#works">Gallery</a>
+                        <a class="nav-link gallery-link" href="#" data-path="gallery.html">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link about-link" href="#about" data-path="#about">About</a>
+                        <a class="nav-link about-link" href="#" data-path="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link contact-link" href="#contact" data-path="#contact">Contact</a>
+                        <a class="nav-link contact-link" href="#" data-path="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -32,10 +31,14 @@
         const currentLocation = window.location.pathname;
         const navLinks = document.querySelectorAll('.nav-link');
         const brandLink = document.getElementById('brand-link');
+        const logoImg = document.querySelector('.logo-img');
         const isInSubfolder = currentLocation.includes('/pages/');
         
         // Update the navbar links based on the current page location
         function updateNavLinks() {
+            // Set the logo image source based on location
+            logoImg.src = isInSubfolder ? '../resources/images/logo.png' : 'resources/images/logo.png';
+            
             // Set the brand link to point to the correct home page path
             brandLink.href = isInSubfolder ? '../index.html' : 'index.html';
             
@@ -66,13 +69,13 @@
                         currentLocation.includes('artwork-detail.html')) {
                         link.classList.add('active');
                     }
-                }
-                else if (path.startsWith('#')) {
+                }                else if (path.startsWith('#')) {
                     // Hash links (section links on the home page)
                     // If we're on the home page, link to the section directly
                     if (currentLocation.includes('index.html') || 
                         currentLocation.endsWith('/') || 
-                        currentLocation.endsWith('PortfolioSite/')) {
+                        currentLocation.endsWith('portfolio/') ||
+                        currentLocation === '/') {
                         link.href = path;
                     } else {
                         // If we're on another page, link back to home with the section anchor

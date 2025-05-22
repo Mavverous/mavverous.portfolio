@@ -30,8 +30,7 @@ if (typeof window.ArtworkGallery === 'undefined') {
                 this.showError();
             });
     }
-    
-    /**
+      /**
      * Load gallery data from JSON file
      * @returns {Promise} - Promise that resolves with gallery data
      */
@@ -41,7 +40,23 @@ if (typeof window.ArtworkGallery === 'undefined') {
                 if (!response.ok) {
                     throw new Error(`Failed to load gallery data: ${response.status} ${response.statusText}`);
                 }
-                return response.json();
+                return response.text().then(text => {
+                    try {
+                        // Remove any comment lines (starts with //) - these break JSON parsing
+                        const cleanText = text.split('\n')
+                            .filter(line => !line.trim().startsWith('//'))
+                            .join('\n');
+                        
+                        console.log('Cleaned JSON text:', cleanText);
+                        
+                        // Try to parse the cleaned JSON
+                        return JSON.parse(cleanText);
+                    } catch (err) {
+                        console.error('Error parsing JSON:', err);
+                        console.log('Raw JSON text:', text);
+                        throw new Error('Failed to parse gallery data JSON');
+                    }
+                });
             });
     }
     
@@ -89,11 +104,10 @@ if (typeof window.ArtworkGallery === 'undefined') {
         // Create gallery item container
         const itemContainer = document.createElement('div');
         itemContainer.className = `col-lg-4 col-md-6 mb-4 gallery-item ${categories}`;
-        
-        // Create gallery card
+          // Create gallery card
         const cardHtml = `
             <div class="gallery-card" data-aos="fade-up" data-aos-delay="${delay}">
-                <a href="${fullImagePath}" data-lightbox="gallery" data-title="${artwork.title}">
+                <a href="${isInSubfolder ? 'artwork-detail.html?id=' + artwork.id : 'pages/artwork-detail.html?id=' + artwork.id}">
                     <img src="${thumbnailPath}" class="img-fluid" alt="${artwork.title}" 
                          onerror="this.onerror=null; this.src='${placeholderPath}';">
                     <div class="gallery-overlay">

@@ -312,6 +312,11 @@ header.scrolled {
   color: white;
 }
 
+/* Style for tags in artwork details */
+.artwork-details .tag {
+  padding-right: 10px;
+}
+
 .project-card .tag:nth-child(2n) {
   background-color: var(--secondary-color);
 }
