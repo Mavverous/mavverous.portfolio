@@ -1,0 +1,65 @@
+/**
+ * Bootstrap-specific fixes for dropdown issues
+ */
+
+/* Override Bootstrap's dropdown positioning */
+.dropdown-menu {
+    position: absolute;
+}
+
+/* Ensure the col-md-4 containing the tag filter has proper positioning */
+.col-md-4 {
+    position: relative;
+}
+
+/* Make sure the tag filter container has position: relative for proper dropdown positioning */
+.tag-filter-container {
+    position: relative;
+}
+
+/* Ensure the multiselect dropdown appears above everything else */
+.multiselect-container.dropdown-menu {
+    position: absolute !important;
+    left: 0 !important;
+    right: auto !important;
+    top: 100% !important;
+    transform: none !important;
+    will-change: transform !important;
+    margin-top: 2px !important;
+    width: 100% !important;
+    z-index: 10000 !important;
+    display: none; /* Hide by default */
+}
+
+/* When dropdown is open, ensure it's displayed and positioned properly */
+.open > .multiselect-container.dropdown-menu,
+.show > .multiselect-container.dropdown-menu,
+.tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+    display: block !important;
+}
+
+/* Override Bootstrap's transform property which can cause positioning issues */
+.dropdown-menu[data-bs-popper] {
+    transform: none !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin-top: 2px !important;
+    position: absolute !important;
+}
+
+/* Create a stacking context for the filter row */
+.row {
+    position: relative;
+    z-index: auto;
+}
+
+/* Ensure the gallery row has a lower z-index */
+#gallery-container.row {
+    z-index: 1;
+}
+
+/* Ensure multiselect button has proper z-index */
+.multiselect.dropdown-toggle {
+    z-index: 1;
+    position: relative;
+}

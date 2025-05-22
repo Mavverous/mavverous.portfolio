@@ -1,0 +1,86 @@
+/**
+ * Dark theme specifically for Bootstrap multiselect dropdown
+ * This ensures proper styling for the dropdown with the site's dark theme
+ */
+
+/* Dropdown container styling */
+.multiselect-container.dropdown-menu {
+    background-color: #1e1e1e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+    padding: 8px 0 !important;
+    margin-top: 2px !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+/* Dropdown items styling */
+.multiselect-container li {
+    padding: 0 !important;
+}
+
+.multiselect-container li a {
+    display: block !important;
+    padding: 8px 15px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none !important;
+}
+
+.multiselect-container li a:hover {
+    background-color: rgba(108, 189, 163, 0.1) !important;
+    color: #fff !important;
+}
+
+.multiselect-container li.active a {
+    background-color: rgba(108, 189, 163, 0.2) !important;
+}
+
+/* Checkbox styling */
+.multiselect-container li a input[type="checkbox"] {
+    margin-right: 5px !important;
+}
+
+.multiselect-container li.active a label {
+    color: var(--secondary-color) !important;
+    font-weight: 500 !important;
+}
+
+/* Button styling */
+.multiselect.dropdown-toggle {
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-align: left !important;
+}
+
+.multiselect.dropdown-toggle:hover,
+.multiselect.dropdown-toggle:focus {
+    background-color: rgba(30, 30, 30, 0.9) !important;
+    border-color: rgba(108, 189, 163, 0.5) !important;
+    box-shadow: 0 0 0 0.2rem rgba(108, 189, 163, 0.2) !important;
+    color: #fff !important;
+}
+
+/* Filter input styling */
+.multiselect-container .input-group {
+    margin: 5px 10px !important;
+    width: calc(100% - 20px) !important;
+}
+
+.multiselect-container .input-group .form-control {
+    background-color: #2a2a2a !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
+
+.multiselect-container .input-group .input-group-text {
+    background-color: #2a2a2a !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* "Select all" option styling */
+.multiselect-container li.multiselect-all a {
+    font-weight: 500 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}

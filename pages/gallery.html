@@ -23,14 +23,60 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Lightbox CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->    <link rel="stylesheet" href="../resources/css/style.css">
-    <link rel="stylesheet" href="../resources/css/card-effects.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->      <link rel="stylesheet" href="../resources/css/style.css">    <link rel="stylesheet" href="../resources/css/card-effects.css">
     <link rel="stylesheet" href="../resources/css/gallery-filters.css">
-    <link rel="stylesheet" href="../resources/css/gallery-fixes.css">
-    <link rel="stylesheet" href="../resources/css/gallery-hover-fix.css">
+    <link rel="stylesheet" href="../resources/css/gallery-fixes.css">    <link rel="stylesheet" href="../resources/css/gallery-hover-fix.css">
+    <link rel="stylesheet" href="../resources/css/enhanced-filters.css">    <link rel="stylesheet" href="../resources/css/remove-reflections.css">
+    <link rel="stylesheet" href="../resources/css/dropdown-fix.css">    
+    <link rel="stylesheet" href="../resources/css/tag-dropdown-fix.css">
+    <link rel="stylesheet" href="../resources/css/fixed-dropdown.css">
+    <link rel="stylesheet" href="../resources/css/multiselect-dark-theme.css">
     
     <!-- Bootstrap Multiselect CSS (removed integrity hash to resolve loading issue) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" crossorigin="anonymous" />
+      <!-- Critical dropdown fix styles -->
+    <style>
+        /* Override any conflicting styles and ensure tag filter container has highest z-index */
+        .gallery-filter-card {
+            z-index: 10001 !important; /* Higher than gallery cards */
+            position: relative !important;
+        }
+        
+        /* Create a proper stacking context for gallery items */
+        .gallery-item {
+            z-index: 1 !important;
+        }
+        
+        /* Ensure dropdown is visible when open */
+        .tag-filter-container .multiselect-container.dropdown-menu {
+            position: absolute !important;
+            z-index: 10002 !important;
+            display: none !important;
+        }
+        
+        /* Show dropdown only when the container has dropdown-open class */
+        .tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+            display: block !important;
+        }
+        
+        /* Improve the dropdown styling */
+        .multiselect-container li a label {
+            color: white !important;
+            padding: 4px 0 !important;
+        }
+        
+        /* Prevent the tag dropdown from going behind cards */
+        .tag-filter-container {
+            position: relative !important;
+            z-index: 10000 !important;
+        }
+        
+        /* Fix the dropdown toggle button */
+        .multiselect.dropdown-toggle {
+            width: 100% !important;
+            text-align: left !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar Container -->
@@ -40,57 +86,55 @@
     <section class="py-5 bg-light" style="margin-top: 70px;">
         <div class="container">
             <h1 class="text-center display-4 mb-3" data-aos="fade-up">Artwork Gallery</h1>
-            <p class="text-center lead mb-5" data-aos="fade-up" data-aos-delay="100">Explore my complete collection of artwork across various mediums and styles</p>
-              <!-- Advanced Filter & Sort Controls -->
+            <p class="text-center lead mb-5" data-aos="fade-up" data-aos-delay="100">Explore my complete collection of artwork across various mediums and styles</p>            <!-- Enhanced Filter & Sort Controls -->
             <div class="row mb-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-md-10 mx-auto">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="row">
-                                <!-- Medium Filter -->
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label"><i class="fas fa-paint-brush me-1"></i> Medium</label>                                    <div class="d-flex flex-wrap medium-filter">
-                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn active" data-filter="all">All</button>
-                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="digital">Digital</button>
-                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="concept">Concept Art</button>
-                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="character">Character</button>
-                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="environment">Environment</button>
-                                    </div>
+                    <div class="gallery-filter-card">
+                        <div class="row">
+                            <!-- Medium Filter -->
+                            <div class="col-md-4 mb-3">
+                                <label class="filter-label">
+                                    <i class="fas fa-paint-brush"></i> Medium
+                                </label>
+                                <div class="medium-filter">
+                                    <button class="filter-btn active" data-filter="all">All</button>
+                                    <button class="filter-btn" data-filter="illustration">Illustration</button>
+                                    <button class="filter-btn" data-filter="sketch">Sketch</button>
+                                    <button class="filter-btn" data-filter="painting">Painting</button>
+                                    <button class="filter-btn" data-filter="sculpture">Sculpture</button>
                                 </div>
-                                
-                                <!-- Tag Filter -->
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label"><i class="fas fa-tags me-1"></i> Tags</label>
-                                    <div class="tag-filter-container">
-                                        <select class="form-select tag-filter" multiple>
-                                            <!-- Tags will be populated dynamically -->
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <!-- Sort Options -->
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label"><i class="fas fa-sort me-1"></i> Sort By</label>
-                                    <select class="form-select sort-select">
-                                        <option value="newest">Newest First</option>
-                                        <option value="oldest">Oldest First</option>
-                                        <option value="title-asc">Title (A-Z)</option>
-                                        <option value="title-desc">Title (Z-A)</option>
+                            </div>
+                            
+                            <!-- Tag Filter -->
+                            <div class="col-md-4 mb-3">
+                                <label class="filter-label">
+                                    <i class="fas fa-tags"></i> Tags
+                                </label>
+                                <div class="tag-filter-container">
+                                    <select class="form-select tag-filter" multiple>
+                                        <!-- Tags will be populated dynamically -->
                                     </select>
                                 </div>
                             </div>
                             
-                            <!-- Active Filters Display -->
-                            <div class="active-filters mt-2 d-none">
-                                <small class="text-muted me-2">Active filters:</small>
-                                <div class="active-filter-pills d-inline-flex flex-wrap"></div>
-                                <button class="btn btn-sm btn-link p-0 ms-2 clear-filters">Clear all</button>
+                            <!-- Sort Options -->
+                            <div class="col-md-4 mb-3">
+                                <label class="filter-label">
+                                    <i class="fas fa-sort"></i> Sort By
+                                </label>
+                                <select class="form-select sort-select">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="title-asc">Title (A-Z)</option>
+                                    <option value="title-desc">Title (Z-A)</option>
+                                </select>                            
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          <!-- Gallery Container -->
+
+            <!-- Gallery Container -->
             <div id="gallery-container" class="gallery-grid row">
                 <!-- Gallery items will be loaded here dynamically -->
                 <div class="col-12 text-center py-5 loading-indicator">
@@ -124,11 +168,12 @@
     <script src="../resources/js/main.js"></script>
     <script src="../resources/js/artwork-gallery.js"></script>
     <script src="../resources/js/card-effects.js"></script>
-    <script src="../resources/js/navbar-fixer.js"></script>    <style>
+    <script src="../resources/js/navbar-fixer.js"></script>    
+    <!-- <style>
         /* Fix for image loading issues */
         .gallery-card img {
             width: 100%;
-            height: 250px;
+            height: 8000px; /* Increased from 250px to match featured works */
             object-fit: cover;
             background-color: #f8f9fa;
         }
@@ -143,9 +188,8 @@
             50% { opacity: 1; }
             100% { opacity: 0.6; }
         }
-    </style>
-    
-    <script>
+    </style> -->
+      <script>
         // Initialize AOS animations
         AOS.init({
             duration: 1000,
@@ -158,11 +202,21 @@
             const dataPath = '../resources/data/gallery-data.json';
             console.log('Loading gallery data from:', dataPath);
             
-        // Initialize the gallery with options
+            // Initialize the gallery with options
             window.galleryInstance = new ArtworkGallery({
                 dataPath: dataPath,
                 containerSelector: '#gallery-container' // This matches the actual gallery container ID
-            });
+            });            // Force cleanup in case dropdown is already open from previous page load
+            if ($.fn.multiselect) {
+                // Remove any dropdown open states that might be lingering
+                $('.tag-filter-container').removeClass('dropdown-open');
+                $('.multiselect-container.dropdown-menu').css('display', 'none');
+                
+                // Log to console for debugging
+                console.log('Multiselect plugin available - dropdown will be initialized by ArtworkGallery class');
+            } else {
+                console.warn('Multiselect plugin not found - dropdown functionality may be limited');
+            }
             
             // Log to confirm initialization
             console.log('Gallery initialized with advanced filtering and sorting');

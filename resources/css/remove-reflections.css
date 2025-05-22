@@ -1,0 +1,35 @@
+/**
+ * Remove reflection effects from gallery cards
+ * This removes the glass reflection animation from gallery cards
+ */
+
+/* Hide all reflection effects on gallery cards */
+.gallery-card::after {
+    display: none !important;
+}
+
+.gallery-card::before {
+    display: none !important;
+}
+
+/* Override any card effects from JavaScript */
+.gallery-card.reflection-active::after,
+.gallery-card.reflection-active::before,
+.gallery-card:hover::after,
+.gallery-card:hover::before {
+    opacity: 0 !important;
+    animation: none !important;
+    display: none !important;
+}
+
+/* Ensure we keep the hover transform */
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Ensure the card body still shows on hover */
+.gallery-card:hover .card-body {
+    transform: translateY(0);
+    opacity: 1;
+}

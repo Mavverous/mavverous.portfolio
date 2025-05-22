@@ -31,13 +31,10 @@ if (typeof window.ArtworkGallery === 'undefined') {
         } else {
             console.log('Gallery container found:', this.galleryContainer);
         }
-        
-        this.filterButtons = document.querySelectorAll('.filter-btn');
+          this.filterButtons = document.querySelectorAll('.filter-btn');
         this.tagFilterSelect = document.querySelector('.tag-filter');
         this.sortSelect = document.querySelector('.sort-select');
-        this.activeFilterPills = document.querySelector('.active-filter-pills');
-        this.activeFiltersContainer = document.querySelector('.active-filters');
-        this.clearFiltersBtn = document.querySelector('.clear-filters');
+        // Active filters section has been removed from UI
         
         // Store original artwork data and current filters
         this.allArtworks = [];
@@ -48,8 +45,7 @@ if (typeof window.ArtworkGallery === 'undefined') {
         };
         
         this.init();
-    }
-      /**
+    }    /**
      * Initialize the gallery
      */
     init() {
@@ -72,6 +68,9 @@ if (typeof window.ArtworkGallery === 'undefined') {
                 
                 // Initialize lightbox
                 this.initLightbox();
+                
+                // Add document click handler to close dropdown when clicking outside
+                this.initDocumentClickHandler();
             })
             .catch(error => {
                 console.error('Error loading gallery data:', error);
@@ -326,7 +325,7 @@ if (typeof window.ArtworkGallery === 'undefined') {
         
         // Create gallery item container
         const itemContainer = document.createElement('div');
-        itemContainer.className = `col-lg-4 col-md-6 mb-4 gallery-item ${categories}`;        // Extract tags for display
+        itemContainer.className = `col-lg-4 gallery-item ${categories}`;        // Extract tags for display
         let displayTags = [];
         
         // Add tags from the tags array if available (preferred)
@@ -398,11 +397,9 @@ if (typeof window.ArtworkGallery === 'undefined') {
                 this.updateActiveFilterPills();
             });
         });
-    }
-      /**
+    }    /**
      * Initialize tag filter dropdown
-     */
-    initTagFilters() {
+     */    initTagFilters() {
         if (!this.tagFilterSelect) {
             return;
         }
@@ -411,6 +408,10 @@ if (typeof window.ArtworkGallery === 'undefined') {
         if (typeof $ !== 'undefined' && typeof $.fn.multiselect !== 'undefined') {
             // Use a setTimeout to ensure the DOM is fully ready
             setTimeout(() => {
+                // First reset any previous instances
+                $(this.tagFilterSelect).multiselect('destroy');
+                
+                // Initialize with improved settings
                 $(this.tagFilterSelect).multiselect({
                     includeSelectAllOption: true,
                     selectAllText: 'All Tags',
@@ -424,6 +425,43 @@ if (typeof window.ArtworkGallery === 'undefined') {
                         button: '<button type="button" class="multiselect dropdown-toggle btn btn-outline-secondary" data-bs-toggle="dropdown"><span class="multiselect-selected-text"></span></button>'
                     }
                 });
+                
+                // Custom click handler to toggle dropdown
+                $('.tag-filter-container .multiselect').off('click').on('click', function(e) {
+                    const $container = $(this).closest('.tag-filter-container');
+                    const $dropdown = $container.find('.multiselect-container');
+                    
+                    // Toggle dropdown state
+                    if ($container.hasClass('dropdown-open')) {
+                        $container.removeClass('dropdown-open');
+                        $dropdown.css('display', 'none');
+                    } else {
+                        // Close any other open dropdowns first
+                        $('.tag-filter-container').removeClass('dropdown-open');
+                        $('.multiselect-container').css('display', 'none');
+                        
+                        // Open this dropdown
+                        $container.addClass('dropdown-open');
+                        
+                        // Position the dropdown properly
+                        $dropdown.css({
+                            'position': 'absolute',
+                            'top': '100%',
+                            'left': '0',
+                            'width': $container.width() + 'px',
+                            'max-height': '300px',
+                            'overflow-y': 'auto',
+                            'z-index': '10002',
+                            'display': 'block'
+                        });
+                    }
+                    
+                    // Prevent event from bubbling up or triggering default behavior
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+                
+                console.log('Tag filter dropdown initialized with custom click handler');
             }, 500);
         } else {
             // Fallback for browsers where multiselect fails to load
@@ -466,141 +504,22 @@ if (typeof window.ArtworkGallery === 'undefined') {
             this.applyFilters();
         });
     }
-    
-    /**
+      /**
      * Initialize clear filters button
+     * (This method is now a no-op since we've removed the clear filters button)
      */
     initClearFilters() {
-        if (!this.clearFiltersBtn) {
-            return;
-        }
-        
-        this.clearFiltersBtn.addEventListener('click', () => {
-            // Reset filter states
-            this.currentFilters = {
-                medium: 'all',
-                tags: [],
-                sort: 'newest'
-            };
-            
-            // Reset UI controls
-            this.filterButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-filter') === 'all') {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Reset tag select
-            if (this.tagFilterSelect) {
-                Array.from(this.tagFilterSelect.options).forEach(option => {
-                    option.selected = false;
-                });
-                
-                // Update bootstrap multiselect if available
-                if (typeof $ !== 'undefined' && typeof $.fn.multiselect !== 'undefined') {
-                    $(this.tagFilterSelect).multiselect('refresh');
-                }
-            }
-            
-            // Reset sort
-            if (this.sortSelect) {
-                this.sortSelect.value = 'newest';
-            }
-            
-            // Apply filters (resets to default view)
-            this.applyFilters();
-            
-            // Hide active filters
-            this.updateActiveFilterPills();
-        });
-    }
-    
-    /**
-     * Update the active filter pills display
-     */
-    updateActiveFilterPills() {
-        if (!this.activeFilterPills || !this.activeFiltersContainer) {
-            return;
-        }
-        
-        // Clear existing pills
-        this.activeFilterPills.innerHTML = '';
-        
-        const filters = [];
-        
-        // Add medium filter if not 'all'
-        if (this.currentFilters.medium !== 'all') {
-            filters.push({
-                type: 'medium',
-                label: this.currentFilters.medium
-            });
-        }
-        
-        // Add tag filters
-        this.currentFilters.tags.forEach(tag => {
-            filters.push({
-                type: 'tag',
-                label: tag
-            });
-        });
-        
-        // Show or hide the active filters section
-        if (filters.length > 0) {
-            this.activeFiltersContainer.classList.remove('d-none');
-            
-            // Create pills for each active filter
-            filters.forEach(filter => {
-                const pill = document.createElement('span');
-                pill.className = 'badge bg-light text-dark me-1 mb-1';
-                pill.innerHTML = `${filter.label} <button type="button" class="btn-close btn-close-sm ms-1" aria-label="Remove filter"></button>`;
-                
-                // Handle removing individual filters
-                pill.querySelector('.btn-close').addEventListener('click', () => {
-                    if (filter.type === 'medium') {
-                        // Reset medium filter
-                        this.currentFilters.medium = 'all';
-                        
-                        // Update UI
-                        this.filterButtons.forEach(btn => {
-                            btn.classList.remove('active');
-                            if (btn.getAttribute('data-filter') === 'all') {
-                                btn.classList.add('active');
-                            }
-                        });
-                    } else if (filter.type === 'tag') {
-                        // Remove tag from filters
-                        this.currentFilters.tags = this.currentFilters.tags.filter(t => t !== filter.label);
-                        
-                        // Update tag select UI
-                        if (this.tagFilterSelect) {
-                            Array.from(this.tagFilterSelect.options).forEach(option => {
-                                if (option.value.toLowerCase() === filter.label.toLowerCase()) {
-                                    option.selected = false;
-                                }
-                            });
-                            
-                            // Update bootstrap multiselect if available
-                            if (typeof $ !== 'undefined' && typeof $.fn.multiselect !== 'undefined') {
-                                $(this.tagFilterSelect).multiselect('refresh');
-                            }
-                        }
-                    }
-                    
-                    // Apply updated filters
-                    this.applyFilters();
-                    
-                    // Update filter pills
-                    this.updateActiveFilterPills();
-                });
-                
-                this.activeFilterPills.appendChild(pill);
-            });
-        } else {
-            this.activeFiltersContainer.classList.add('d-none');
-        }
+        // No-op: Clear filters button has been removed
+        return;
     }
       /**
+     * Update the active filter pills display
+     * (This method is now a no-op since we've removed the active filters UI)
+     */
+    updateActiveFilterPills() {
+        // No-op: Active filters UI has been removed
+        return;
+    }    /**
      * Initialize lightbox for gallery images
      */
     initLightbox() {
@@ -617,6 +536,28 @@ if (typeof window.ArtworkGallery === 'undefined') {
             });
         } else {
             console.warn('Lightbox or jQuery not available for gallery initialization');
+        }
+    }
+      /**
+     * Initialize document click handler to close dropdown when clicking outside
+     */
+    initDocumentClickHandler() {
+        if (typeof $ !== 'undefined') {
+            // Remove any existing handler first to prevent duplicates
+            $(document).off('click.tagDropdown').on('click.tagDropdown', function(e) {
+                // If click is outside the tag filter container, close any open dropdowns
+                if (!$(e.target).closest('.tag-filter-container').length && 
+                    !$(e.target).closest('.multiselect-container').length) {
+                    
+                    // Close all open dropdowns
+                    $('.tag-filter-container').removeClass('dropdown-open');
+                    $('.multiselect-container').css('display', 'none');
+                    
+                    console.log('Closing all dropdowns due to outside click');
+                }
+            });
+            
+            console.log('Document click handler initialized for dropdown closing');
         }
     }
     

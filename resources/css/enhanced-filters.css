@@ -1,0 +1,207 @@
+/**
+ * Enhanced Gallery Filter Styling
+ * Provides a sleeker, more modern look for the gallery filters that matches the site theme
+ */
+
+/* Card styling for filter container */
+.gallery-filter-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    /* border-radius: 6px; Uncomment if you want rounded corners */
+    position: relative;
+    overflow: visible; /* Changed from hidden to allow dropdowns to display properly */
+}
+
+/* Add subtle background effect */
+.gallery-filter-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.02) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.02) 75%, 
+        transparent 75%, 
+        transparent
+    );
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Filter section label styling */
+.filter-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-label i {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Medium Filter Button Group */
+.medium-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.medium-filter .filter-btn {
+    background-color: transparent;
+    border: 1px solid rgba(108, 189, 163, 0.3);
+    color: var(--light-color);
+    padding: 0.4rem 1rem;
+    margin: 0;
+    min-width: auto;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.medium-filter .filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.medium-filter .filter-btn:hover::after {
+    width: 100%;
+}
+
+.medium-filter .filter-btn:hover {
+    background-color: rgba(108, 189, 163, 0.1);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.medium-filter .filter-btn.active {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--dark-color);
+    font-weight: 500;
+    box-shadow: 0 3px 8px rgba(108, 189, 163, 0.3);
+}
+
+/* Tag Filter Select Styling */
+.tag-filter-container .multiselect-container {
+    background-color: var(--card-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0;
+    box-shadow: var(--box-shadow);
+}
+
+.tag-filter-container .multiselect-container li {
+    padding: 0;
+}
+
+.tag-filter-container .multiselect-container li a {
+    padding: 8px 15px;
+    color: var(--light-color);
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.tag-filter-container .multiselect-container li a:hover {
+    background-color: rgba(108, 189, 163, 0.1);
+}
+
+.tag-filter-container .multiselect-container li.active a {
+    background-color: rgba(108, 189, 163, 0.2);
+}
+
+.tag-filter-container .multiselect-container li.active a label {
+    color: var(--secondary-color);
+}
+
+.tag-filter-container button.multiselect {
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--light-color);
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.tag-filter-container button.multiselect:hover,
+.tag-filter-container button.multiselect:focus {
+    background-color: rgba(108, 189, 163, 0.1);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(108, 189, 163, 0.25);
+}
+
+/* Sort options styling */
+.sort-select {
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--light-color);
+    transition: all 0.3s ease;
+}
+
+.sort-select:focus {
+    background-color: rgba(30, 30, 30, 0.9);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(108, 189, 163, 0.25);
+    color: var(--light-color);
+}
+
+/* Active filter pills styling */
+.active-filters {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.active-filter-pills .badge {
+    background-color: rgba(108, 189, 163, 0.15);
+    color: var(--secondary-color);
+    font-weight: 400;
+    padding: 0.35em 0.8em;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+    border: 1px solid rgba(108, 189, 163, 0.3);
+}
+
+.active-filter-pills .badge .btn-close {
+    font-size: 0.7em;
+    margin-left: 0.5rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.active-filter-pills .badge .btn-close:hover {
+    opacity: 1;
+    background: transparent;
+}
+
+.clear-filters {
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.clear-filters:hover {
+    opacity: 1;
+    color: var(--secondary-color);
+}

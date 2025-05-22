@@ -1,0 +1,53 @@
+/**
+ * Dropdown Positioning Fix CSS
+ * This file contains CSS fixes for dropdown menus that get cut off
+ */
+
+/* Fix for tag filter dropdown being cut off */
+.tag-filter-container {
+    position: relative; /* Ensure relative positioning for proper dropdown placement */
+}
+
+/* Position the dropdown so it's not constrained by parent containers */
+.tag-filter-container .multiselect-container.dropdown-menu {
+    width: auto !important; /* Use the width of the parent column, not the entire width */
+    max-height: 300px; /* Allow scrolling for many options */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: absolute !important; /* Use absolute positioning relative to the container */
+    z-index: 90000 !important; /* Higher than any other elements */
+    transform: none !important; /* Prevent any transforms that might affect positioning */
+    margin-top: 2px; /* Add a small gap between the button and dropdown */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Add stronger shadow for better visibility */
+    border-radius: 4px; /* Match Bootstrap's standard border-radius */
+    border: 1px solid rgba(108, 189, 163, 0.2); /* Add subtle border to match theme */
+    display: none; /* Hide by default, will be shown when .open/.show class is added */
+}
+
+/* Ensure dropdown items have proper padding and hover states */
+.tag-filter-container .multiselect-container li a {
+    padding: 8px 15px !important; /* Increase padding for better touch targets */
+    white-space: normal; /* Allow text to wrap if needed */
+}
+
+/* Fix for dropdown being hidden by overflow constraints */
+.gallery-filter-card {
+    overflow: visible !important; /* Ensure dropdowns can extend beyond the card */
+}
+
+.filter-label {
+    margin-bottom: 8px; /* Add more space below labels */
+}
+
+/* Better styling for the multiselect button */
+.tag-filter-container .multiselect-selected-text {
+    max-width: calc(100% - 20px); /* Leave room for the caret */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Make caret more visible */
+.tag-filter-container .multiselect .caret {
+    border-top-color: rgba(255, 255, 255, 0.7); /* Lighter color for better visibility */
+}

@@ -1,0 +1,63 @@
+/**
+ * Fix specifically for tag dropdown issues
+ * This ensures the dropdown is always on top of other elements
+ */
+
+/* Global styles to allow proper z-index stacking */
+body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Create a stacking context for filters - ensure it's above everything */
+.gallery-filter-card {
+    position: relative;
+    z-index: 9000 !important; /* Much higher than any other element */
+}
+
+.gallery-filter-card .row {
+    position: relative;
+    z-index: 9000 !important; /* Higher than gallery items */
+}
+
+/* Set lower z-index for gallery elements */
+#gallery-container {
+    z-index: 1 !important; /* Lower z-index for the gallery container */
+    position: relative;
+}
+
+.gallery-item {
+    z-index: 1 !important; /* Set explicit z-index for gallery items */
+}
+
+/* Tag dropdown specific fixes */
+.tag-filter-container .multiselect-container.dropdown-menu {
+    position: absolute !important; /* Absolute positioning relative to the button */
+    top: 100% !important; /* Position just below the button */
+    left: 0 !important; /* Align with left edge of button */
+    width: 100% !important; /* Match parent width exactly */
+    z-index: 10000 !important; /* Super high z-index */
+    margin-top: 2px !important;
+    display: none !important; /* Hide by default - only show when open class is applied */
+    background-color: #1e1e1e !important; /* Match site theme */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* When dropdown is open, adjust additional styling */
+.tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Prevent parent elements from clipping the dropdown */
+.row, .container, .col-md-4, .tag-filter-container {
+    overflow: visible !important;
+}
+
+/* Fix for BS5 dropdown positioning */
+.dropdown-menu[data-bs-popper] {
+    position: fixed !important;
+    inset: auto !important;
+    transform: none !important;
+}

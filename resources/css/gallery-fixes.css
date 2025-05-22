@@ -45,7 +45,7 @@
 /* Show card thumbnail properly - match featured works height */
 .gallery-card img.card-img-top {
     width: 100%;
-    height: 600px; /* Match the height of featured works images */
+    height: 585px; /* Match the height of featured works images */
     object-fit: cover;
     transition: transform 0.5s ease;
     transform: translateZ(0);
