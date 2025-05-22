@@ -304,7 +304,7 @@ header.scrolled {
 .project-card .tag {
   display: inline-block;
   padding: 3px 10px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   font-size: 0.8rem;
   margin-right: 5px;
   margin-bottom: 5px;
@@ -573,7 +573,7 @@ body::before {
 
 .gallery-card {
   position: relative;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   overflow: hidden;
   box-shadow: var(--box-shadow);
   height: 280px;
@@ -669,7 +669,7 @@ body::before {
 
 /* ===== Artwork Detail Styles ===== */
 .artwork-image-container {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   overflow: hidden;
   box-shadow: var(--box-shadow);
 }
@@ -681,7 +681,7 @@ body::before {
 
 .artwork-details {
   background-color: var(--card-bg-color);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }

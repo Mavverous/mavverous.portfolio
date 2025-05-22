@@ -4,8 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Determine base path based on current directory level
-    const currentPath = window.location.pathname;
+    // Determine base path based on current directory level (handle both /pages/ and \pages\)
+    const currentPath = window.location.pathname.replace(/\\/g, '/').toLowerCase();
     const isSubPage = currentPath.includes('/pages/');
     const basePath = isSubPage ? '../components/' : 'components/';
     

@@ -23,9 +23,14 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Lightbox CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">      <!-- Custom CSS -->
-    <link rel="stylesheet" href="../resources/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->    <link rel="stylesheet" href="../resources/css/style.css">
     <link rel="stylesheet" href="../resources/css/card-effects.css">
+    <link rel="stylesheet" href="../resources/css/gallery-filters.css">
+    <link rel="stylesheet" href="../resources/css/gallery-fixes.css">
+    <link rel="stylesheet" href="../resources/css/gallery-hover-fix.css">
+    
+    <!-- Bootstrap Multiselect CSS (removed integrity hash to resolve loading issue) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" crossorigin="anonymous" />
 </head>
 <body>
     <!-- Navigation Bar Container -->
@@ -36,23 +41,64 @@
         <div class="container">
             <h1 class="text-center display-4 mb-3" data-aos="fade-up">Artwork Gallery</h1>
             <p class="text-center lead mb-5" data-aos="fade-up" data-aos-delay="100">Explore my complete collection of artwork across various mediums and styles</p>
-            
-            <!-- Filter Controls -->
-            <div class="row mb-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="col-md-8 mx-auto">
-                    <div class="d-flex justify-content-center flex-wrap">
-                        <button class="btn btn-outline-primary m-1 filter-btn active" data-filter="all">All</button>
-                        <button class="btn btn-outline-primary m-1 filter-btn" data-filter="digital">Digital</button>
-                        <button class="btn btn-outline-primary m-1 filter-btn" data-filter="painting">Painting</button>
-                        <button class="btn btn-outline-primary m-1 filter-btn" data-filter="illustration">Illustration</button>
-                        <button class="btn btn-outline-primary m-1 filter-btn" data-filter="photography">Photography</button>
-                        <button class="btn btn-outline-primary m-1 filter-btn" data-filter="sculpture">Sculpture</button>
+              <!-- Advanced Filter & Sort Controls -->
+            <div class="row mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-10 mx-auto">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Medium Filter -->
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label"><i class="fas fa-paint-brush me-1"></i> Medium</label>                                    <div class="d-flex flex-wrap medium-filter">
+                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn active" data-filter="all">All</button>
+                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="digital">Digital</button>
+                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="concept">Concept Art</button>
+                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="character">Character</button>
+                                        <button class="btn btn-sm btn-outline-primary m-1 filter-btn" data-filter="environment">Environment</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Tag Filter -->
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label"><i class="fas fa-tags me-1"></i> Tags</label>
+                                    <div class="tag-filter-container">
+                                        <select class="form-select tag-filter" multiple>
+                                            <!-- Tags will be populated dynamically -->
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sort Options -->
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label"><i class="fas fa-sort me-1"></i> Sort By</label>
+                                    <select class="form-select sort-select">
+                                        <option value="newest">Newest First</option>
+                                        <option value="oldest">Oldest First</option>
+                                        <option value="title-asc">Title (A-Z)</option>
+                                        <option value="title-desc">Title (Z-A)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Active Filters Display -->
+                            <div class="active-filters mt-2 d-none">
+                                <small class="text-muted me-2">Active filters:</small>
+                                <div class="active-filter-pills d-inline-flex flex-wrap"></div>
+                                <button class="btn btn-sm btn-link p-0 ms-2 clear-filters">Clear all</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-              <!-- Gallery Container -->
+          <!-- Gallery Container -->
             <div id="gallery-container" class="gallery-grid row">
                 <!-- Gallery items will be loaded here dynamically -->
+                <div class="col-12 text-center py-5 loading-indicator">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading gallery items...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -67,18 +113,59 @@
     
     <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     
-    <!-- Lightbox JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>    <!-- Custom JS -->
+    <!-- Bootstrap Multiselect JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+    
+    <!-- Custom JS -->
     <script src="../global/js/components-loader.js"></script>
     <script src="../resources/js/main.js"></script>
     <script src="../resources/js/artwork-gallery.js"></script>
     <script src="../resources/js/card-effects.js"></script>
+    <script src="../resources/js/navbar-fixer.js"></script>    <style>
+        /* Fix for image loading issues */
+        .gallery-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #f8f9fa;
+        }
+        
+        /* Loading indicator for images */
+        .gallery-card img.loading {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
+    
     <script>
         // Initialize AOS animations
         AOS.init({
             duration: 1000,
             once: true
+        });
+        
+        // Initialize the gallery when page is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make sure we're using the correct path for data
+            const dataPath = '../resources/data/gallery-data.json';
+            console.log('Loading gallery data from:', dataPath);
+            
+        // Initialize the gallery with options
+            window.galleryInstance = new ArtworkGallery({
+                dataPath: dataPath,
+                containerSelector: '#gallery-container' // This matches the actual gallery container ID
+            });
+            
+            // Log to confirm initialization
+            console.log('Gallery initialized with advanced filtering and sorting');
         });
     </script>
 </body>

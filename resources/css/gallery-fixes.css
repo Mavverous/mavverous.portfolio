@@ -1,0 +1,138 @@
+/**
+ * Gallery Fixes CSS
+ * This file contains CSS fixes for gallery display issues
+ */
+
+/* Fix for gallery card visibility */
+.gallery-item {
+    position: relative;
+    visibility: visible !important;
+    display: block !important;
+    opacity: 1 !important;
+    margin-bottom: 15px; /* Reduced from 25px to match featured works spacing */
+    transform: none !important; /* Make sure container doesn't have unwanted transforms */
+    padding-bottom: 0 !important; /* Prevent bottom padding */
+}
+
+/* Make gallery cards use project card styling */
+.gallery-card {
+    /* Make gallery cards identical to project cards */
+    overflow: hidden;
+    background-color: var(--card-bg-color);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    margin-bottom: 15px; /* Reduced from 30px to reduce large gaps */
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    --reflection-shift-x: 0%;
+    --reflection-shift-y: 0%;
+    --reflection-brightness: 1;
+    cursor: pointer; /* Add pointer cursor like project cards */
+    
+    /* Visibility properties */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    
+    /* Set adequate height for taller cards */
+    height: auto;
+}
+
+/* Remove unnecessary .card-link since we're using onClick directly */
+/* NOTE: We've removed the <a> tag in favor of onclick handler for consistency */
+
+/* Show card thumbnail properly - match featured works height */
+.gallery-card img.card-img-top {
+    width: 100%;
+    height: 600px; /* Match the height of featured works images */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    opacity: 1;
+}
+
+/* Apply project-card hover effects - with reduced translation */
+.gallery-card:hover {
+    transform: translateY(-5px); /* Reduced from -10px to match featured works */
+    box-shadow: var(--box-shadow-hover), 0 0 15px rgba(108, 189, 163, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Removed reflection effects for gallery cards */
+
+/* Removed glass reflection animation for gallery cards */
+
+/* Card body styling to match project cards - overlay effect */
+.gallery-card .card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+    padding: 20px 15px;
+    transform: translateY(100%) translateZ(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    backface-visibility: hidden;
+    z-index: 10;
+}
+
+/* Show card body on hover */
+.gallery-card:hover .card-body {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Card title styling */
+.gallery-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+/* Card text styling */
+.gallery-card .card-text {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 0;
+}
+
+/* Tags styling */
+.gallery-card .tags {
+    margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-card .badge {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: 0.7rem;
+}
+
+/* Debug border for gallery container */
+#gallery-container {
+    border: 1px dashed transparent; /* Transparent border for debugging */
+    min-height: 100px; /* Ensure the container has height even if empty */
+}
+
+/* Loading state for images */
+.gallery-card img.loading {
+    opacity: 0.5;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+}
+
+/* Image error state */
+.gallery-card img.error {
+    opacity: 0.7;
+    filter: grayscale(1);
+}
