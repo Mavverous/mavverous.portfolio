@@ -1,0 +1,102 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand home-link" href="#" id="brand-link">
+                <img src="resources/images/logo.png" alt="Logo" class="logo" width="30" height="30" padding-right="100px">
+                MAVVEROUS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link home-link" href="#" data-path="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link works-link" href="#works" data-path="#works">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link about-link" href="#about" data-path="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link contact-link" href="#contact" data-path="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>    // Add active class to nav item based on current page
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentLocation = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        const brandLink = document.getElementById('brand-link');
+        const isInSubfolder = currentLocation.includes('/pages/');
+        
+        // Update the navbar links based on the current page location
+        function updateNavLinks() {
+            // Set the brand link to point to the correct home page path
+            brandLink.href = isInSubfolder ? '../index.html' : 'index.html';
+            
+            navLinks.forEach(link => {
+                const path = link.getAttribute('data-path');
+                
+                // Skip if there's no data-path
+                if (!path) return;
+                
+                // Handle different types of links
+                if (path === 'index.html') {
+                    // Home link
+                    link.href = isInSubfolder ? '../index.html' : 'index.html';
+                    
+                    // Set active state for home page
+                    if (currentLocation.includes('index.html') || 
+                        currentLocation.endsWith('/') || 
+                        currentLocation.endsWith('PortfolioSite/')) {
+                        link.classList.add('active');
+                    }
+                } 
+                else if (path === 'gallery.html') {
+                    // Gallery link
+                    link.href = isInSubfolder ? 'gallery.html' : 'pages/gallery.html';
+                    
+                    // Set active state for gallery pages
+                    if (currentLocation.includes('gallery.html') || 
+                        currentLocation.includes('artwork-detail.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                else if (path.startsWith('#')) {
+                    // Hash links (section links on the home page)
+                    // If we're on the home page, link to the section directly
+                    if (currentLocation.includes('index.html') || 
+                        currentLocation.endsWith('/') || 
+                        currentLocation.endsWith('PortfolioSite/')) {
+                        link.href = path;
+                    } else {
+                        // If we're on another page, link back to home with the section anchor
+                        link.href = isInSubfolder ? `../index.html${path}` : `index.html${path}`;
+                    }
+                }
+            });
+        }
+        
+        // Initialize links
+        updateNavLinks();
+        
+        // Update active state when clicking on in-page links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Only manage active state for in-page hash links
+                if (link.getAttribute('href').includes('#') && 
+                    (currentLocation.includes('index.html') || 
+                     currentLocation.endsWith('/') || 
+                     currentLocation.endsWith('PortfolioSite/'))) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+    });
+</script>

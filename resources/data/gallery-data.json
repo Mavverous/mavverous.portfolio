@@ -1,0 +1,39 @@
+{
+  "artworks": [
+    {
+      "id": "1",
+      "title": "CRT",
+      "description": "Digital Illustration, 2023",
+      "category": "Digital Sketch Character Commission",
+      "imagePath": "resources/images/artwork/television.png"
+    },
+    {
+      "id": "2",
+      "title": "ULTRAKILL Fan Poster",
+      "description": "Digital Illustration, 2024",
+      "category": "Digital Illustration Character FanArt",
+      "imagePath": "resources/images/artwork/ultra.png"
+    },
+    {
+      "id": "3",
+      "title": "HexVR Knight",
+      "description": "Digital Illustration, 2024",
+      "category": "Digital Painting HexVR FanArt",
+      "imagePath": "resources/images/artwork/Hex_Painting_1.png"
+    },
+    {
+      "id": "4",
+      "title": "Magi Concept Art",
+      "description": "Digital Illustration, 2023",
+      "category": "Digital Illustration HexVR Concept",
+      "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Magi.jpg"
+    },
+    {
+      "id": "5",
+      "title": "Kepler Concept Art",
+      "description": "Digital Illustration, 2023",
+      "category": "Digital Illustration HexVR Concept",
+      "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Kepler.jpg"
+    }
+  ]
+}

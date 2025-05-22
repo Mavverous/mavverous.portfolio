@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed view of an artwork from my collection">
+    <title>Artist Portfolio | Artwork Details</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+    <link rel="stylesheet" href="../resources/css/style.css">
+    <link rel="stylesheet" href="../resources/css/card-effects.css">
+</head>
+<body>
+    <!-- Navigation Bar Container -->
+    <div id="nav-container"></div>
+    
+    <!-- Artwork Detail Section -->
+    <section class="py-5" style="margin-top: 70px;">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="gallery.html">Gallery</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Artwork Details</li>
+                </ol>
+            </nav>
+            
+            <div class="row" id="artwork-detail">
+                <div class="col-lg-7 mb-4" data-aos="fade-right">
+                    <div class="artwork-image-container">
+                        <img src="../resources/images/gallery/artwork1.jpg" alt="Digital Dreamscape" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left">
+                    <h1 class="display-5 mb-3 artwork-title">Digital Dreamscape</h1>
+                    <div class="tags mb-4">
+                        <span class="tag">Digital</span>
+                        <span class="tag">Illustration</span>
+                        <span class="tag">2025</span>
+                    </div>
+                    
+                    <div class="artwork-details mb-4">
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Medium:</strong></div>
+                            <div class="col-8">Digital Illustration</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Dimensions:</strong></div>
+                            <div class="col-8">4000 x 3000 px</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Created:</strong></div>
+                            <div class="col-8">April 2025</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Status:</strong></div>
+                            <div class="col-8">Available</div>
+                        </div>
+                    </div>
+                    
+                    <div class="artwork-price mb-4">
+                        <h2 class="h4">$950.00</h2>
+                    </div>
+                    
+                    <div class="artwork-description mb-4">
+                        <h3 class="h5 mb-3">About This Artwork</h3>
+                        <p>Created as part of my exploration of digital dreamscapes, this piece represents the intersection between technology and human imagination. The flowing forms and vibrant colors symbolize the endless possibilities within digital creation.</p>
+                        <p>This artwork is part of my "Digital Consciousness" series, where I explore themes of technology integration and human creativity in the digital age.</p>
+                    </div>
+                    
+                    <div class="artwork-actions">
+                        <a href="#" class="btn btn-primary me-2">Purchase Artwork</a>
+                        <a href="#" class="btn btn-outline-secondary">Inquire</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Artworks -->
+            <div class="related-artworks mt-5">
+                <h3 class="mb-4">Related Artworks</h3>
+                <div class="row">
+                    <!-- Related Artwork 1 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <div class="gallery-card">
+                            <a href="artwork-detail.html?id=2">
+                                <img src="../resources/images/gallery/artwork5.jpg" class="img-fluid" alt="Character Study">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-info">
+                                        <h5>Character Study</h5>
+                                        <p>Pencil and Ink, 2025</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Artwork 2 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="gallery-card">
+                            <a href="artwork-detail.html?id=3">
+                                <img src="../resources/images/gallery/artwork8.jpg" class="img-fluid" alt="Cybernetic Vision">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-info">
+                                        <h5>Cybernetic Vision</h5>
+                                        <p>Digital Art, 2025</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Artwork 3 -->
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="gallery-card">
+                            <a href="artwork-detail.html?id=4">
+                                <img src="../resources/images/gallery/artwork3.jpg" class="img-fluid" alt="Urban Reflections">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-info">
+                                        <h5>Urban Reflections</h5>
+                                        <p>Photography, 2024</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+      <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../global/js/components-loader.js"></script>
+    <script src="../resources/js/main.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Get artwork ID from URL and load appropriate content
+        document.addEventListener('DOMContentLoaded', function() {
+            // This would normally fetch artwork data based on ID from URL
+            // For this example, we're just using static content
+            const urlParams = new URLSearchParams(window.location.search);
+            const artworkId = urlParams.get('id');
+            
+            // In a real application, you would fetch the artwork data
+            // based on the ID and update the page content
+            console.log('Loading artwork with ID:', artworkId);
+            
+            // Update page title based on artwork
+            document.title = "Digital Dreamscape | Artist Portfolio";
+        });
+    </script>
+</body>
+</html>
