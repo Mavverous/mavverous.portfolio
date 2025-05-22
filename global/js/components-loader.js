@@ -6,7 +6,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Determine base path based on current directory level
     const currentPath = window.location.pathname;
-    const basePath = currentPath.includes('/pages/') ? '../components/' : 'components/';
+    const isSubPage = currentPath.includes('/pages/');
+    const basePath = isSubPage ? '../components/' : 'components/';
     
     // Load components when the DOM is fully loaded
     loadComponent('nav-container', basePath + 'navbar.html', function() {
@@ -68,10 +69,11 @@ function loadComponent(containerId, componentPath, callback) {
  */
 function loadPageSpecificComponents() {
     // Get current page filename
-    const path = window.location.pathname;
+    const path = window.location.pathname.toLowerCase();
     const page = path.split("/").pop();
-      // Determine base path based on current directory level
-    const basePath = path.includes('/pages/') ? '../components/' : 'components/';
+    // Determine base path based on current directory level
+    const isSubPage = path.includes('/pages/');
+    const basePath = isSubPage ? '../components/' : 'components/';
     
     // Load page-specific components
     switch(page) {
@@ -89,8 +91,8 @@ function loadPageSpecificComponents() {
             break;
         case 'about.html':
             // About page components
-            loadComponent('experience-container', 'components/experience.html');
-            loadComponent('education-container', 'components/education.html');
+            loadComponent('experience-container', basePath + 'experience.html');
+            loadComponent('education-container', basePath + 'education.html');
             break;
         // Add more pages as needed
     }
