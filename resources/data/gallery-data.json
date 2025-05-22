@@ -3,90 +3,90 @@
     {
       "id": "1",
       "title": "CRT",
-      "description": "Digital Illustration",
-      "category": "Digital Sketch Character Commission",
+      "description": "",
+      "category": "Sketch",
       "medium": "Digital",
-      "tags": ["Character", "Commission", "Sketch"],
+      "tags": ["Character", "Commission"],
       "imagePath": "television.png",
       "yearCreated": "2023",
-      "fullDescription": "A commissioned character sketch with a digital CRT style effect. This piece was created for a client looking for a unique representation of their OC."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "2",
       "title": "ULTRAKILL Fan Poster",
-      "description": "Digital Illustration",
-      "category": "Digital Illustration Character FanArt",
+      "description": "",
+      "category": "Illustration",
       "medium": "Digital",
       "tags": ["FanArt", "Game", "Poster", "Character"],
       "imagePath": "ultra.png",
       "yearCreated": "2024",
-      "fullDescription": "A fan poster I created for the indie game ULTRAKILL. This piece showcases my love for the game's unique aesthetic and characters while demonstrating my illustration skills."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "3",
       "title": "HexVR Knight",
-      "description": "Digital Illustration",
-      "category": "Digital Painting HexVR FanArt",
+      "description": "",
+      "category": "Painting",
       "medium": "Digital",
-      "tags": ["Painting", "FanArt", "Character", "HexVR"],
+      "tags": ["FanArt", "Game", "Character", "HexVR"],
       "imagePath": "Hex_Painting_1.png",
       "yearCreated": "2024",
-      "fullDescription": "This digital painting depicts a knight character from the HexVR universe. I focused on creating dynamic lighting and a dramatic atmosphere to bring this character to life."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "4",
       "title": "Magi Concept Art",
-      "description": "Digital Illustration",
-      "category": "Digital Illustration HexVR Concept",
+      "description": "",
+      "category": "Illustration",
       "medium": "Digital",
-      "tags": ["Concept", "Character", "HexVR", "Design"],
+      "tags": ["Concept", "Character", "HexVR", "Game"],
       "imagePath": "Concept_ArmorSet_Default_Magi.jpg",
       "yearCreated": "2023",
-      "fullDescription": "Official concept art I created for the Magi character class in HexVR. This design shows the standard armor set with attention to functional details and magical elements."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "5",
       "title": "Kepler Concept Art",
-      "description": "Digital Illustration",
-      "category": "Digital Illustration HexVR Concept",
+      "description": "",
+      "category": "Illustration",
       "medium": "Digital",
-      "tags": ["Concept", "Character", "HexVR", "Design"],
+      "tags": ["Concept", "Character", "HexVR", "Game"],
       "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Kepler.jpg",
       "yearCreated": "2023",
-      "fullDescription": "Official concept art for the Kepler character class in HexVR. The design emphasizes technological elements and a more futuristic aesthetic compared to other character classes."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "6",
       "title": "Room Study",
-      "description": "Digital Environment",
-      "category": "Digital Environment Painting Personal",
+      "description": "",
+      "category": "Painting",
       "medium": "Digital",
       "tags": ["Environment", "Study", "Interior", "Painting"],
       "imagePath": "resources/images/artwork/room.PNG",
       "yearCreated": "2022",
-      "fullDescription": "A digital study of an interior space focusing on lighting, perspective, and atmospheric elements. This was a personal practice piece to improve my environment art skills."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "7",
       "title": "Magi Close-Up Detail",
-      "description": "Digital Character Art",
-      "category": "Digital Character Concept HexVR",
+      "description": "",
+      "category": "Illustration",
       "medium": "Digital",
-      "tags": ["Concept", "Character", "HexVR", "Detail"],
+      "tags": ["Concept", "Character", "HexVR", "Game"],
       "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Magi_CloseUp.png",
       "yearCreated": "2023",
-      "fullDescription": "A detailed close-up of the Magi character concept, focusing on the intricate elements of the facial design and headgear."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "8",
       "title": "HexVR Environment Study",
-      "description": "Digital Environment Art",
-      "category": "Digital Environment HexVR Concept",
+      "description": "",
+      "category": "Painting",
       "medium": "Digital",
-      "tags": ["Environment", "HexVR", "Concept", "Landscape"],
+      "tags": ["Concept", "Character", "HexVR", "Game"],
       "imagePath": "resources/images/artwork/Hex_Painting_2.png",
       "yearCreated": "2024",
-      "fullDescription": "An environmental concept painting for the HexVR world, showcasing the unique landscape and atmosphere of one of the game's regions."
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     }
   ]
 }
