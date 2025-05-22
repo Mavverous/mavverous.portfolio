@@ -1,25 +1,24 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">            <a class="navbar-brand home-link" href="#" id="brand-link">
+        <div class="container">            <a class="navbar-brand home-link" href="index.html" id="brand-link">
                 <img src="resources/images/logo.png" alt="Logo" class="logo-img" width="30" height="30" style="padding-right: 10px;">
                 MAVVEROUS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse" id="navbarNav">                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link home-link" href="#" data-path="index.html">Home</a>
+                        <a class="nav-link home-link" href="index.html" data-path="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link gallery-link" href="#" data-path="gallery.html">Gallery</a>
+                        <a class="nav-link gallery-link" href="pages/gallery.html" data-path="gallery.html">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link about-link" href="#" data-path="#about">About</a>
+                        <a class="nav-link about-link" href="#about" data-path="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link contact-link" href="#" data-path="#contact">Contact</a>
+                        <a class="nav-link contact-link" href="#contact" data-path="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -28,8 +27,9 @@
 </header>
 
 <script>
+    // This script is managed by components-loader.js
     document.addEventListener('DOMContentLoaded', function() {
-    // Get current location and determine if we're in a subfolder
+        // Get current location and determine if we're in a subfolder
         const currentPath = window.location.pathname.toLowerCase();
         const isSubPage = currentPath.includes('/pages/');
         
@@ -37,9 +37,9 @@
         const brandLink = document.getElementById('brand-link');
         const logoImg = document.querySelector('.logo-img');
         const navLinks = document.querySelectorAll('.nav-link');
-          // Set the correct path for the logo
+        
+        // Set the correct path for the logo
         logoImg.src = isSubPage ? '../resources/images/logo.png' : 'resources/images/logo.png';
-        console.log('Setting logo path:', logoImg.src);
         
         // Set the correct home link
         brandLink.href = isSubPage ? '../index.html' : 'index.html';
@@ -60,7 +60,8 @@
                     currentPath === '/') {
                     link.classList.add('active');
                 }
-            }            // Handle Gallery link
+            }
+            // Handle Gallery link
             else if (pathAttr === 'gallery.html') {
                 link.href = isSubPage ? './gallery.html' : 'pages/gallery.html';
                 
