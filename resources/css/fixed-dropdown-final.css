@@ -1,0 +1,85 @@
+/**
+ * Final fixed dropdown styling
+ * Consolidated solution for tag dropdown display issues
+ */
+
+/* Force dropdown button to look clickable */
+.tag-filter-container .multiselect.dropdown-toggle {
+  width: 100% !important;
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  text-align: left !important;
+  padding: 6px 12px !important;
+  position: relative !important;
+}
+
+/* Ensure dropdown has absolute highest z-index */
+.multiselect-container.dropdown-menu {
+  z-index: 2147483647 !important; /* Maximum z-index value */
+  position: fixed !important; 
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  background-color: #1e1e1e !important;
+  border: 1px solid var(--secondary-color, #6cbd9b) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7) !important;
+  width: auto !important;
+}
+
+/* Dropdown styling */
+.multiselect-container.dropdown-menu li a {
+  padding: 8px 15px !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+/* Label styling - use secondary color for better visibility */
+.multiselect-container.dropdown-menu li a label {
+  color: var(--secondary-color, #6cbd9b) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Hover state */
+.multiselect-container.dropdown-menu li a:hover {
+  background-color: rgba(108, 189, 163, 0.1) !important;
+}
+
+/* Active state */
+.multiselect-container.dropdown-menu li.active a {
+  background-color: rgba(108, 189, 163, 0.2) !important;
+}
+
+/* Make search input more visible */
+.multiselect-container .input-group .form-control {
+  color: white !important;
+  background-color: #2a2a2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Add arrow icon to button for better UX */
+.tag-filter-container .multiselect.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  content: "";
+  border-top: 4px solid #fff;
+  border-right: 4px solid transparent;
+  border-bottom: 0;
+  border-left: 4px solid transparent;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* "Select All" option styling */
+.multiselect-container li.multiselect-all a label {
+  font-weight: bold !important;
+  border-bottom: 1px solid rgba(108, 189, 163, 0.3) !important;
+  padding-bottom: 8px !important;
+}
+
+/* Search box styling */
+.multiselect-container .input-group {
+  padding: 8px !important;
+}

@@ -23,60 +23,12 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Lightbox CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->      <link rel="stylesheet" href="../resources/css/style.css">    <link rel="stylesheet" href="../resources/css/card-effects.css">
-    <link rel="stylesheet" href="../resources/css/gallery-filters.css">
-    <link rel="stylesheet" href="../resources/css/gallery-fixes.css">    <link rel="stylesheet" href="../resources/css/gallery-hover-fix.css">
-    <link rel="stylesheet" href="../resources/css/enhanced-filters.css">    <link rel="stylesheet" href="../resources/css/remove-reflections.css">
-    <link rel="stylesheet" href="../resources/css/dropdown-fix.css">    
-    <link rel="stylesheet" href="../resources/css/tag-dropdown-fix.css">
-    <link rel="stylesheet" href="../resources/css/fixed-dropdown.css">
-    <link rel="stylesheet" href="../resources/css/multiselect-dark-theme.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->      <link rel="stylesheet" href="../resources/css/style.css">    <link rel="stylesheet" href="../resources/css/card-effects.css">    <link rel="stylesheet" href="../resources/css/gallery-filters.css">    <link rel="stylesheet" href="../resources/css/gallery-fixes.css">    <link rel="stylesheet" href="../resources/css/gallery-hover-fix.css">    <link rel="stylesheet" href="../resources/css/enhanced-filters.css">    
+    <!-- Clean tag filter solution -->
+    <link rel="stylesheet" href="../resources/css/simple-tag-filter.css">
     
-    <!-- Bootstrap Multiselect CSS (removed integrity hash to resolve loading issue) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" crossorigin="anonymous" />
-      <!-- Critical dropdown fix styles -->
-    <style>
-        /* Override any conflicting styles and ensure tag filter container has highest z-index */
-        .gallery-filter-card {
-            z-index: 10001 !important; /* Higher than gallery cards */
-            position: relative !important;
-        }
-        
-        /* Create a proper stacking context for gallery items */
-        .gallery-item {
-            z-index: 1 !important;
-        }
-        
-        /* Ensure dropdown is visible when open */
-        .tag-filter-container .multiselect-container.dropdown-menu {
-            position: absolute !important;
-            z-index: 10002 !important;
-            display: none !important;
-        }
-        
-        /* Show dropdown only when the container has dropdown-open class */
-        .tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
-            display: block !important;
-        }
-        
-        /* Improve the dropdown styling */
-        .multiselect-container li a label {
-            color: white !important;
-            padding: 4px 0 !important;
-        }
-        
-        /* Prevent the tag dropdown from going behind cards */
-        .tag-filter-container {
-            position: relative !important;
-            z-index: 10000 !important;
-        }
-        
-        /* Fix the dropdown toggle button */
-        .multiselect.dropdown-toggle {
-            width: 100% !important;
-            text-align: left !important;
-        }
-    </style>
+    <!-- jQuery only (no multiselect plugin) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Navigation Bar Container -->
@@ -104,8 +56,7 @@
                                     <button class="filter-btn" data-filter="sculpture">Sculpture</button>
                                 </div>
                             </div>
-                            
-                            <!-- Tag Filter -->
+                              <!-- Tag Filter -->
                             <div class="col-md-4 mb-3">
                                 <label class="filter-label">
                                     <i class="fas fa-tags"></i> Tags
@@ -148,27 +99,17 @@
     </section>
     
     <!-- Footer Container -->
-    <div id="footer-container"></div>
-      <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Bootstrap JS Bundle with Popper -->
+    <div id="footer-container"></div>    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- AOS Animation JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-      <!-- Lightbox JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>      <!-- Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    
-    <!-- Bootstrap Multiselect JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="../global/js/components-loader.js"></script>
-    <script src="../resources/js/main.js"></script>
+    <!-- Custom JS -->    <script src="../global/js/components-loader.js"></script>    <script src="../resources/js/main.js"></script>    <!-- Clean tag dropdown solution -->
+    <script src="../resources/js/simple-tag-filter.js"></script>
     <script src="../resources/js/artwork-gallery.js"></script>
     <script src="../resources/js/card-effects.js"></script>
-    <script src="../resources/js/navbar-fixer.js"></script>    
+    <script src="../resources/js/navbar-fixer.js"></script>
     <!-- <style>
         /* Fix for image loading issues */
         .gallery-card img {
@@ -188,8 +129,7 @@
             50% { opacity: 1; }
             100% { opacity: 0.6; }
         }
-    </style> -->
-      <script>
+    </style> -->        <script>
         // Initialize AOS animations
         AOS.init({
             duration: 1000,
@@ -206,21 +146,9 @@
             window.galleryInstance = new ArtworkGallery({
                 dataPath: dataPath,
                 containerSelector: '#gallery-container' // This matches the actual gallery container ID
-            });            // Force cleanup in case dropdown is already open from previous page load
-            if ($.fn.multiselect) {
-                // Remove any dropdown open states that might be lingering
-                $('.tag-filter-container').removeClass('dropdown-open');
-                $('.multiselect-container.dropdown-menu').css('display', 'none');
-                
-                // Log to console for debugging
-                console.log('Multiselect plugin available - dropdown will be initialized by ArtworkGallery class');
-            } else {
-                console.warn('Multiselect plugin not found - dropdown functionality may be limited');
-            }
+            });
             
-            // Log to confirm initialization
-            console.log('Gallery initialized with advanced filtering and sorting');
-        });
-    </script>
+            console.log('Gallery initialized with simplified tag filtering');
+        });    </script><!-- No emergency scripts needed anymore - clean implementation -->
 </body>
 </html>

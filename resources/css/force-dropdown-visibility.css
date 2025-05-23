@@ -1,0 +1,69 @@
+/**
+ * Force Dropdown Visibility
+ * This CSS file uses !important rules with maximum specificity to ensure the dropdown is visible
+ */
+
+/* Target the dropdown with multiple selectors for maximum specificity */
+html body .multiselect-container.dropdown-menu,
+body .tag-filter-container .multiselect-container.dropdown-menu,
+.multiselect-container.dropdown-menu,
+ul.multiselect-container.dropdown-menu {
+    /* Visibility properties */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    
+    /* Stacking context */
+    position: fixed !important;
+    z-index: 2147483647 !important; /* Maximum z-index */
+    
+    /* Appearance for debugging */
+    background-color: #1e1e1e !important;
+    border: 5px solid #ff00ff !important; /* Hot pink border to make it obvious */
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.8) !important; /* Glowing border */
+    
+    /* Size and position - centered on screen for visibility */
+    width: 300px !important;
+    max-height: 80vh !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    overflow-y: auto !important;
+    padding: 10px !important;
+    
+    /* Ensure no transformations or animations hide it */
+    transform-origin: center center !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Make sure list items are visible */
+html body .multiselect-container.dropdown-menu li,
+body .tag-filter-container .multiselect-container.dropdown-menu li,
+.multiselect-container.dropdown-menu li {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 5px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Make sure anchors and labels are visible */
+html body .multiselect-container.dropdown-menu li a,
+html body .multiselect-container.dropdown-menu li label {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #6cbd9b !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 2px rgba(108, 189, 155, 0.5) !important;
+}
+
+/* Make the dropdown button extremely visible */
+.tag-filter-container .multiselect.dropdown-toggle {
+    border: 3px solid lime !important;
+    position: relative !important;
+    z-index: 100 !important;
+    background-color: #2a2a2a !important;
+    color: white !important;
+}

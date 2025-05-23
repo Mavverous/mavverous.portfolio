@@ -1,0 +1,79 @@
+/**
+ * Emergency dropdown visibility fix
+ * This ensures the dropdown is visible regardless of other styling issues
+ */
+
+/* Force dropdown to be visible when it's displayed */
+.multiselect-container.dropdown-menu {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 2147483647 !important; /* Maximum z-index value */
+    position: fixed !important;
+    transform: none !important;
+    margin: 0 !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+    background-color: #1e1e1e !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9) !important;
+    border: 2px solid rgba(108, 189, 163, 0.5) !important;
+    color: white !important;
+}
+
+/* Only actually show the dropdown when it's supposed to be shown */
+.multiselect-container.dropdown-menu:not(.show) {
+    display: none !important;
+}
+
+/* When container has the open class, always show the dropdown */
+.tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+    display: block !important;
+}
+
+/* Make sure list items and labels are visible */
+.multiselect-container.dropdown-menu li {
+    display: block !important;
+    visibility: visible !important;
+}
+
+.multiselect-container.dropdown-menu li a {
+    display: block !important;
+    color: white !important;
+    padding: 8px 15px !important;
+}
+
+.multiselect-container.dropdown-menu li a label {
+    color: var(--secondary-color, #6cbd9b) !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Make sure the button is styled correctly */
+.tag-filter-container .multiselect.dropdown-toggle {
+    width: 100% !important;
+    display: block !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    color: white !important;
+    text-align: left !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Make sure the search field is visible */
+.multiselect-container .input-group {
+    display: flex !important;
+    padding: 8px !important;
+}
+
+.multiselect-container .input-group .form-control {
+    color: white !important;
+    background-color: #2a2a2a !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Force visibility of checkboxes */
+.multiselect-container input[type="checkbox"] {
+    opacity: 1 !important;
+    position: static !important;
+    display: inline-block !important;
+    margin-right: 5px !important;
+}

@@ -1,0 +1,223 @@
+/**
+ * Tag Dropdown Solution
+ * A complete solution for the tag dropdown menu in the gallery
+ */
+
+/* -----------------------------------------
+   Core dropdown positioning and visibility
+   ----------------------------------------- */
+
+/* Reset any existing stacking context to ensure proper layering */
+body, html {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Tag filter container styling */
+.tag-filter-container {
+  position: relative;
+}
+
+/* Override multiselect dropdown positioning with maximum specificity */
+body .tag-filter-container .multiselect-container.dropdown-menu,
+body > .multiselect-container.dropdown-menu {
+  /* Positioning - fixed positioning allows following the button on scroll */
+  position: fixed !important;
+  transform: none !important; 
+  will-change: top, left !important; /* Optimize for position changes */
+  
+  /* Visibility */
+  z-index: 999999 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  
+  /* Layout */
+  width: auto !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  margin-top: 2px !important;
+  
+  /* Appearance */
+  border-radius: 4px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid rgba(108, 189, 163, 0.3) !important;
+  background-color: #1e1e1e !important;
+  
+  /* Display state */
+  display: none !important;
+}
+
+/* Ensure dropdown is visible when open */
+.tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+  display: block !important;
+}
+
+/* -----------------------------------------
+   Dropdown item styling
+   ----------------------------------------- */
+
+/* List items */
+.tag-filter-container .multiselect-container li {
+  padding: 0 !important;
+}
+
+/* Links */
+.tag-filter-container .multiselect-container li a {
+  display: block !important;
+  padding: 8px 15px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+}
+
+/* Hover state */
+.tag-filter-container .multiselect-container li a:hover {
+  background-color: rgba(108, 189, 163, 0.1) !important;
+  color: #fff !important;
+}
+
+/* Selected state */
+.tag-filter-container .multiselect-container li.active a {
+  background-color: rgba(108, 189, 163, 0.2) !important;
+}
+
+/* Labels - All labels use the secondary color */
+.tag-filter-container .multiselect-container li a label {
+  color: var(--secondary-color, #6cbd9b) !important;
+  padding: 4px 0 !important;
+  margin-bottom: 0 !important;
+  cursor: pointer !important;
+}
+
+/* Selected labels - make them brighter and bolder */
+.tag-filter-container .multiselect-container li.active a label {
+  color: var(--secondary-color, #6cbd9b) !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+}
+
+/* Checkboxes */
+.tag-filter-container .multiselect-container li a input[type="checkbox"] {
+  margin-right: 5px !important;
+  position: relative !important;
+}
+
+/* Style checkbox when checked */
+.tag-filter-container .multiselect-container li.active a input[type="checkbox"] {
+  accent-color: var(--secondary-color, #6cbd9b) !important;
+  opacity: 1 !important;
+}
+
+/* -----------------------------------------
+   Button styling
+   ----------------------------------------- */
+
+/* Dropdown button */
+.tag-filter-container .multiselect.dropdown-toggle {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-align: left !important;
+  width: 100% !important;
+}
+
+/* Button hover state */
+.tag-filter-container .multiselect.dropdown-toggle:hover,
+.tag-filter-container .multiselect.dropdown-toggle:focus {
+  background-color: rgba(30, 30, 30, 0.9) !important;
+  border-color: rgba(108, 189, 163, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(108, 189, 163, 0.2) !important;
+  color: #fff !important;
+}
+
+/* Selected text display */
+.tag-filter-container .multiselect-selected-text {
+  max-width: calc(100% - 20px) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Caret/dropdown icon */
+.tag-filter-container .multiselect .caret {
+  border-top-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* -----------------------------------------
+   Filter input styling
+   ----------------------------------------- */
+
+/* Filter input container */
+.tag-filter-container .multiselect-container .input-group {
+  margin: 5px 10px !important;
+  width: calc(100% - 20px) !important;
+}
+
+/* Filter input field */
+.tag-filter-container .multiselect-container .input-group .form-control {
+  background-color: #2a2a2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+}
+
+/* Filter input placeholder text */
+.tag-filter-container .multiselect-container .input-group .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* Filter input group addon */
+.tag-filter-container .multiselect-container .input-group .input-group-text {
+  background-color: #2a2a2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+/* Select all option */
+.tag-filter-container .multiselect-container li.multiselect-all a {
+  font-weight: 600 !important;
+  border-bottom: 1px solid rgba(108, 189, 163, 0.2) !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 5px !important;
+}
+
+/* Make the "Select All" text stand out */
+.tag-filter-container .multiselect-container li.multiselect-all a label {
+  color: var(--secondary-color, #6cbd9b) !important;
+  opacity: 1 !important;
+  font-size: 1.05em !important;
+}
+
+/* -----------------------------------------
+   Gallery containers z-index
+   ----------------------------------------- */
+
+/* Filter card */
+.gallery-filter-card {
+  position: relative !important;
+  z-index: 10000 !important;
+  overflow: visible !important;
+}
+
+/* Gallery container */
+#gallery-container {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Gallery items */
+.gallery-item {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Semi-transparent backdrop when dropdown is open */
+.dropdown-backdrop {
+  background-color: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9990;
+}

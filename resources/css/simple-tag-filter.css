@@ -1,0 +1,175 @@
+/**
+ * Ultra Simple Tag Filter CSS
+ * No dropdown, just plain checkboxes for maximum reliability
+ * Styled with the site's secondary color (#6cbd9b)
+ */
+
+/* Container styling */
+.tag-filter-container {
+    width: 100%;
+}
+
+/* Main container for checkboxes */
+.simple-tag-checkboxes {
+    background-color: #1e1e1e;
+    border: 1px solid rgba(108, 189, 155, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    width: 100%;
+}
+
+/* Header row with title and search */
+.tag-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-header-label {
+    font-weight: 500;
+    color: #6cbd9b;
+}
+
+/* Search input styling */
+.tag-search {
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: white;
+    width: 150px;
+    transition: all 0.2s ease;
+}
+
+.tag-search:focus {
+    outline: none;
+    border-color: #6cbd9b;
+    width: 180px;
+}
+
+.tag-search::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9em;
+}
+
+/* Select all option styling */
+.tag-checkbox.select-all {
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(108, 189, 155, 0.2);
+}
+
+.tag-checkbox.select-all label {
+    font-weight: 600;
+}
+
+/* Tag grid layout */
+.tag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 4px 8px;
+    margin-top: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar styling */
+.tag-grid::-webkit-scrollbar {
+    width: 5px;
+}
+
+.tag-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.tag-grid::-webkit-scrollbar-thumb {
+    background-color: rgba(108, 189, 155, 0.3);
+    border-radius: 5px;
+}
+
+.tag-grid::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(108, 189, 155, 0.5);
+}
+
+/* Individual checkbox styling */
+.tag-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    transition: background-color 0.1s ease;
+    border-radius: 3px;
+}
+
+.tag-checkbox:hover {
+    background-color: rgba(108, 189, 155, 0.08);
+}
+
+/* Checkbox styling */
+.tag-checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(108, 189, 155, 0.5);
+    border-radius: 3px;
+    margin-right: 6px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.tag-checkbox input[type="checkbox"]:checked {
+    background-color: #6cbd9b;
+    border-color: #6cbd9b;
+}
+
+.tag-checkbox input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.tag-checkbox input[type="checkbox"]:indeterminate {
+    background-color: rgba(108, 189, 155, 0.5);
+}
+
+.tag-checkbox input[type="checkbox"]:indeterminate::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 6px;
+    width: 8px;
+    height: 2px;
+    background-color: white;
+}
+
+/* Label styling */
+.tag-checkbox label {
+    color: #6cbd9b;
+    cursor: pointer;
+    font-size: 0.9rem;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* No results message */
+.no-results-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    font-style: italic;
+}

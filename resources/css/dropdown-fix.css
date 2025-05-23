@@ -13,14 +13,19 @@
     width: auto !important; /* Use the width of the parent column, not the entire width */
     max-height: 300px; /* Allow scrolling for many options */
     overflow-y: auto; /* Enable vertical scrolling */
-    position: absolute !important; /* Use absolute positioning relative to the container */
-    z-index: 90000 !important; /* Higher than any other elements */
+    position: fixed !important; /* Use fixed positioning to break out of stacking context */
+    z-index: 999999 !important; /* Ultra-high z-index */
     transform: none !important; /* Prevent any transforms that might affect positioning */
     margin-top: 2px; /* Add a small gap between the button and dropdown */
     box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Add stronger shadow for better visibility */
     border-radius: 4px; /* Match Bootstrap's standard border-radius */
     border: 1px solid rgba(108, 189, 163, 0.2); /* Add subtle border to match theme */
     display: none; /* Hide by default, will be shown when .open/.show class is added */
+    
+    /* Additional properties to ensure visibility */
+    opacity: 1 !important;
+    visibility: visible !important;
+    will-change: transform !important; /* Can help with rendering */
 }
 
 /* Ensure dropdown items have proper padding and hover states */

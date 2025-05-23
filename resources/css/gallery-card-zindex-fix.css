@@ -1,0 +1,31 @@
+/**
+ * Gallery Card Z-Index Fix
+ * Ensures the gallery cards don't overlap/hide the dropdown menu
+ */
+
+/* Ensure gallery cards have a lower z-index than the dropdown */
+.gallery-item, 
+.gallery-card,
+.project-card {
+    z-index: 1 !important;
+    position: relative !important;
+}
+
+/* Ensure gallery filter card has a proper z-index */
+.gallery-filter-card {
+    z-index: 10 !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Ensure tag filter container has a higher z-index */
+.tag-filter-container {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* Ensure dropdown has the absolute highest z-index */
+.multiselect-container.dropdown-menu {
+    position: fixed !important;
+    z-index: 2147483647 !important; /* Maximum z-index */
+}

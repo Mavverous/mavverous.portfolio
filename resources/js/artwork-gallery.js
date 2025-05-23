@@ -398,79 +398,15 @@ if (typeof window.ArtworkGallery === 'undefined') {
             });
         });
     }    /**
-     * Initialize tag filter dropdown
+     * Initialize tag filter checkboxes
      */    initTagFilters() {
         if (!this.tagFilterSelect) {
             return;
         }
         
-        // Initialize Bootstrap Multiselect if available
-        if (typeof $ !== 'undefined' && typeof $.fn.multiselect !== 'undefined') {
-            // Use a setTimeout to ensure the DOM is fully ready
-            setTimeout(() => {
-                // First reset any previous instances
-                $(this.tagFilterSelect).multiselect('destroy');
-                
-                // Initialize with improved settings
-                $(this.tagFilterSelect).multiselect({
-                    includeSelectAllOption: true,
-                    selectAllText: 'All Tags',
-                    enableFiltering: true,
-                    enableCaseInsensitiveFiltering: true,
-                    maxHeight: 300,
-                    buttonClass: 'btn btn-outline-secondary',
-                    buttonWidth: '100%',
-                    nonSelectedText: 'Select Tags',
-                    templates: {
-                        button: '<button type="button" class="multiselect dropdown-toggle btn btn-outline-secondary" data-bs-toggle="dropdown"><span class="multiselect-selected-text"></span></button>'
-                    }
-                });
-                
-                // Custom click handler to toggle dropdown
-                $('.tag-filter-container .multiselect').off('click').on('click', function(e) {
-                    const $container = $(this).closest('.tag-filter-container');
-                    const $dropdown = $container.find('.multiselect-container');
-                    
-                    // Toggle dropdown state
-                    if ($container.hasClass('dropdown-open')) {
-                        $container.removeClass('dropdown-open');
-                        $dropdown.css('display', 'none');
-                    } else {
-                        // Close any other open dropdowns first
-                        $('.tag-filter-container').removeClass('dropdown-open');
-                        $('.multiselect-container').css('display', 'none');
-                        
-                        // Open this dropdown
-                        $container.addClass('dropdown-open');
-                        
-                        // Position the dropdown properly
-                        $dropdown.css({
-                            'position': 'absolute',
-                            'top': '100%',
-                            'left': '0',
-                            'width': $container.width() + 'px',
-                            'max-height': '300px',
-                            'overflow-y': 'auto',
-                            'z-index': '10002',
-                            'display': 'block'
-                        });
-                    }
-                    
-                    // Prevent event from bubbling up or triggering default behavior
-                    e.preventDefault();
-                    e.stopPropagation();
-                });
-                
-                console.log('Tag filter dropdown initialized with custom click handler');
-            }, 500);
-        } else {
-            // Fallback for browsers where multiselect fails to load
-            console.warn('Bootstrap multiselect not available, using basic select');
-            // Add basic styling to make the dropdown more usable
-            this.tagFilterSelect.classList.add('form-control');
-            this.tagFilterSelect.style.height = 'auto';
-            this.tagFilterSelect.style.minHeight = '38px';
-        }
+        // The checkbox UI initialization is handled by simple-tag-filter.js
+        // We just need to listen for changes on the original select element
+        console.log('Tag filter will be initialized by simple-tag-filter.js');
         
         // Add event listener for changes
         this.tagFilterSelect.addEventListener('change', () => {
@@ -483,8 +419,8 @@ if (typeof window.ArtworkGallery === 'undefined') {
             // Apply filters
             this.applyFilters();
             
-            // Update active filter pills
-            this.updateActiveFilterPills();
+            // Log for debugging
+            console.log(`🏷️ Tag selection changed: ${selectedTags.length} tags selected`);
         });
     }
     
@@ -537,28 +473,12 @@ if (typeof window.ArtworkGallery === 'undefined') {
         } else {
             console.warn('Lightbox or jQuery not available for gallery initialization');
         }
-    }
-      /**
-     * Initialize document click handler to close dropdown when clicking outside
-     */
-    initDocumentClickHandler() {
-        if (typeof $ !== 'undefined') {
-            // Remove any existing handler first to prevent duplicates
-            $(document).off('click.tagDropdown').on('click.tagDropdown', function(e) {
-                // If click is outside the tag filter container, close any open dropdowns
-                if (!$(e.target).closest('.tag-filter-container').length && 
-                    !$(e.target).closest('.multiselect-container').length) {
-                    
-                    // Close all open dropdowns
-                    $('.tag-filter-container').removeClass('dropdown-open');
-                    $('.multiselect-container').css('display', 'none');
-                    
-                    console.log('Closing all dropdowns due to outside click');
-                }
-            });
-            
-            console.log('Document click handler initialized for dropdown closing');
-        }
+    }    /**
+     * Initialize document click handler
+     * No longer needed as we've removed the dropdown completely
+     */    initDocumentClickHandler() {
+        // No-op: Not needed with checkbox-based UI (no dropdown to close)
+        return;
     }
     
     /**

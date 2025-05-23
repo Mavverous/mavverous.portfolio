@@ -1,0 +1,94 @@
+/**
+ * Maximum Visibility Dropdown CSS
+ * Critical CSS rules to ensure dropdowns are visible and appear above all other elements
+ */
+
+/* Force the dropdown to be visible and on top of everything */
+.multiselect-container.dropdown-menu {
+    /* Positioning and stacking */
+    position: fixed !important;
+    z-index: 2147483647 !important; /* Maximum z-index value */
+    will-change: top, left !important;
+    transform: none !important;
+    
+    /* Appearance */
+    background-color: #1e1e1e !important;
+    border: 2px solid var(--secondary-color, #6cbd9b) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+    
+    /* Layout */
+    padding: 8px 0 !important;
+    margin: 0 !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+/* Make sure dropdown items are visible */
+.multiselect-container.dropdown-menu li {
+    position: relative !important;
+    z-index: 2147483647 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Style dropdown items */
+.multiselect-container.dropdown-menu li a {
+    color: white !important;
+    padding: 10px 15px !important;
+    display: block !important;
+    text-decoration: none !important;
+}
+
+/* Style checkboxes */
+.multiselect-container.dropdown-menu input[type="checkbox"] {
+    position: relative !important;
+    opacity: 1 !important;
+    margin-right: 8px !important;
+}
+
+/* Style labels */
+.multiselect-container.dropdown-menu label {
+    color: var(--secondary-color, #6cbd9b) !important;
+    font-weight: normal !important;
+    margin: 0 !important;
+    display: inline-block !important;
+}
+
+/* Style search input */
+.multiselect-container .input-group {
+    padding: 8px 10px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+}
+
+.multiselect-container .input-group input.multiselect-search {
+    background-color: #2a2a2a !important;
+    color: white !important;
+    border: 1px solid rgba(108, 189, 163, 0.3) !important;
+    padding: 6px 12px !important;
+}
+
+/* Show active items with highlight */
+.multiselect-container li.active a {
+    background-color: rgba(108, 189, 163, 0.2) !important;
+}
+
+/* Highlight the select all option */
+.multiselect-container li:first-child label {
+    font-weight: bold !important;
+    border-bottom: 1px solid rgba(108, 189, 163, 0.2) !important;
+}
+
+/* Make sure the gallery cards don't hide the dropdown */
+.gallery-item, .gallery-card, .project-card {
+    z-index: 1 !important; 
+    position: relative !important;
+}
+
+/* Make sure the gallery filter card doesn't hide the dropdown */
+.gallery-filter-card {
+    z-index: 1 !important;
+    position: relative !important;
+    overflow: visible !important;
+}

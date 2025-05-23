@@ -1,0 +1,82 @@
+/**
+ * Pure Dropdown Fix
+ * A simple, conflict-free CSS file to ensure dropdown visibility
+ */
+
+/* The dropdown button */
+.multiselect.dropdown-toggle {
+    width: 100% !important;
+    text-align: left !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* The dropdown menu itself - maximum specificity to override any conflicts */
+body .multiselect-container.dropdown-menu,
+html body .multiselect-container.dropdown-menu,
+.tag-filter-container .multiselect-container.dropdown-menu {
+    display: none;
+    position: fixed !important;
+    z-index: 2147483647 !important; /* Maximum z-index */
+    background-color: #1e1e1e !important;
+    color: white !important;
+    border: 2px solid rgba(108, 189, 163, 0.5) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+    padding: 8px 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+}
+
+/* Force visibility when dropdown is open */
+body .multiselect-container.dropdown-menu.show,
+.multiselect-container.dropdown-menu[style*="display: block"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Make dropdown items visible */
+.multiselect-container.dropdown-menu li {
+    display: block !important;
+    visibility: visible !important;
+}
+
+.multiselect-container.dropdown-menu li a {
+    display: block !important;
+    padding: 8px 15px !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* Style checkboxes in dropdown */
+.multiselect-container input[type="checkbox"] {
+    opacity: 1 !important;
+    position: static !important;
+    display: inline-block !important;
+    margin-right: 5px !important;
+}
+
+/* Make dropdown labels match the site's theme */
+.multiselect-container.dropdown-menu li a label {
+    color: var(--secondary-color, #6cbd9b) !important;
+    display: block !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+/* Style the search box for better visibility */
+.multiselect-container .input-group {
+    padding: 8px !important;
+    display: flex !important;
+}
+
+.multiselect-container .input-group .form-control {
+    background-color: #2a2a2a !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}

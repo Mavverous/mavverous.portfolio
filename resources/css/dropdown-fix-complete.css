@@ -1,0 +1,76 @@
+/**
+ * Complete Dropdown Fix
+ * This file contains comprehensive fixes for dropdown menus appearing behind gallery cards
+ */
+
+/* Create a proper stacking context for the entire page */
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure filter section has the highest priority in the stacking context */
+.gallery-filter-card {
+    position: relative;
+    z-index: 9999 !important;
+    overflow: visible !important;
+}
+
+/* Create a new stacking context for the tag filter container */
+.tag-filter-container {
+    position: relative;
+    z-index: 10000 !important; /* Higher than gallery-filter-card */
+}
+
+/* Position the dropdown directly in the body element to avoid stacking context issues */
+body > .multiselect-container.dropdown-menu {
+    position: fixed !important;
+    z-index: 9999999 !important; /* Ultra high z-index */
+}
+
+/* Ensure the dropdown menu has the highest possible z-index */
+.multiselect-container.dropdown-menu {
+    position: fixed !important;
+    z-index: 9999999 !important;
+    transform: none !important;
+    backface-visibility: visible !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5) !important; 
+    border: 1px solid rgba(108, 189, 163, 0.3) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    will-change: top, left !important;
+    pointer-events: auto !important;
+}
+
+/* Lower the gallery container z-index to ensure it's below the filters */
+#gallery-container {
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-item {
+    position: relative;
+    z-index: 1;
+}
+
+/* Fix for the multiselect button */
+.multiselect.dropdown-toggle {
+    position: relative;
+    z-index: 10000;
+    width: 100% !important;
+    text-align: left !important;
+}
+
+/* Make sure the dropdown appears when open */
+.tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+    display: block !important;
+}
+
+/* Prevent interactions with elements behind the dropdown when it's open */
+.dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9990;
+}

@@ -3,15 +3,20 @@
  * This ensures proper styling for the dropdown with the site's dark theme
  */
 
-/* Dropdown container styling */
+/* Dropdown container styling with enhanced visibility */
 .multiselect-container.dropdown-menu {
     background-color: #1e1e1e !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(108, 189, 163, 0.3) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8) !important;
     padding: 8px 0 !important;
     margin-top: 2px !important;
     max-height: 300px !important;
     overflow-y: auto !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
 }
 
 /* Dropdown items styling */

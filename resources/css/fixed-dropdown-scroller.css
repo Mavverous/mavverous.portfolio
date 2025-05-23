@@ -1,0 +1,77 @@
+/**
+ * Fixed Dropdown Scroller CSS
+ * This file contains high-priority CSS rules to ensure the dropdown stays with its button when scrolling
+ */
+
+/* Ensure dropdown has proper z-index */
+.multiselect-container.dropdown-menu {
+    position: fixed !important;
+    z-index: 2147483647 !important; /* Maximum z-index value */
+    will-change: top, left !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 8px 0 !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+    background-color: #1e1e1e !important;
+    border: 2px solid var(--secondary-color, #6cbd9b) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8) !important;
+    display: none !important;
+}
+
+/* Ensure visibility when dropdown is active */
+.multiselect-container.dropdown-menu.show,
+.tag-filter-container.dropdown-open + .multiselect-container.dropdown-menu,
+.tag-filter-container.dropdown-open .multiselect-container.dropdown-menu {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Improve dropdown item styles for better visibility */
+.multiselect-container.dropdown-menu li a {
+    color: #fff !important;
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+    display: block !important;
+    text-decoration: none !important;
+}
+
+/* Enhance checkbox styling */
+.multiselect-container.dropdown-menu input[type="checkbox"] {
+    margin-right: 8px !important;
+    position: relative !important;
+    opacity: 1 !important;
+}
+
+/* Make labels more visible with secondary color */
+.multiselect-container.dropdown-menu label {
+    color: var(--secondary-color, #6cbd9b) !important;
+    font-weight: normal !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+}
+
+/* Enhance visibility of the search input */
+.multiselect-container .input-group {
+    padding: 8px 10px !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+}
+
+.multiselect-container .input-group input.multiselect-search {
+    background-color: #2a2a2a !important;
+    color: #fff !important;
+    border: 1px solid rgba(108, 189, 163, 0.3) !important;
+    border-radius: 4px !important;
+    padding: 6px 12px !important;
+    width: 100% !important;
+}
+
+/* Highlight "All Tags" option for better visibility */
+.multiselect-container li:first-child label {
+    font-weight: bold !important;
+    color: var(--secondary-color, #6cbd9b) !important;
+    border-bottom: 1px solid rgba(108, 189, 163, 0.2) !important;
+}

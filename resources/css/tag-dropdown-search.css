@@ -1,0 +1,51 @@
+/**
+ * Enhanced search placeholder styles for the tag dropdown
+ * This ensures the search placeholder text is visible across all browsers
+ */
+
+/* Standard placeholder */
+.tag-filter-container .multiselect-container .input-group .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* WebKit browsers */
+.tag-filter-container .multiselect-container .input-group .form-control::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* Mozilla Firefox 4 to 18 */
+.tag-filter-container .multiselect-container .input-group .form-control:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* Mozilla Firefox 19+ */
+.tag-filter-container .multiselect-container .input-group .form-control::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* Internet Explorer 10+ */
+.tag-filter-container .multiselect-container .input-group .form-control:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+/* Ensure the search input text itself is white */
+.tag-filter-container .multiselect-container .input-group .form-control {
+  color: white !important;
+}
+
+/* Improve the button style for the search field */
+.tag-filter-container .multiselect-container .input-group .input-group-text {
+  color: white !important;
+  font-weight: normal !important;
+}
+
+/* Add a subtle glow effect to the search input when focused */
+.tag-filter-container .multiselect-container .input-group .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 189, 163, 0.25) !important;
+  border-color: rgba(108, 189, 163, 0.5) !important;
+}
