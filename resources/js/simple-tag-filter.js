@@ -4,13 +4,43 @@
  */
 
 (function() {
-    // Execute when DOM is fully loaded
+    // Wait for both DOM and a small delay to ensure gallery has initialized
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('🏷️ Simple Tag Filter: initializing');
-        initializeSimpleTagFilter();
-    });
-
-    /**
+        console.log('🏷️ Simple Tag Filter: waiting for gallery initialization...');
+        
+        // Set up a MutationObserver to detect when options are added to the tag-filter select
+        const tagFilterSelect = document.querySelector('.tag-filter');
+        
+        if (tagFilterSelect) {
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.type === 'childList' && tagFilterSelect.options.length > 0) {
+                        // Options have been added, initialize the filter
+                        console.log('🏷️ Tag options detected, initializing filter');
+                        initializeSimpleTagFilter();
+                        observer.disconnect();
+                        break;
+                    }
+                }
+            });
+            
+            // Start observing
+            observer.observe(tagFilterSelect, { childList: true });
+            
+            // Also set a fallback timeout in case the observer doesn't trigger
+            setTimeout(() => {
+                if (tagFilterSelect.options.length > 0) {
+                    console.log('🏷️ Initializing tag filter by timeout');
+                    initializeSimpleTagFilter();
+                    observer.disconnect();
+                } else {
+                    console.warn('⚠️ No tag options found after timeout');
+                }
+            }, 1000);
+        } else {
+            console.error('⚠️ Tag filter select element not found');
+        }
+    });    /**
      * Initialize a simple checkbox-based tag filter
      */
     function initializeSimpleTagFilter() {
@@ -35,6 +65,28 @@
         
         // Create the checkbox UI
         createCheckboxes(container, originalSelect, tags);
+        
+        // Listen for external filter reset events
+        originalSelect.addEventListener('filtersReset', (event) => {
+            console.log('Filter reset event received, updating UI');
+            
+            // Find all tag checkboxes and uncheck them
+            const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.id !== 'tag-select-all') { // Don't change the "select all" checkbox yet
+                    checkbox.checked = false;
+                }
+            });
+            
+            // Update the "Select All" checkbox state
+            const selectAllCheckbox = container.querySelector('#tag-select-all');
+            if (selectAllCheckbox) {
+                selectAllCheckbox.checked = false;
+                selectAllCheckbox.indeterminate = false;
+            }
+            
+            console.log('Tag filter UI reset completed');
+        });
         
         // Hide the original select element
         originalSelect.style.display = 'none';
@@ -67,8 +119,7 @@
         searchInput.className = 'tag-search';
         searchInput.placeholder = 'Search tags...';
         headerRow.appendChild(searchInput);
-        
-        // Create "Select All" option
+          // Create "Select All" option with count
         const selectAllContainer = document.createElement('div');
         selectAllContainer.className = 'tag-checkbox select-all';
         checkboxContainer.appendChild(selectAllContainer);
@@ -80,7 +131,7 @@
         
         const selectAllLabel = document.createElement('label');
         selectAllLabel.htmlFor = 'tag-select-all';
-        selectAllLabel.textContent = 'All Tags';
+        selectAllLabel.textContent = `All Tags (${tags.length})`;
         selectAllContainer.appendChild(selectAllLabel);
         
         // Create checkbox grid for tags

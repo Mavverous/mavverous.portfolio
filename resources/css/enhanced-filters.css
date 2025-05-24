@@ -28,8 +28,8 @@
 
 .medium-filter .filter-btn {
     background-color: transparent;
-    border: 1px solid rgba(108, 189, 163, 0.3);
-    color: var(--light-color);
+    color: var(--secondary-accent-color);
+    border: 1px solid rgba(189, 108, 139, 0.3);
     padding: 0.4rem 1rem;
     margin: 0;
     min-width: auto;
@@ -46,7 +46,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--secondary-color);
+    background: var(--secondary-accent-color);
     transition: width 0.3s ease;
 }
 
@@ -55,17 +55,17 @@
 }
 
 .medium-filter .filter-btn:hover {
-    background-color: rgba(108, 189, 163, 0.1);
-    border-color: var(--secondary-color);
+    background-color: rgba(189, 108, 135, 0.1);
+    border-color: var(--secondary-accent-color);
     transform: translateY(-2px);
 }
 
 .medium-filter .filter-btn.active {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    background-color: var(--secondary-accent-color);
+    border-color: var(--secondary-accent-color);
     color: var(--dark-color);
     font-weight: 500;
-    box-shadow: 0 3px 8px rgba(108, 189, 163, 0.3);
+    box-shadow: 0 3px 8px rgba(189, 108, 139, 0.3);
 }
 
 /* Tag Filter Select Styling */

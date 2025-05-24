@@ -78,8 +78,7 @@ if (typeof window.ArtworkGallery === 'undefined') {
                 console.error('Error loading gallery data:', error);
                 this.showError();
             });
-    }
-      /**
+    }    /**
      * Extract all filter options from artwork data
      */
     extractFilterOptions() {
@@ -113,12 +112,28 @@ if (typeof window.ArtworkGallery === 'undefined') {
         
         // Populate the tag filter dropdown
         if (this.tagFilterSelect) {
+            // Clear any existing options first (except the first one if it exists)
+            while (this.tagFilterSelect.options.length > 0) {
+                this.tagFilterSelect.remove(0);
+            }
+            
+            // Add the tags as options
             this.availableTags.forEach(tag => {
                 const option = document.createElement('option');
                 option.value = tag.toLowerCase();
                 option.textContent = tag;
                 this.tagFilterSelect.appendChild(option);
             });
+            
+            console.log(`Added ${this.availableTags.length} tag options to select element`);
+            
+            // Trigger a custom event to notify that tags have been populated
+            this.tagFilterSelect.dispatchEvent(new CustomEvent('tagspopulated', {
+                bubbles: true,
+                detail: { tagCount: this.availableTags.length }
+            }));
+        } else {
+            console.error('Tag filter select element not found in extractFilterOptions');
         }
         
         console.log('Available tags for filtering:', this.availableTags);
@@ -273,14 +288,14 @@ if (typeof window.ArtworkGallery === 'undefined') {
     /**
      * Show empty state message when no artworks match filters
      * @param {string} message - Message to display
-     */
-    showEmptyState(message) {
-        this.galleryContainer.innerHTML = `
+     */    showEmptyState(message) {        this.galleryContainer.innerHTML = `
             <div class="col-12 text-center py-5">
                 <div class="empty-state">
-                    <i class="fas fa-search mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
+                    <i class="fas fa-filter-circle-xmark mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
                     <p class="text-muted">${message}</p>
-                    <button class="btn btn-outline-primary btn-sm mt-2 clear-filters">Clear Filters</button>
+                    <button class="btn btn-outline-secondary mt-3 clear-filters">
+                        Clear All Filters
+                    </button>
                 </div>
             </div>
         `;
@@ -289,9 +304,8 @@ if (typeof window.ArtworkGallery === 'undefined') {
         const clearButton = this.galleryContainer.querySelector('.clear-filters');
         if (clearButton) {
             clearButton.addEventListener('click', () => {
-                if (this.clearFiltersBtn) {
-                    this.clearFiltersBtn.click();
-                }
+                // Reset all filters
+                this.resetAllFilters();
             });
         }
     }
@@ -441,8 +455,7 @@ if (typeof window.ArtworkGallery === 'undefined') {
         // The checkbox UI initialization is handled by simple-tag-filter.js
         // We just need to listen for changes on the original select element
         console.log('Tag filter will be initialized by simple-tag-filter.js');
-        
-        // Add event listener for changes
+          // Add event listener for changes
         this.tagFilterSelect.addEventListener('change', () => {
             // Get selected options
             const selectedTags = Array.from(this.tagFilterSelect.selectedOptions).map(option => option.value.toLowerCase());
@@ -455,6 +468,15 @@ if (typeof window.ArtworkGallery === 'undefined') {
             
             // Log for debugging
             console.log(`🏷️ Tag selection changed: ${selectedTags.length} tags selected`);
+            
+            // If there are no selected tags and there's a custom event, update simple tag filter UI
+            if (selectedTags.length === 0 && event instanceof Event) {
+                // Dispatch a custom event that the simple-tag-filter can listen for
+                this.tagFilterSelect.dispatchEvent(new CustomEvent('filtersReset', { 
+                    bubbles: true,
+                    detail: { source: 'gallery' } 
+                }));
+            }
         });
     }
     
@@ -473,14 +495,59 @@ if (typeof window.ArtworkGallery === 'undefined') {
             // Apply current filters and sort
             this.applyFilters();
         });
-    }
-      /**
+    }    /**
      * Initialize clear filters button
      * (This method is now a no-op since we've removed the clear filters button)
      */
     initClearFilters() {
         // No-op: Clear filters button has been removed
         return;
+    }
+    
+    /**
+     * Reset all filters to their default state
+     * This is used by the Clear Filters button in the empty state message
+     */
+    resetAllFilters() {
+        console.log('Clearing all filters');
+        
+        // Reset medium filter buttons
+        if (this.filterButtons && this.filterButtons.length > 0) {
+            // Remove active class from all buttons
+            this.filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Set "All" button to active
+            const allButton = Array.from(this.filterButtons).find(btn => btn.getAttribute('data-filter') === 'all');
+            if (allButton) {
+                allButton.classList.add('active');
+            }
+        }
+        
+        // Reset tag filters
+        if (this.tagFilterSelect) {
+            // Deselect all options
+            for (let i = 0; i < this.tagFilterSelect.options.length; i++) {
+                this.tagFilterSelect.options[i].selected = false;
+            }
+            
+            // Trigger change event to update any listeners
+            this.tagFilterSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        
+        // Reset sort to default
+        if (this.sortSelect) {
+            this.sortSelect.value = 'newest';
+        }
+        
+        // Reset current filters state
+        this.currentFilters = {
+            medium: 'all',
+            tags: [],
+            sort: 'newest'
+        };
+        
+        // Re-apply the filters (which will now show all)
+        this.applyFilters();
     }
       /**
      * Update the active filter pills display

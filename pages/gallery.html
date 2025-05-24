@@ -28,6 +28,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->      <link rel="stylesheet" href="../resources/css/style.css">    <link rel="stylesheet" href="../resources/css/card-effects.css">    <link rel="stylesheet" href="../resources/css/gallery-filters.css">    <link rel="stylesheet" href="../resources/css/gallery-fixes.css">    <link rel="stylesheet" href="../resources/css/gallery-hover-fix.css">    <link rel="stylesheet" href="../resources/css/enhanced-filters.css">    
     <!-- Clean tag filter solution -->
     <link rel="stylesheet" href="../resources/css/simple-tag-filter.css">
+    <link rel="stylesheet" href="../resources/css/compact-tag-filter.css">
     
     <!-- jQuery only (no multiselect plugin) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -47,7 +48,7 @@
                         <div class="row">
                             <!-- Medium Filter -->
                             <div class="col-md-4 mb-3">
-                                <label class="filter-label">
+                                <label class="text-mono-accent">
                                     <i class="fas fa-paint-brush"></i> Medium
                                 </label>
                                 <div class="medium-filter">
@@ -108,13 +109,18 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>      <!-- Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>    <!-- Custom JS -->    
      <script src="../global/js/components-loader.js"></script>    
-     <script src="../resources/js/main.js"></script>    
+     <script src="../resources/js/main.js"></script>
+     
+     <!-- Important: Load gallery script first, then tag filter -->
+     <script src="../resources/js/artwork-gallery.js"></script>
      <!-- Clean tag dropdown solution -->
-    <script src="../resources/js/simple-tag-filter.js"></script>
-    <script src="../resources/js/artwork-gallery.js"></script>
-    <script src="../resources/js/card-effects.js"></script>
-    <script src="../resources/js/navbar-fixer.js"></script>
-    <script src="../resources/js/extension-case-checker.js"></script>
+     <script src="../resources/js/simple-tag-filter.js"></script>
+     
+     <!-- Other scripts -->     <script src="../resources/js/card-effects.js"></script>
+     <script src="../resources/js/navbar-fixer.js"></script>
+     <script src="../resources/js/extension-case-checker.js"></script>
+     <script src="../resources/js/tag-filter-debug.js"></script>
+     <script src="../resources/js/scrollbar-enhancer.js"></script>
     <!-- <style>
         /* Fix for image loading issues */
         .gallery-card img {

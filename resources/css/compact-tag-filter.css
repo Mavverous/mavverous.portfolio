@@ -1,0 +1,85 @@
+/**
+ * Additional CSS fixes for compact tag filter
+ * This ensures the tag filter works well with the rest of the page layout
+ */
+
+/* Make the info card more compact */
+.info-card {
+    padding: 15px !important;
+}
+
+/* Adjust vertical spacing around filter label */
+.filter-label {
+    margin-bottom: 5px !important;
+}
+
+/* Add some animation to the tag-grid scrollbox */
+.tag-grid {
+    transition: all 0.3s ease;
+    position: relative; /* Needed for the scrollbar effects */
+}
+
+.tag-grid:hover {
+    background-color: rgba(40, 40, 40, 0.7);
+}
+
+/* Add subtle glow effect to scrollbar on hover */
+.tag-grid:hover::-webkit-scrollbar-thumb {
+    box-shadow: 0 0 8px rgba(108, 189, 155, 0.4);
+}
+
+/* Hide scrollbar until hover (optional) */
+.tag-grid.hide-scrollbar::-webkit-scrollbar-thumb {
+    opacity: 0;
+}
+
+.tag-grid.hide-scrollbar:hover::-webkit-scrollbar-thumb {
+    opacity: 1;
+}
+
+/* Ensure Firefox scrolling works well too */
+.tag-grid {
+    scrollbar-color: #6cbd9b rgba(0, 0, 0, 0.2);
+    scroll-behavior: smooth; /* Enable smooth scrolling by default */
+}
+
+/* Styles for scroll state indicators */
+.tag-grid.is-scrollable::after {
+    opacity: 1;
+}
+
+.tag-grid.bottom-reached::after {
+    opacity: 0.3;
+}
+
+/* Add a subtle animation effect to the scrollbar when scrolling */
+.tag-grid:active::-webkit-scrollbar-thumb {
+    animation: pulse-scrollbar 1s infinite alternate;
+}
+
+@keyframes pulse-scrollbar {
+    from {
+        background: linear-gradient(to bottom, #5aa988 0%, #408a6c 100%);
+    }
+    to {
+        background: linear-gradient(to bottom, #6cbd9b 0%, #4e9d7d 100%);
+    }
+}
+
+/* Make tags per row responsive */
+@media (min-width: 768px) and (max-width: 991px) {
+    .tag-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .tag-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        max-height: 120px;
+    }
+    
+    .simple-tag-checkboxes {
+        max-height: 250px;
+    }
+}
