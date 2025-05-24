@@ -5,8 +5,8 @@
 /* ===== Base Styles ===== */
 :root {
   /* Main Color Palette */
-  --primary-color: #202438;
-  --primary-accent-color: #202438;
+  --primary-color: #1a171b;
+  --primary-accent-color: rgb(21, 14, 24);
   --secondary-color: #6CBDA3;
   --secondary-accent-color: #E8275E;
   
