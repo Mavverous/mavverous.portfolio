@@ -3,7 +3,23 @@
  * This script loads featured works from the gallery data
  */
 
+// Variable to track retry attempts
+// Using window variables to avoid redeclaration issues
+window.retryCount = window.retryCount || 0;
+window.MAX_RETRIES = window.MAX_RETRIES || 3;
+
+// Wait a short period before initializing to ensure other scripts are loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Add a small delay to ensure all dependencies are loaded
+    setTimeout(initFeaturedWorks, 200);
+});
+
+/**
+ * Initialize the featured works section
+ */
+function initFeaturedWorks() {
+    console.log('Initializing featured works, attempt #', window.retryCount + 1);
+    
     // Get the container - try both IDs as we have different containers in different files
     const featuredWorksContainer = document.getElementById('featured-works-container');
 
@@ -15,6 +31,28 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Featured works container found:', featuredWorksContainer);
     }
 
+    // Show loading spinner if the helper is available
+    if (window.featuredWorksHelpers && window.featuredWorksHelpers.showLoadingSpinner) {
+        window.featuredWorksHelpers.showLoadingSpinner();
+    }        // Check if ArtworkUtils is available, if not retry after a delay
+    if (typeof ArtworkUtils === 'undefined') {
+        console.warn('ArtworkUtils not available yet, waiting...');
+        if (window.retryCount < window.MAX_RETRIES) {
+            window.retryCount++;
+            setTimeout(initFeaturedWorks, 500 * window.retryCount); // Exponential backoff
+            return;
+        } else {
+            // Show error after max retries
+            console.error('ArtworkUtils not available after max retries');
+            if (window.featuredWorksHelpers && window.featuredWorksHelpers.showError) {
+                window.featuredWorksHelpers.showError('Failed to load dependencies. Please refresh the page.');
+            }
+            return;
+        }
+    }
+      // Reset retry count once we have ArtworkUtils
+    window.retryCount = 0;
+
     // Determine if we're on the main page or in a subfolder
     const isInSubfolder = window.location.pathname.includes('/pages/');
     const dataPath = isInSubfolder ? '../resources/data/gallery-data.json' : 'resources/data/gallery-data.json';
@@ -23,7 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Log for debugging
     console.log('Loading gallery data from:', dataPath);
 
-    fetch(dataPath)
+    // Use fetch with a timeout
+    const fetchPromise = fetch(dataPath);
+    const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Request timed out')), 5000)
+    );
+    
+    // Race between fetch and timeout
+    Promise.race([fetchPromise, timeoutPromise])
         .then(response => {
             console.log('Gallery data response:', response.status, response.statusText);
             if (!response.ok) {
@@ -47,18 +92,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error('Failed to parse gallery data JSON');
                 }
             });
-        })
-        .then(data => {
+        })        .then(data => {
             console.log('Gallery data loaded:', data);
             
+            // Clear safety timeout if it exists
+            if (window.featuredWorksHelpers && window.featuredWorksHelpers.clearSafetyTimeout) {
+                window.featuredWorksHelpers.clearSafetyTimeout();
+            }
+            
             if (!data.artworks || !Array.isArray(data.artworks) || data.artworks.length === 0) {
-                featuredWorksContainer.innerHTML = `
+                const emptyMessage = `
                     <div class="col-12 text-center">
                         <p>No featured works available. Add some artwork through the Gallery Manager.</p>
                     </div>
                 `;
+                
+                // Use safer DOM manipulation
+                while (featuredWorksContainer.firstChild) {
+                    featuredWorksContainer.removeChild(featuredWorksContainer.firstChild);
+                }
+                
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = emptyMessage;
+                while (tempDiv.firstChild) {
+                    featuredWorksContainer.appendChild(tempDiv.firstChild);
+                }
+                
                 return;
-            }            // Sort artworks by newest first
+            }// Sort artworks by newest first
             const sortedArtworks = [...data.artworks].sort((a, b) => {
                 // Use the ArtworkUtils class to parse dates if available
                 if (typeof ArtworkUtils !== 'undefined' && ArtworkUtils.parseArtworkDate) {
@@ -140,18 +201,34 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
                     </div>
-                `;
-
-                console.warn('Container:', featuredWorksContainer);
-                console.warn('Card:', card);
+                `;                console.log('Container:', featuredWorksContainer);
+                console.log('Card:', card);
                 
-                featuredWorksContainer.appendChild(card);
-
-                // Check if the card was created successfully
-                if (!featuredWorksContainer.contains(card)) {
-                    console.error('Failed to append card to container:', card);
-                } else {
-                    console.log('Card appended successfully:', card);
+                try {
+                    // Safely append the card with error handling
+                    if (featuredWorksContainer && card) {
+                        featuredWorksContainer.appendChild(card);
+                        
+                        // Double-check if the card was successfully added
+                        if (featuredWorksContainer.contains(card)) {
+                            console.log('Card appended successfully:', card);
+                        } else {
+                            // Try another method if direct appendChild fails
+                            console.warn('Direct appendChild failed, trying innerHTML method');
+                            
+                            // Create a temporary container
+                            const cardContainer = document.createElement('div');
+                            cardContainer.className = card.className;
+                            cardContainer.innerHTML = card.innerHTML;
+                            
+                            // Try appending the new container
+                            featuredWorksContainer.appendChild(cardContainer);
+                        }
+                    } else {
+                        throw new Error('Container or card is null');
+                    }
+                } catch (error) {
+                    console.error('Error appending card to container:', error);
                 }
 
                 console.log('Featured work card created:', {
@@ -160,26 +237,53 @@ document.addEventListener('DOMContentLoaded', function() {
                     detailPath: detailPath
                 });
             });
-            
-            // Refresh AOS animations if available
+              // Refresh AOS animations if available
             if (typeof AOS !== 'undefined') {
                 AOS.refresh();
-            }        })
+            }
+            
+            // Add a class to indicate successful loading
+            featuredWorksContainer.classList.add('loaded');
+            console.log('Featured works loaded successfully');
+        })
         .catch(error => {
             console.error('Error loading featured works:', error);
-            featuredWorksContainer.innerHTML = `
-                <div class="col-12 text-center">
-                    <div class="alert alert-warning" role="alert">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        Unable to load featured works. Please check the console for details.
-                    </div>
-                    <div class="mt-3 text-start bg-light p-3 rounded" style="max-height: 200px; overflow: auto">
-                        <pre class="small text-danger">${error.toString()}</pre>
-                    </div>
-                    <div class="mt-3">
-                        <button class="btn btn-sm btn-outline-primary" onclick="location.reload()">Try Again</button>
-                    </div>
+            
+            // Use the helper function if available
+            if (window.featuredWorksHelpers && window.featuredWorksHelpers.showError) {
+                window.featuredWorksHelpers.showError('Unable to load featured works. Please try again.');
+                return;
+            }
+            
+            // Fallback if helper isn't available
+            // Use safer DOM manipulation
+            while (featuredWorksContainer.firstChild) {
+                featuredWorksContainer.removeChild(featuredWorksContainer.firstChild);
+            }
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'col-12 text-center';
+            errorDiv.innerHTML = `
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Unable to load featured works. Please check the console for details.
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-primary" id="retry-featured-works">
+                        <i class="fas fa-sync-alt me-2"></i> Try Again
+                    </button>
                 </div>
             `;
+            
+            featuredWorksContainer.appendChild(errorDiv);
+              // Add event listener for retry button
+            const retryButton = document.getElementById('retry-featured-works');
+            if (retryButton) {
+                retryButton.addEventListener('click', function() {
+                    // Reset the retryCount
+                    window.retryCount = 0;
+                    initFeaturedWorks();
+                });
+            }
         });
-});
+}
