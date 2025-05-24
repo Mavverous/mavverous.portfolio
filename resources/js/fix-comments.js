@@ -24,7 +24,8 @@ function addFixCommentsButton() {
     // Find the comments title element to place the button next to it
     const commentsTitle = document.querySelector('.comments-section h3');
     if (commentsTitle) {
-        commentsTitle.appendChild(fixButton);
+        // I've removed the button for now.
+        //commentsTitle.appendChild(fixButton);
         
         // Add click event
         fixButton.addEventListener('click', fixComments);
