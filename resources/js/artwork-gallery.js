@@ -354,12 +354,42 @@ if (typeof window.ArtworkGallery === 'undefined') {
         // Add a +X more badge if we have more tags
         if (extraTagsCount > 0) {
             tagBadges += `<span class="tag">+${extraTagsCount} more</span>`;
-        }          // Create gallery card that's identical to featured works cards
+        }        // Handle possible case sensitivity issues with file extensions for GitHub Pages
+        // Try alternative extensions if needed (.png vs .PNG, .jpg vs .JPG)
+        const isCapitalExtension = thumbnailPath.match(/\.(PNG|JPG|JPEG|GIF|WEBP)$/);
+        const isLowerExtension = thumbnailPath.match(/\.(png|jpg|jpeg|gif|webp)$/);
+        
+        // Create a function to try both uppercase and lowercase extensions
+        function createImgWithFallback(path) {
+            // If no extension match found, just use the path as is
+            if (!isCapitalExtension && !isLowerExtension) {
+                return `<img src="${path}" class="card-img-top loading" alt="${artwork.title}" 
+                       onload="this.classList.remove('loading')"
+                       onerror="this.onerror=null; this.src='${placeholderPath}'; console.error('Failed to load image: ${path}');">`;
+            }
+            
+            // If we have an extension, prepare both versions
+            const basePath = path.substring(0, path.lastIndexOf('.'));
+            const ext = path.substring(path.lastIndexOf('.') + 1);
+            const upperPath = `${basePath}.${ext.toUpperCase()}`;
+            const lowerPath = `${basePath}.${ext.toLowerCase()}`;
+            
+            // Create an image tag that tries both variants
+            return `<img src="${path}" class="card-img-top loading" alt="${artwork.title}" 
+                   onload="this.classList.remove('loading')"
+                   onerror="if (!this.dataset.tried) {
+                       this.dataset.tried = '1';
+                       this.src = '${path === upperPath ? lowerPath : upperPath}';
+                   } else {
+                       this.src='${placeholderPath}';
+                       console.error('Failed to load image: ${path}');
+                   }">`;
+        }
+        
+        // Create gallery card that's identical to featured works cards
         const cardHtml = `
             <div class="gallery-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='${isInSubfolder ? 'artwork-detail.html?id=' + artwork.id : 'pages/artwork-detail.html?id=' + artwork.id}'">
-                <img src="${thumbnailPath}" class="card-img-top loading" alt="${artwork.title}" 
-                     onload="this.classList.remove('loading')"
-                     onerror="this.onerror=null; this.src='${placeholderPath}'; console.error('Failed to load image: ${thumbnailPath}');">
+                ${createImgWithFallback(thumbnailPath)}
                 <div class="card-body">
                     <h5 class="card-title">${artwork.title}</h5>
                     <p class="card-text">${artwork.createdDate}</p>
@@ -526,8 +556,10 @@ if (typeof window.ArtworkUtils === 'undefined') {
         // If it's a relative path, adjust based on current location
         const basePrefix = isInSubfolder ? '../' : '';
         
-        // Handle case sensitivity issues with file extensions
-        const normalizedPath = imagePath.replace(/\.(png|jpg|jpeg|gif|webp)$/i, match => match.toLowerCase());
+        // Handle file extensions - IMPORTANT: Don't convert to lowercase for GitHub Pages
+        // Instead, keep the original case of the filename and extension
+        // This is critical for case-sensitive servers like GitHub Pages
+        const normalizedPath = imagePath;
         
         // Check if path already includes resources/images/artwork or similar structure
         if (normalizedPath.includes('resources/images/artwork/') || normalizedPath.includes('resources\\images\\artwork\\')) {
@@ -579,8 +611,7 @@ if (typeof window.ArtworkUtils === 'undefined') {
             return new Date(0); // Return epoch if parsing fails
         }
     }
-    
-    /**
+      /**
      * Debug function to check image availability
      * @param {string} imagePath - Path to check
      */
@@ -600,6 +631,26 @@ if (typeof window.ArtworkUtils === 'undefined') {
             console.warn('Warning: Path does not have a valid image extension:', imagePath);
         }
         
+        // Case sensitivity checks for GitHub Pages
+        // This is critical because GitHub Pages is case-sensitive but Windows is not
+        if (imagePath.match(/\.(png|jpg|jpeg|gif|webp)$/)) {
+            console.log('Note: File has lowercase extension. On GitHub Pages, ensure the actual file extension matches this case.');
+            
+            // Try to suggest an alternative
+            const basePath = imagePath.substring(0, imagePath.lastIndexOf('.'));
+            const ext = imagePath.substring(imagePath.lastIndexOf('.') + 1);
+            console.log(`If image fails to load, try: ${basePath}.${ext.toUpperCase()}`);
+        }
+        
+        if (imagePath.match(/\.(PNG|JPG|JPEG|GIF|WEBP)$/)) {
+            console.log('Note: File has uppercase extension. On GitHub Pages, ensure the actual file extension matches this case.');
+            
+            // Try to suggest an alternative
+            const basePath = imagePath.substring(0, imagePath.lastIndexOf('.'));
+            const ext = imagePath.substring(imagePath.lastIndexOf('.') + 1);
+            console.log(`If image fails to load, try: ${basePath}.${ext.toLowerCase()}`);
+        }
+        
         // Create a test image to check if the path works
         const img = new Image();
         img.onload = () => {
@@ -615,9 +666,24 @@ if (typeof window.ArtworkUtils === 'undefined') {
                 console.warn('Possible path issue: Using relative path (..) but not in a subfolder context');
             }
             
-            // Check for case sensitivity issues that might have been missed
+            // Case sensitivity troubleshooting
             if (/(PNG|JPG|JPEG|GIF|WEBP)$/i.test(imagePath)) {
-                console.warn('Possible case sensitivity issue with file extension');
+                console.warn('GitHub Pages Case Sensitivity Issue: The file extension case might not match the actual file.');
+                
+                // Extract the base path and extension
+                const basePath = imagePath.substring(0, imagePath.lastIndexOf('.'));
+                const ext = imagePath.substring(imagePath.lastIndexOf('.') + 1);
+                
+                // Suggest trying both uppercase and lowercase versions
+                console.warn(`Try these alternatives:
+                1. ${basePath}.${ext.toUpperCase()}
+                2. ${basePath}.${ext.toLowerCase()}`);
+                
+                // Also suggest checking the actual file case on GitHub
+                console.warn(`Tip: Check the exact filename and case in your GitHub repository.
+                Fix options: 
+                1. Rename your files to match the case in your code
+                2. Update your code to match the actual file case`);
             }
         };
         img.src = imagePath;

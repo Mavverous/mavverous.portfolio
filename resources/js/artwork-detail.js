@@ -8,8 +8,7 @@
  * Helper functions to work with artwork images
  */
 if (typeof window.ArtworkUtils === 'undefined') {
-    window.ArtworkUtils = class {
-        /**
+    window.ArtworkUtils = class {        /**
          * Process image path to ensure it's correctly formatted
          * @param {string} imagePath - Path to the image file
          * @param {boolean} isInSubfolder - Whether the current page is in a subfolder
@@ -37,6 +36,7 @@ if (typeof window.ArtworkUtils === 'undefined') {
                     imagePath.split('/').pop() : 
                     imagePath;
                 
+                // IMPORTANT: Do not modify case of file extension for GitHub Pages compatibility
                 return `${basePrefix}resources/images/artwork/${filename}`;
             }
             
