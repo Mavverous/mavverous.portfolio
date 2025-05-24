@@ -507,10 +507,11 @@ if (typeof window.ArtworkGallery === 'undefined') {
         } else {
             console.warn('Lightbox or jQuery not available for gallery initialization');
         }
-    }    /**
-     * Initialize document click handler
-     * No longer needed as we've removed the dropdown completely
-     */    initDocumentClickHandler() {
+    }    
+        /**
+         * Initialize document click handler
+         * No longer needed as we've removed the dropdown completely
+         */    initDocumentClickHandler() {
         // No-op: Not needed with checkbox-based UI (no dropdown to close)
         return;
     }
