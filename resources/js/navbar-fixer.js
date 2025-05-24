@@ -21,22 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentPath = window.location.pathname.toLowerCase();
         const isSubPage = currentPath.includes('/pages/');
         const logoPath = isSubPage ? '../resources/images/logo.png' : 'resources/images/logo.png';
-        
-        // Fix logo image
-        const logoImg = document.querySelector('.logo-img');
+          // Fix logo image - try both classes
+        const logoImg = document.querySelector('.logo-img') || document.querySelector('.logo');
         if (logoImg) {
+            console.log('Found and fixing logo image:', logoPath);
             logoImg.src = logoPath;
+        } else {
+            console.error('Logo image not found');
         }
         
         // Fix navbar brand link
         const brandLink = document.querySelector('.navbar-brand');
         if (brandLink) {
             brandLink.href = isSubPage ? '../index.html' : 'index.html';
+            console.log('Fixed navbar brand link:', brandLink.href);
         }
-        
-        // Fix all navigation links
+          // Fix all navigation links
         fixNavLink('.nav-link.home-link', isSubPage ? '../index.html' : 'index.html');
+        
+        // Try to find gallery link with both class names (works-link or gallery-link)
         fixNavLink('.nav-link.gallery-link', isSubPage ? './gallery.html' : 'pages/gallery.html');
+        fixNavLink('.nav-link.works-link', isSubPage ? './gallery.html' : 'pages/gallery.html');
         
         if (isSubPage) {
             // Fix about and contact links when in subpages

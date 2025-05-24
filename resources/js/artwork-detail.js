@@ -165,9 +165,23 @@ class ArtworkDetail {
             this.showError(`Artwork with ID ${this.artworkId} not found.`);
             return;
         }
+          // Update document title
+        document.title = `MAVVEROUS | ${artwork.title}`;
         
-        // Update document title
-        document.title = `MAVVEROUS | ${artwork.title}`;        // Process image path
+        // Update Cusdis comment attributes with artwork data
+        const cusdisThread = document.getElementById('cusdis_thread');
+        if (cusdisThread) {
+            cusdisThread.setAttribute('data-page-id', this.artworkId);
+            cusdisThread.setAttribute('data-page-url', window.location.href);
+            cusdisThread.setAttribute('data-page-title', artwork.title);
+            
+            // Reload Cusdis comments with new parameters if Cusdis is already loaded
+            if (window.CUSDIS) {
+                window.CUSDIS.initial();
+            }
+        }
+        
+        // Process image path
         const isInSubfolder = window.location.pathname.includes('/pages/');
         
         // Use the ArtworkUtils class that we defined above
@@ -194,9 +208,10 @@ class ArtworkDetail {
         }
         
         console.log('Loading artwork image:', imagePath);
-          // Extract categories for tags
-        const categories = artwork.category ? artwork.category.split(' ') : [];
-        const tagHtml = categories.map(cat => `<span class="tag artwork-tag">${cat}</span>`).join('');
+          // Extract tags
+        const tags = artwork.tags || [];
+
+        const tagHtml = tags.map(cat => `<span class="artwork-tag">${cat}</span>`).join('');
         
         // Update the detail container with the artwork information
         if (this.detailContainer) {
@@ -211,7 +226,7 @@ class ArtworkDetail {
                 tagsContainer.innerHTML = tagHtml;
             }// Update details based on available information
             const detailsRows = this.detailContainer.querySelectorAll('.artwork-details .row');
-            const medium = artwork.description ? artwork.description.split(',')[0].trim() : 'Digital';
+            const medium = artwork.medium || 'Unknown';
             const date = artwork.yearCreated || artwork.createdDate || artwork.date || 'Unknown';
             
             // Set medium
@@ -247,7 +262,7 @@ class ArtworkDetail {
                     // Use the full description if available
                     descriptionContainer.textContent = artwork.fullDescription;
                 } else {                    // Generate a more detailed description based on available metadata
-                    const categoryLabels = categories.map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ');
+                    const tagLabels = tags.map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ');
                     
                     // Format the date for better presentation
                     let formattedDate = date;
@@ -256,7 +271,7 @@ class ArtworkDetail {
                     }
                       // Start with basic description
                     let description = `This ${medium} was created in ${formattedDate}. ` +
-                                     `This piece is part of my ${categoryLabels} collection and showcases my artistic style.`;
+                                        `This piece is part of my ${tagLabels} collection and showcases my artistic style.`;
                     
                     // Add dimensions if available in metadata
                     if (artwork.dimensions) {
@@ -279,21 +294,23 @@ class ArtworkDetail {
     }
     
     /**
-     * Render related artworks (other artworks in the same category)
+     * Render related artworks (other artworks in the same tag)
      * @param {Object} data - Gallery data object containing artworks
-     */
-    renderRelatedArtworks(data) {
+     */    renderRelatedArtworks(data) {
         if (!this.relatedContainer || !data.artworks || !Array.isArray(data.artworks)) {
+            console.log("No related container or artwork data available");
             return;
         }
         
-        // Find the current artwork
+        console.log("Starting related artwork search...");
+          // Find the current artwork
         const currentArtwork = data.artworks.find(item => item.id === this.artworkId);
-        if (!currentArtwork || !currentArtwork.category) {
+        if (!currentArtwork || !currentArtwork.tags || !Array.isArray(currentArtwork.tags)) {
+            console.log("No tags available for the current artwork");
             return;
         }
           // Get related artworks using several methods for better recommendations
-        const currentCategories = currentArtwork.category.toLowerCase().split(' ');
+        const currentTags = currentArtwork.tags;
         const currentYear = currentArtwork.yearCreated;
         
         // Array to store related artworks with their relevance score
@@ -313,7 +330,7 @@ class ArtworkDetail {
             });
         }
         
-        // Then find related artworks by categories and year
+        // Then find related artworks by tags and year
         data.artworks.forEach(item => {
             if (item.id === this.artworkId) return; // Skip current artwork
             
@@ -321,17 +338,16 @@ class ArtworkDetail {
             if (relatedArtworksWithScores.some(r => r.artwork.id === item.id)) return;
             
             let score = 0;
-            
-            // Score based on category matches
-            if (item.category) {
-                const itemCategories = item.category.toLowerCase().split(' ');
-                const categoryMatches = itemCategories.filter(cat => currentCategories.includes(cat)).length;
+              // Score based on tag matches
+            if (item.tags && Array.isArray(item.tags)) {
+                const itemTags = item.tags;
+                const tagMatches = itemTags.filter(cat => currentTags.includes(cat)).length;
                 
-                // More shared categories = higher score
-                score += categoryMatches * 2;
+                // More shared tags = higher score
+                score += tagMatches * 2;
                 
-                // Bonus if at least one category matches
-                if (categoryMatches > 0) {
+                // Bonus if at least one tag matches
+                if (tagMatches > 0) {
                     score += 1;
                 }
             }
@@ -350,21 +366,47 @@ class ArtworkDetail {
             if (score > 0) {
                 relatedArtworksWithScores.push({ artwork: item, score });
             }
-        });
-        
-        // Sort by relevance score (highest first) and take top 3
+        });        // Sort by relevance score (highest first) and then by year (newest first) if scores are equal
         const relatedArtworks = relatedArtworksWithScores
-            .sort((a, b) => b.score - a.score)
+            .sort((a, b) => {
+                // First sort by relevance score
+                const scoreDiff = b.score - a.score;
+                if (scoreDiff !== 0) return scoreDiff;                // If scores are equal, sort by date (newest first)
+                // Use ArtworkUtils if available, otherwise fall back to basic parsing
+                let dateA, dateB;
+                
+                if (typeof window.ArtworkUtils !== 'undefined' && window.ArtworkUtils.parseArtworkDate) {
+                    dateA = window.ArtworkUtils.parseArtworkDate(a.artwork).getTime();
+                    dateB = window.ArtworkUtils.parseArtworkDate(b.artwork).getTime();
+                } else {
+                    // Fallback to simpler parsing
+                    const dateStrA = a.artwork.createdDate || a.artwork.yearCreated || '';
+                    const dateStrB = b.artwork.createdDate || b.artwork.yearCreated || '';
+                    dateA = new Date(dateStrA).getTime() || 0;
+                    dateB = new Date(dateStrB).getTime() || 0;
+                }
+                
+                return dateB - dateA;
+            })
             .map(item => item.artwork)
             .slice(0, 3);
         
+        console.log(`Found ${relatedArtworksWithScores.length} related artworks with scores:`, 
+            relatedArtworksWithScores.map(item => ({
+                id: item.artwork.id,
+                title: item.artwork.title, 
+                score: item.score,
+                tags: item.artwork.tags
+            }))
+        );
+            
         // Clear container
         this.relatedContainer.innerHTML = '';
         
         // Generate related artworks HTML
         if (relatedArtworks.length > 0) {
             const isInSubfolder = window.location.pathname.includes('/pages/');
-              relatedArtworks.forEach((artwork, index) => {
+                relatedArtworks.forEach((artwork, index) => {
                 // Get image path using ArtworkUtils
                 let imagePath;
                 if (typeof window.ArtworkUtils !== 'undefined') {
@@ -399,13 +441,17 @@ class ArtworkDetail {
             // Refresh AOS animations
             if (typeof AOS !== 'undefined') {
                 AOS.refresh();
-            }
-        } else {
-            // Hide related artworks section if none found
-            const relatedSection = this.relatedContainer.closest('.related-artworks');
-            if (relatedSection) {
-                relatedSection.style.display = 'none';
-            }
+            }        } else {
+            // Show a message when no related artworks are found
+            this.relatedContainer.innerHTML = `
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No related artworks found. This piece is truly one of a kind!
+                    </div>
+                </div>
+            `;
+            console.log("No related artworks found to display");
         }
     }
     
@@ -437,7 +483,7 @@ class ArtworkDetail {
  *
  * 2. The related artworks system has been enhanced to:
  *    - Use explicit relationships defined in the 'relatedTo' property
- *    - Score artworks based on category overlap and creation year proximity
+ *    - Score artworks based on tag overlap and creation year proximity
  *    - Sort and display the most relevant related artworks first
  *
  * You can remove the 'dimensions' property from artwork entries in the gallery-data.json

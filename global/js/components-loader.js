@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load components when the DOM is fully loaded
     loadComponent('nav-container', basePath + 'navbar.html', function() {
         console.log('Navigation loaded successfully');
-        // Force navbar script execution again in case it wasn't executed properly
+        
+        // Force navbar script execution directly
         initializeNavbar(isSubPage);
     });
     loadComponent('footer-container', basePath + 'footer.html');
@@ -73,56 +74,12 @@ function loadComponent(containerId, componentPath, callback) {
 /**
  * Loads components specific to the current page based on URL or page ID
  */
-/**
- * Initialize navbar links and active states
- * @param {boolean} isSubPage - Whether the current page is in a subfolder
- */
-function initializeNavbar(isSubPage) {
-    // Get navigation elements
-    const brandLink = document.getElementById('brand-link');
-    const logoImg = document.querySelector('.logo-img');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    if (!brandLink || !logoImg) {
-        console.error('Navbar elements not found. Make sure the navbar is loaded properly.');
-        return;
-    }
-    
-    // Set the correct path for the logo
-    logoImg.src = isSubPage ? '../resources/images/logo.png' : 'resources/images/logo.png';
-    
-    // Set the correct home link
-    brandLink.href = isSubPage ? '../index.html' : 'index.html';
-    
-    // Fix navigation links
-    navLinks.forEach(link => {
-        const pathAttr = link.getAttribute('data-path');
-        if (!pathAttr) return;
-        
-        // Home link
-        if (pathAttr === 'index.html') {
-            link.href = isSubPage ? '../index.html' : 'index.html';
-        } 
-        // Gallery link
-        else if (pathAttr === 'gallery.html') {
-            link.href = isSubPage ? './gallery.html' : 'pages/gallery.html';
-        } 
-        // Anchor links
-        else if (pathAttr.startsWith('#')) {
-            link.href = isSubPage ? `../index.html${pathAttr}` : pathAttr;
-        }
-    });
-    
-    console.log('Navbar links initialized');
-}
-
 function loadPageSpecificComponents() {
     // Get current page filename
-    const path = window.location.pathname.toLowerCase();
+    const path = window.location.pathname;
     const page = path.split("/").pop();
-    // Determine base path based on current directory level
-    const isSubPage = path.includes('/pages/');
-    const basePath = isSubPage ? '../components/' : 'components/';
+      // Determine base path based on current directory level
+    const basePath = path.includes('/pages/') ? '../components/' : 'components/';
     
     // Load page-specific components
     switch(page) {
@@ -140,9 +97,57 @@ function loadPageSpecificComponents() {
             break;
         case 'about.html':
             // About page components
-            loadComponent('experience-container', basePath + 'experience.html');
-            loadComponent('education-container', basePath + 'education.html');
+            loadComponent('experience-container', 'components/experience.html');
+            loadComponent('education-container', 'components/education.html');
             break;
         // Add more pages as needed
     }
+}
+
+/**
+ * Initialize navbar links and active states
+ * @param {boolean} isSubPage - Whether the current page is in a subfolder
+ */
+function initializeNavbar(isSubPage) {
+    // Get navigation elements
+    const brandLink = document.getElementById('brand-link');
+    const logoImg = document.querySelector('.logo-img');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    if (!brandLink || !logoImg) {
+        console.error('Navbar elements not found. Make sure the navbar is loaded properly.');
+        return;
+    }
+    
+    // Set the correct path for the logo
+    logoImg.src = isSubPage ? '../resources/images/logo.png' : 'resources/images/logo.png';
+    console.log('Logo image path set to:', logoImg.src);
+    
+    // Set the correct home link
+    brandLink.href = isSubPage ? '../index.html' : 'index.html';
+      // Fix navigation links
+    navLinks.forEach(link => {
+        const pathAttr = link.getAttribute('data-path');
+        
+        if (!pathAttr) return;
+        
+        // Home link
+        if (pathAttr === 'index.html') {
+            link.href = isSubPage ? '../index.html' : 'index.html';
+        } 
+        // Gallery link
+        else if (pathAttr === 'gallery.html') {
+            link.href = isSubPage ? './gallery.html' : 'pages/gallery.html';
+        } 
+        // Commissions link
+        else if (pathAttr === 'commissions.html') {
+            link.href = isSubPage ? './commissions.html' : 'pages/commissions.html';
+        }
+        // Anchor links
+        else if (pathAttr.startsWith('#')) {
+            link.href = isSubPage ? `../index.html${pathAttr}` : pathAttr;
+        }
+    });
+    
+    console.log('Navbar links initialized');
 }

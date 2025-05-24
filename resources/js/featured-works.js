@@ -5,18 +5,24 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Get the container - try both IDs as we have different containers in different files
-    const featuredWorksContainer = document.getElementById('featured-works-container') || 
-                                 document.getElementById('featured-works-inner');
-    
-    console.log('Featured works script loaded, container found:', !!featuredWorksContainer);
-    if (!featuredWorksContainer) return;
+    const featuredWorksContainer = document.getElementById('featured-works-container');
+
+    if (!featuredWorksContainer) {
+        console.error('Featured works container not found');
+        return;
+    }
+    else {
+        console.log('Featured works container found:', featuredWorksContainer);
+    }
 
     // Determine if we're on the main page or in a subfolder
     const isInSubfolder = window.location.pathname.includes('/pages/');
     const dataPath = isInSubfolder ? '../resources/data/gallery-data.json' : 'resources/data/gallery-data.json';
     const imagePlaceholder = isInSubfolder ? '../resources/images/placeholder.jpg' : 'resources/images/placeholder.jpg';
-      // Log for debugging
-    console.log('Loading gallery data from:', dataPath);        // Load gallery data
+
+    // Log for debugging
+    console.log('Loading gallery data from:', dataPath);
+
     fetch(dataPath)
         .then(response => {
             console.log('Gallery data response:', response.status, response.statusText);
@@ -52,10 +58,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
                 return;
-            }
+            }            // Sort artworks by newest first
+            const sortedArtworks = [...data.artworks].sort((a, b) => {
+                // Use the ArtworkUtils class to parse dates if available
+                if (typeof ArtworkUtils !== 'undefined' && ArtworkUtils.parseArtworkDate) {
+                    const dateA = ArtworkUtils.parseArtworkDate(a).getTime();
+                    const dateB = ArtworkUtils.parseArtworkDate(b).getTime();
+                    return dateB - dateA; // Descending order by date (newest first)
+                } else {
+                    // Fallback to simpler parsing if ArtworkUtils isn't available
+                    const dateStrA = a.createdDate || a.yearCreated || '';
+                    const dateStrB = b.createdDate || b.yearCreated || '';
+                    const dateA = new Date(dateStrA).getTime() || 0;
+                    const dateB = new Date(dateStrB).getTime() || 0;
+                    return dateB - dateA; // Descending order by date (newest first)
+                }
+            });
             
             // Get only the first 3 artworks for featured works section
-            const featuredWorks = data.artworks.slice(0, 3);
+            const featuredWorks = sortedArtworks.slice(0, 3);
             featuredWorksContainer.innerHTML = '';
             
             // Create featured work cards
@@ -63,13 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const delay = index * 100;
                 const detailPath = isInSubfolder ? `artwork-detail.html?id=${artwork.id}` : `pages/artwork-detail.html?id=${artwork.id}`;
                 
-                // Create tags from categories
-                const categories = artwork.category.split(' ');
+                // Create tags
+                const categories = artwork.tags;
                 let tagsHtml = '';
                 
-                categories.forEach(category => {
-                    if (category) {
-                        tagsHtml += `<span class="tag">${category.charAt(0).toUpperCase() + category.slice(1)}</span>`;
+                categories.forEach(tag => {
+                    if (tag) {
+                        tagsHtml += `<span class="tag">${tag}</span>`;
                     }
                 });                  // Process image paths for local images
                 const processImagePath = path => {
@@ -96,10 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Process image paths
                 const thumbnailUrl = processImagePath(artwork.thumbnailUrl || artwork.imagePath);
-                const fullImageUrl = processImagePath(artwork.fullImageUrl || artwork.imagePath || artwork.thumbnailUrl);
                 
                 console.log('Processing image URLs:', {
-                    original: artwork.thumbnailUrl,
                     processed: thumbnailUrl
                 });
                 
@@ -115,15 +134,31 @@ document.addEventListener('DOMContentLoaded', function() {
                              onerror="this.onerror=null; this.src='${imagePlaceholder}';">
                         <div class="card-body">
                             <h5 class="card-title">${artwork.title}</h5>
+                            <p class="card-text">${artwork.createdDate}</p>
                             <div class="tags">
                                 ${tagsHtml}
                             </div>
-                            <p class="card-text">${artwork.description}</p>
                         </div>
                     </div>
                 `;
+
+                console.warn('Container:', featuredWorksContainer);
+                console.warn('Card:', card);
                 
                 featuredWorksContainer.appendChild(card);
+
+                // Check if the card was created successfully
+                if (!featuredWorksContainer.contains(card)) {
+                    console.error('Failed to append card to container:', card);
+                } else {
+                    console.log('Card appended successfully:', card);
+                }
+
+                console.log('Featured work card created:', {
+                    title: artwork.title,
+                    thumbnailUrl: thumbnailUrl,
+                    detailPath: detailPath
+                });
             });
             
             // Refresh AOS animations if available

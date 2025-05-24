@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cusdis Setup Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <style>
+        .setup-step {
+            background-color: rgba(32, 36, 56, 0.3);
+            border-left: 4px solid #6d5dfc;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+        }
+        .code-block {
+            background-color: #181b2e;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            color: #e0e0e0;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .highlight {
+            color: #6d5dfc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5" style="max-width: 800px;">
+        <h1 class="mb-4">Cusdis Comments Setup Guide</h1>
+        
+        <div class="setup-step">
+            <h3>Step 1: Create a Cusdis Account</h3>
+            <ol>
+                <li>Go to <a href="https://cusdis.com" target="_blank">https://cusdis.com</a></li>
+                <li>Sign up for a free account using GitHub, Google, or email</li>
+            </ol>
+        </div>
+        
+        <div class="setup-step">
+            <h3>Step 2: Create a New Website</h3>
+            <ol>
+                <li>After logging in, click on "New Website" button</li>
+                <li>Enter your website title (e.g., "Mavverous Portfolio")</li>
+                <li>Enter your website URL (e.g., "https://mavverous.com")</li>
+                <li>Click "Create"</li>
+            </ol>
+        </div>
+        
+        <div class="setup-step">
+            <h3>Step 3: Get Your App ID</h3>
+            <ol>
+                <li>From your dashboard, select the website you just created</li>
+                <li>Look for your <span class="highlight">App ID</span> in the dashboard</li>
+                <li>Copy this ID - you'll need it for the next step</li>
+            </ol>
+        </div>
+        
+        <div class="setup-step">
+            <h3>Step 4: Update Your Artwork Detail Page</h3>
+            <ol>
+                <li>Open <code>pages/artwork-detail.html</code> in your code editor</li>
+                <li>Find the Cusdis container code:</li>
+                <div class="code-block">
+&lt;div id="cusdis_thread"
+     data-host="https://cusdis.com"
+     data-app-id="<span class="highlight">YOUR_APP_ID</span>"
+     data-page-id=""
+     data-page-url=""
+     data-page-title=""&gt;
+&lt;/div&gt;
+                </div>
+                <li>Replace <span class="highlight">YOUR_APP_ID</span> with the App ID you copied in Step 3</li>
+            </ol>
+        </div>
+        
+        <div class="setup-step">
+            <h3>Step 5: Test Your Comments</h3>
+            <ol>
+                <li>Open your website and navigate to an artwork detail page</li>
+                <li>Scroll down to the comments section</li>
+                <li>Test by adding a comment - it should appear after approval in your Cusdis dashboard</li>
+            </ol>
+        </div>
+        
+        <div class="setup-step">
+            <h3>Step 6: Managing Comments</h3>
+            <ol>
+                <li>Log into your Cusdis dashboard at <a href="https://cusdis.com/dashboard" target="_blank">https://cusdis.com/dashboard</a></li>
+                <li>From here, you can:
+                    <ul>
+                        <li>Approve or reject comments</li>
+                        <li>Delete comments</li>
+                        <li>Reply to comments</li>
+                        <li>Change moderation settings</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="alert alert-primary mt-4">
+            <h4>Need Additional Help?</h4>
+            <p>For more information, visit the <a href="https://cusdis.com/doc" target="_blank">Cusdis documentation</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

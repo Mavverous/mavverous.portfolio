@@ -1,0 +1,246 @@
+/* 
+ * Custom styling for Cusdis comments section 
+ */
+
+:root {
+  /* Main Color Palette */
+  --primary-color: #202438;
+  --primary-accent-color: #202438;
+  --secondary-color: #6CBDA3;
+  --secondary-accent-color: #E8275E;
+  
+  /* Dark Mode Colors */
+  --dark-color: #101219;
+  --light-color: #eaeaea;
+  --gray-color: #a0a0a0;
+  --text-color: #e1e1e1;
+  --bg-color: #121212;
+  --bg-color-secondary: #1a1a1a;
+  --card-bg-color: #1e1e1e;
+  
+  /* Status Colors */
+  --success-color: #1cc88a;
+  --info-color: #36b9cc;
+  --warning-color: #f6c23e;
+  --danger-color: #e74a3b;
+  
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+  
+  --transition-speed: 0.3s;
+  
+  /* Shadow Effects */
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.8);
+}
+
+/* Main comments container */
+.comments-section {
+    padding: 1.5rem;
+    border: 1px solid;
+    border-color: var(--secondary-color);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Override Cusdis default styles to match our dark theme */
+#cusdis_thread {
+    color: var(--text-color);
+    font-family: var(--font-primary);
+}
+
+/* Comments header styling */
+.comments-section h3 {
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Submit button styling */
+#cusdis_thread button {
+    background-color: var(--primary-accent-color) !important;
+    border: none !important;
+    color: var(--text-color) !important;
+    border-radius: 5px;
+    padding: 0.5rem 1rem !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#cusdis_thread button:hover {
+    background-color: rgba(109, 93, 252, 0.9) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Comments styling */
+.comment-item {
+    background-color: rgba(24, 27, 46, 0.5) !important;
+    border-left: 3px solid rgba(109, 93, 252, 0.7) !important;
+    border-radius: 0 5px 5px 0;
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.comment-author {
+    color: rgba(109, 93, 252, 0.9) !important;
+    font-weight: 600;
+}
+
+.comment-date {
+    color: var(--gray-color) !important;
+    font-size: 0.85rem;
+}
+
+.comment-content {
+    color: var(--text-color) !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Notification for awaiting approval */
+.approval-notification {
+    background-color: rgba(246, 194, 62, 0.2);
+    border-left: 3px solid #f6c23e;
+    padding: 0.75rem;
+    border-radius: 0 5px 5px 0;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+}
+
+.approval-notification.visible {
+    opacity: 1;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.approval-notification i {
+    margin-right: 0.5rem;
+    color: #f6c23e;
+}
+
+/* Ad blocker message styling */
+.ad-blocker-message {
+    margin-top: 1.5rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.ad-blocker-message .alert {
+    background-color: rgba(246, 194, 62, 0.15);
+    border: 1px solid rgba(246, 194, 62, 0.4);
+    border-left: 4px solid #f6c23e;
+    color: #e1e1e1;
+    border-radius: 5px;
+    padding: 1.25rem;
+}
+
+.ad-blocker-message h5 {
+    color: #f6c23e;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.ad-blocker-message ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ad-blocker-message li {
+    margin-bottom: 0.5rem;
+}
+
+.ad-blocker-message a.alert-link {
+    color: #6d5dfc !important;
+    text-decoration: none;
+}
+
+.ad-blocker-message a.alert-link:hover {
+    text-decoration: underline;
+}
+
+/* Placeholder text color */
+#cusdis_thread ::placeholder {
+    color: var(--gray-color) !important;
+    opacity: 0.7;
+}
+
+/* Make sure the iframe has proper dimensions */
+#cusdis_thread iframe {
+    width: 100%;
+    min-height: 450px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Adjust iframe height based on content */
+#cusdis_thread.has-comments iframe {
+    min-height: 450px;
+}
+
+/* Comment count style */
+.cusdis-comment-count {
+    font-size: 0.85rem;
+    color: var(--gray-color);
+    margin-left: 0.5rem;
+}
+
+.border .border-gray-200 {
+    background-color: var(--info-color);
+}
+
+/* Custom styles for Cusdis iframe content */
+/* These styles will be applied when data-style-override="true" */
+:root {
+    --cusdis-form-input-height: 36px;
+    --cusdis-form-font-size: 0.9rem;
+    --cusdis-form-padding: 6px 12px;
+    --cusdis-form-margin: 8px;
+    --cusdis-button-padding: 5px 10px;
+    --cusdis-button-font-size: 0.85rem;
+}
+
+/* Reduce input field sizes */
+.comment-form .input,
+iframe#cusdis_iframe .comment-form .input {
+    height: var(--cusdis-form-input-height) !important;
+    padding: var(--cusdis-form-padding) !important;
+    font-size: var(--cusdis-form-font-size) !important;
+    margin-bottom: 10px !important;
+}
+
+/* Reduce textarea size */
+.comment-form textarea,
+iframe#cusdis_iframe .comment-form textarea {
+    padding: var(--cusdis-form-padding) !important;
+    font-size: var(--cusdis-form-font-size) !important;
+    min-height: 80px !important;
+    max-height: 120px !important;
+}
+
+/* Adjust form layout */
+.comment-form,
+iframe#cusdis_iframe .comment-form {
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Make buttons smaller */
+.comment-form button, 
+.reply-form button,
+iframe#cusdis_iframe .comment-form button, 
+iframe#cusdis_iframe .reply-form button {
+    padding: var(--cusdis-button-padding) !important;
+    font-size: var(--cusdis-button-font-size) !important;
+    height: auto !important;
+}
+
+/* Adjust spacing between elements */
+.comment-form > div,
+iframe#cusdis_iframe .comment-form > div {
+    margin-bottom: var(--cusdis-form-margin) !important;
+}

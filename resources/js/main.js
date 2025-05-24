@@ -106,7 +106,7 @@ function initScrollAnimations() {
         // Add scroll class to header for background change
         const header = document.querySelector('header');
         if (header) {
-            if (scrollPosition > 50) {
+            if (scrollPosition > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');

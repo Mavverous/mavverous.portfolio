@@ -11,33 +11,37 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
+      <!-- Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/index.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet">
+
     <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-      <!-- Custom CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">    
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/card-effects.css">
+    <link rel="stylesheet" href="resources/css/app-icons.css">
 </head>
 <body>
     <!-- Navigation Bar Container -->
     <div id="nav-container"></div>
     
     <!-- Hero Section -->
-    <section id="hero" class="py-5">
+    <section class="py-5 galaxy" style="padding-top: 150px !important;">
         <div class="container">
             <div class="row align-items-center">                
                 <div class="col-md-6" data-aos="fade-right">
-                    <h1 class="fw-bold">Mavverous</h1>
-                    <h1 class="display-4">Art & Design</h1>
-                    <p class="lead">I work in several different programs, such as Adobe Photoshop, Adobe Illustrator, Ibis Paint X, Procreate, and more. The different types of designs I can make include concept art, posters, logos, paintings, and anything else digital art-related. I can work in many different styles and mediums.</p>
+                    <h1 class="fw-bold ms-madi-regular">Mavverous Art & Design</h1>
+                    <p>I work in several different programs, such as Adobe Photoshop, Adobe Illustrator, Ibis Paint X, Procreate, and more. The different types of designs I can make include concept art, posters, logos, paintings, and anything else digital art-related. I can work in many different styles and mediums.</p>
                     <a href="#works" class="btn btn-primary btn-lg mt-3">View My Work</a>
                     <a href="#contact" class="btn btn-outline-primary btn-lg mt-3 ms-3">Get In Touch</a>
                 </div>
@@ -48,54 +52,149 @@
         </div>
     </section>
     
-    <!-- Featured Works Section -->
-    <section id="works" class="py-5 bg-light">
+    <!-- Recent Works Section -->
+    <section id="works" class="py-5 galaxy">
         <div class="container">
-            <h2 class="text-center mb-5" data-aos="fade-up">Featured Works</h2>
+            <h1 class="text-center mb-5 ms-madi-bold" data-aos="fade-up">Recent Works</h1>
             <div class="row" id="featured-works-container">
                 <!-- Featured works will be loaded here dynamically -->
             </div>
             <div class="text-center mt-5">
-                <a href="pages/gallery.html" class="btn btn-outline-primary">View Full Gallery</a>
+                <a href="pages/gallery.html" class="btn btn-primary">
+                    View Full Gallery
+                    <i class="fa fa-external-link ms-2"></i>
+                </a>
             </div>
         </div>
     </section>
     
     <!-- About Me Section -->
-    <section id="about" class="py-5">
+    <section id="about" class="py-5 galaxy">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center mb-5">
                 <div class="col-md-6" data-aos="fade-right">
                     <img src="resources/images/about-image.jpg" alt="About Me" class="img-fluid rounded-circle mb-4">
                 </div>                
                 <div class="col-md-6" data-aos="fade-left">
-                    <h2 class="mb-4">About Me</h2>
-                    <p>Hi! My name is Mars.</p>
-                    <p>I'm a student studying graphic design, game design, and sculpture. I have five years of professional experience doing Lorem ipsum dolor sit amet, consectetur adipiscing elit. Thank you for choosing me to help bring your ideas to life! It is truly an honor. When you buy art from me, you are helping me achieve my dream of becoming a professional artist.</p>
-                    <a href="resources/data/artist_cv.pdf" class="btn btn-outline-primary mt-3" download hidden>Download Artist CV</a>
+                    <h1 class="mb-4 ms-madi-bold">Howdy!</h1>
+                    <p>My name is Mars.</p>
+                    <p>I'm a passionate artist and designer with a focus on graphic design, game design, and sculpture. Thank you for choosing me to help bring your ideas to life! It is truly an honor. When you buy art from me, you are helping me achieve my dream of becoming a professional artist.</p>
+                    <a href="resources/data/artist_cv.pdf" class="btn btn-outline-primary mt-3" download>Download Artist CV</a>
                 </div>
             </div>
-        </div>    </section>
+            
+            <!-- About Me Details Section -->
+            <div class="about-details mt-5">
+                <div class="row">
+                    <!-- Software & Applications -->
+                    <div class="col-md-6 mb-4" data-aos="fade-up">
+                        <div class="about-card info-card p-4 h-100">
+                            <h3 class="mb-3 text-mono-accent">
+                                <i class="fas fa-laptop-code me-2"></i>
+                                Software & Applications
+                            </h3>                            
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="devicon-photoshop-plain me-2 text-mono-secondary"></i>Adobe Photoshop</li>
+                                <li class="mb-2"><i class="devicon-illustrator-plain me-2 text-mono-secondary"></i>Adobe Illustrator</li>
+                                <li class="mb-2"><i class="fas fa-paint-brush me-2 text-mono-secondary"></i>Procreate</li>
+                                <li class="mb-2"><i class="fas fa-palette me-2 text-mono-secondary"></i>Ibis Paint X</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Artistic Mediums -->
+                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="about-card info-card p-4 h-100">
+                            <h3 class="mb-3 text-mono-accent">
+                                <i class="fas fa-paint-brush me-2"></i>
+                                Artistic Mediums & Avenues
+                            </h3>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-palette me-2 text-mono-secondary"></i>Digital Illustration</li>
+                                <li class="mb-2"><i class="fas fa-palette me-2 text-mono-secondary"></i>Digital Painting</li>
+                                <li class="mb-2"><i class="fas fa-palette me-2 text-mono-secondary"></i>Sculpture</li>
+                                <li class="mb-2"><i class="fas fa-palette me-2 text-mono-secondary"></i>Concept & Design</li>
+                                <li class="mb-2"><i class="fas fa-palette me-2 text-mono-secondary"></i>Logo Design</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Education Background -->
+                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="about-card info-card p-4 h-100">
+                            <h3 class="mb-3 text-mono-accent">
+                                <i class="fas fa-graduation-cap me-2"></i>
+                                Education
+                            </h3>
+                            <div class="mb-3">
+                                <h4>
+                                    <span>Studying Lorem Ipsum | </span>
+                                    <span class="text-mono-secondary">Currently Pursuing</span>
+                                </h4>
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sollicitudin consectetur arcu, eu congue est. Mauris.</p>
+                            </div>
+                            <div>
+                                <h4>
+                                    <span>Certificate in Lorem Ipsum | </span>
+                                    <span class="text-mono-secondary">Completed [Year]</span>
+                                </h4>
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac mi tristique.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Professional Experience -->
+                    <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="about-card info-card p-4 h-100">
+                            <h3 class="mb-3 text-mono-accent">
+                                <i class="fas fa-briefcase me-2"></i>
+                                Professional Experience
+                            </h3>
+                            <div class="mb-3">
+                                <h4>
+                                    <span>Freelance Digital Artist | </span>
+                                    <span class="text-mono-secondary">2023 - Present</span>
+                                </h4>
+                                <p>Creating custom art pieces for clients across a wide range of scopes and disciplines</p>
+                            </div>
+                            <div>
+                                <h4>
+                                    <span>Concept Artist at GGs | </span>
+                                    <span class="text-mono-secondary">2023 - Present</span>
+                                </h4>
+                                <p>Developed character and environment concepts for Golden Gear Studios working on Hex VR</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Contact Section -->
-    <section id="contact" class="py-5">
+    <section id="contact" class="py-5 galaxy">
         <div class="container">
-            <h2 class="text-center mb-5" data-aos="fade-up">Get In Touch</h2>
+            <h2 class="text-center mb-5 ms-madi-bold" data-aos="fade-up">Get In Touch</h2>
             <div class="row justify-content-center">
                 <div class="col-md-8" data-aos="zoom-in">
-                    <form id="contact-form">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+                        <!-- Replace with your Access Key -->
+                        <input type="hidden" name="access_key" value="631ca84e-c9a4-40b5-9280-2f6ad5ecc314">
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                            <textarea class="form-control" id="message" rows="5" name="message" required></textarea>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
@@ -113,7 +212,8 @@
     
     <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    <!-- Custom JS -->    <script src="global/js/components-loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    <!-- Custom JS -->    
+    <script src="global/js/components-loader.js"></script>
     <script src="resources/js/main.js"></script>
     <script src="resources/js/artwork-gallery.js"></script>
     <script src="resources/js/featured-works.js"></script>

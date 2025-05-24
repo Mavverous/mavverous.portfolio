@@ -3,89 +3,208 @@
     {
       "id": "1",
       "title": "CRT",
-      "description": "",
-      "category": "",
       "medium": "Sketch",
       "tags": ["Character", "Commission"],
       "imagePath": "television.png",
-      "yearCreated": "2023",
+      "createdDate": "1/1/2023",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "2",
       "title": "ULTRAKILL Fan Poster",
-      "description": "",
-      "category": "",
       "medium": "Illustration",
-      "tags": ["FanArt", "Game", "Poster", "Character"],
+      "tags": ["Fan Art", "Game", "Poster", "Character"],
       "imagePath": "ultra.png",
-      "yearCreated": "2024",
+      "createdDate": "1/1/2024",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "3",
       "title": "HexVR Knight",
-      "description": "",
-      "category": "",
       "medium": "Painting",
-      "tags": ["FanArt", "Character", "HexVR", "Game"],
+      "tags": ["Fan Art", "Character", "Hex VR", "Game"],
       "imagePath": "Hex_Painting_1.png",
-      "yearCreated": "2024",
+      "createdDate": "1/28/2024",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "4",
       "title": "Magi Concept Art",
-      "description": "",
-      "category": "",
       "medium": "Illustration",
-      "tags": ["Concept", "Character", "HexVR", "Game"],
+      "tags": ["Concept", "Character", "Hex VR", "Game"],
       "imagePath": "Concept_ArmorSet_Default_Magi.jpg",
-      "yearCreated": "2023",
+      "createdDate": "8/3/2023",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "5",
       "title": "Kepler Concept Art",
-      "description": "",
-      "category": "",
       "medium": "Illustration",
-      "tags": ["Concept", "Character", "HexVR", "Game"],
+      "tags": ["Concept", "Character", "Hex VR", "Game"],
       "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Kepler.jpg",
-      "yearCreated": "2023",
+      "createdDate": "8/3/2023",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "6",
       "title": "Cozy",
-      "description": "",
-      "category": "",
       "medium": "Sketch",
-      "tags": ["Environment", "Study", "Interior"],
+      "tags": ["Environment", "Interior"],
       "imagePath": "resources/images/artwork/room.PNG",
-      "yearCreated": "2023",
+      "createdDate": "1/1/2023",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "7",
       "title": "Magi Close-Up Detail",
-      "description": "",
-      "category": "",
       "medium": "Illustration",
-      "tags": ["Concept", "Character", "HexVR", "Game"],
+      "tags": ["Concept", "Character", "Hex VR", "Game"],
       "imagePath": "resources/images/artwork/Concept_ArmorSet_Default_Magi_CloseUp.png",
-      "yearCreated": "2023",
+      "createdDate": "8/23/2023",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     },
     {
       "id": "8",
       "title": "HexVR Art Challenge",
-      "description": "",
-      "category": "",
       "medium": "Sketch",
-      "tags": ["FanArt", "Character", "HexVR", "Game"],
+      "tags": ["Fan Art", "Character", "Hex VR", "Game"],
       "imagePath": "resources/images/artwork/Hex_Painting_2.png",
-      "yearCreated": "2024",
+      "createdDate": "3/3/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "9",
+      "title": "HexVR Knight 2",
+      "medium": "Painting",
+      "tags": ["Fan Art", "Character", "Hex VR", "Game"],
+      "imagePath": "Hex_Painting_3.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "10",
+      "title": "Great Blue Heron",
+      "medium": "Painting",
+      "tags": ["Animal"],
+      "imagePath": "image_2024-02-29_164907396.png",
+      "createdDate": "1/1/2023",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "11",
+      "title": "Cerberus Hound of Hades",
+      "medium": "Sketch",
+      "tags": ["Animal"],
+      "imagePath": "image_2024-03-04_203259791.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "12",
+      "title": "The Necromancer",
+      "medium": "Painting",
+      "tags": ["Character"],
+      "imagePath": "image_2024-03-25_161428563.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "13",
+      "title": "Self Portrait",
+      "medium": "Painting",
+      "tags": [""],
+      "imagePath": "image_2024-03-25_161610582.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "14",
+      "title": "Comm. for @mewhenmewhenda",
+      "medium": "Sketch",
+      "tags": ["Character", "Commission"],
+      "imagePath": "image_2024-05-01_214748189.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "15",
+      "title": "Comm. for @CadeXR",
+      "medium": "Painting",
+      "tags": ["Character", "Commission", "Hex VR", "Game"],
+      "imagePath": "image_2024-05-01_215529818.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "16",
+      "title": "Comm. for @iranoverabus",
+      "medium": "Illustration",
+      "tags": ["Character", "Commission"],
+      "imagePath": "kenzou.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "17",
+      "title": "Comm. for @haru_haru1",
+      "medium": "Illustration",
+      "tags": ["Character", "Commission"],
+      "imagePath": "image_2024-06-25_181243320.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "18",
+      "title": "Rotten Hound",
+      "medium": "Painting",
+      "tags": ["Animal"],
+      "imagePath": "image_2024-03-25_161511233.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "19",
+      "title": "HexVR 'Reach' Poster",
+      "medium": "Painting",
+      "tags": ["Character", "Hex VR", "Game", "Poster"],
+      "imagePath": "image_2024-02-29_164210422.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "20",
+      "title": "HexVR 'Rivals' Poster",
+      "medium": "Illustration",
+      "tags": ["Character", "Hex VR", "Game", "Poster"],
+      "imagePath": "image_2024-02-29_164936349.png",
+      "createdDate": "1/1/2023",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "21",
+      "title": "Minecraft Ender Dragon",
+      "medium": "Illustration",
+      "tags": ["Fan Art", "Character", "Game", "Animal"],
+      "imagePath": "IMG_3894.PNG",
+      "createdDate": "1/1/2021",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "22",
+      "title": "Metal and shading exercise",
+      "medium": "Painting",
+      "tags": ["Character"],
+      "imagePath": "knight.png",
+      "createdDate": "1/1/2024",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "23",
+      "title": "Olympus Mons Travel Poster",
+      "medium": "Illustration",
+      "tags": ["Environment", "Poster"],
+      "imagePath": "Olympus Mons.png",
+      "createdDate": "1/1/2024",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     }
   ]

@@ -47,8 +47,7 @@ if (typeof window.ArtworkGallery === 'undefined') {
         this.init();
     }    /**
      * Initialize the gallery
-     */
-    init() {
+     */    init() {
         this.loadGalleryData()
             .then(data => {
                 // Store the original data
@@ -57,8 +56,11 @@ if (typeof window.ArtworkGallery === 'undefined') {
                 // Extract tags and categories for filters
                 this.extractFilterOptions();
                 
-                // Initialize the gallery with all artworks
-                this.renderGallery({ artworks: this.allArtworks });
+                // Sort artworks by newest first (matching the default UI selection)
+                const sortedArtworks = this.sortArtworks([...this.allArtworks], 'newest');
+                
+                // Initialize the gallery with sorted artworks
+                this.renderGallery({ artworks: sortedArtworks });
                 
                 // Set up filter and sort controls
                 this.initMediumFilters();
@@ -210,22 +212,24 @@ if (typeof window.ArtworkGallery === 'undefined') {
      * @param {Array} artworks - Array of artwork objects
      * @param {string} sortOption - Sort option (newest, oldest, title-asc, title-desc)
      * @returns {Array} - Sorted array of artworks
-     */
-    sortArtworks(artworks, sortOption) {
+     */    sortArtworks(artworks, sortOption) {
         const sortedArtworks = [...artworks];
         
         switch (sortOption) {
             case 'newest':
                 return sortedArtworks.sort((a, b) => {
-                    const yearA = parseInt(a.yearCreated || '0', 10);
-                    const yearB = parseInt(b.yearCreated || '0', 10);
-                    return yearB - yearA; // Descending order by year
+                    // Use the ArtworkUtils class to parse dates
+                    const dateA = ArtworkUtils.parseArtworkDate(a).getTime();
+                    const dateB = ArtworkUtils.parseArtworkDate(b).getTime();
+                    console.log(`Comparing dates: ${a.title}: ${a.createdDate} (${new Date(dateA).toISOString()}) vs ${b.title}: ${b.createdDate} (${new Date(dateB).toISOString()})`);
+                    return dateB - dateA; // Descending order by date
                 });
             case 'oldest':
                 return sortedArtworks.sort((a, b) => {
-                    const yearA = parseInt(a.yearCreated || '0', 10);
-                    const yearB = parseInt(b.yearCreated || '0', 10);
-                    return yearA - yearB; // Ascending order by year
+                    // Use the ArtworkUtils class to parse dates
+                    const dateA = ArtworkUtils.parseArtworkDate(a).getTime();
+                    const dateB = ArtworkUtils.parseArtworkDate(b).getTime();
+                    return dateA - dateB; // Ascending order by date
                 });
             case 'title-asc':
                 return sortedArtworks.sort((a, b) => 
@@ -344,24 +348,24 @@ if (typeof window.ArtworkGallery === 'undefined') {
         
         // Create badge HTML
         let tagBadges = limitedTags.map(tag => 
-            `<span class="badge bg-secondary me-1">${tag}</span>`
+            `<span class="tag">${tag}</span>`
         ).join('');
         
         // Add a +X more badge if we have more tags
         if (extraTagsCount > 0) {
-            tagBadges += `<span class="badge bg-light text-dark me-1">+${extraTagsCount} more</span>`;
+            tagBadges += `<span class="tag">+${extraTagsCount} more</span>`;
         }          // Create gallery card that's identical to featured works cards
         const cardHtml = `
-            <div class="gallery-card project-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='${isInSubfolder ? 'artwork-detail.html?id=' + artwork.id : 'pages/artwork-detail.html?id=' + artwork.id}'">
+            <div class="gallery-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='${isInSubfolder ? 'artwork-detail.html?id=' + artwork.id : 'pages/artwork-detail.html?id=' + artwork.id}'">
                 <img src="${thumbnailPath}" class="card-img-top loading" alt="${artwork.title}" 
                      onload="this.classList.remove('loading')"
                      onerror="this.onerror=null; this.src='${placeholderPath}'; console.error('Failed to load image: ${thumbnailPath}');">
                 <div class="card-body">
                     <h5 class="card-title">${artwork.title}</h5>
+                    <p class="card-text">${artwork.createdDate}</p>
                     <div class="tags">
                         ${tagBadges}
                     </div>
-                    <p class="card-text">${artwork.description}</p>
                 </div>
             </div>
         `;
@@ -548,11 +552,35 @@ if (typeof window.ArtworkUtils === 'undefined') {
      * Get the default placeholder image path
      * @param {boolean} isInSubfolder - Whether the current page is in a subfolder
      * @returns {string} - Path to the placeholder image
-     */
-    static getPlaceholderImage(isInSubfolder = false) {
+     */    static getPlaceholderImage(isInSubfolder = false) {
         const basePrefix = isInSubfolder ? '../' : '';
         return `${basePrefix}resources/images/placeholder.jpg`;
-    }    /**
+    }
+    
+    /**
+     * Parse a date string from various formats used in artwork metadata
+     * @param {Object} artwork - Artwork object containing date information
+     * @returns {Date} - JavaScript Date object
+     */
+    static parseArtworkDate(artwork) {
+        // Try to get date from either yearCreated or createdDate
+        const dateStr = artwork.createdDate || artwork.yearCreated || '';
+        
+        // If it's just a year (e.g., "2023"), parse it directly
+        if (/^\d{4}$/.test(dateStr)) {
+            return new Date(parseInt(dateStr, 10), 0, 1);
+        }
+        
+        // If it's a date in M/D/YYYY format, parse it
+        try {
+            return new Date(dateStr);
+        } catch (e) {
+            console.error('Error parsing date:', dateStr, e);
+            return new Date(0); // Return epoch if parsing fails
+        }
+    }
+    
+    /**
      * Debug function to check image availability
      * @param {string} imagePath - Path to check
      */

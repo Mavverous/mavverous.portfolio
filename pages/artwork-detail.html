@@ -19,14 +19,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <!-- AOS Animation Library -->
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Lightbox CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-      <!-- Custom CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">    <!-- Custom CSS -->
     <link rel="stylesheet" href="../resources/css/style.css">
     <link rel="stylesheet" href="../resources/css/card-effects.css">
+    <link rel="stylesheet" href="../resources/css/comments.css">
 </head>
 <body>
     <!-- Navigation Bar Container -->
@@ -41,7 +41,8 @@
                     <li class="breadcrumb-item"><a href="gallery.html">Gallery</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Artwork Details</li>
                 </ol>
-            </nav>            <div class="row" id="artwork-detail">
+            </nav>            
+            <div class="row" id="artwork-detail">
                 <div class="col-lg-7 mb-4" data-aos="fade-right">
                     <div class="artwork-image-container">
                         <img src="../resources/images/placeholder.jpg" alt="Artwork" class="img-fluid rounded shadow-lg">
@@ -50,7 +51,7 @@
                 <div class="col-lg-5" data-aos="fade-left">
                     <h1 class="display-5 mb-3 artwork-title">Loading...</h1>
                     
-                    <div class="artwork-details mb-4">
+                    <div class="artwork-details info-card mb-4">
                         <div class="row mb-2">
                             <div class="col-4"><strong>Medium:</strong></div>
                             <div class="col-8">Loading...</div>
@@ -72,8 +73,32 @@
                     </div>
                     
                     <div class="artwork-description mb-4">
-                        <h3 class="h5 mb-3">About This Artwork</h3>
+                        <h3 class="h5 mb-3 text-mono-secondary">About This Artwork</h3>
                         <p>Loading artwork details...</p>
+                    </div>                    
+                    <div class="comments-section">
+                        <h3 class="h5 text-mono-secondary">
+                            <span class="text-mono-primary">💬</span>
+                            <span class="text-mono-primary">Comments (</span>
+                            <span data-cusdis-count-page-id="3">0</span>
+                            <span class="text-mono-primary">)</span>
+                        </h3>
+
+                        <!-- Comments will be loaded here dynamically -->                        
+                        <div id="cusdis_thread"
+                            data-host="https://cusdis.com"
+                            data-app-id="07595cb9-c787-4433-bcca-2bbeba084f03"
+                            data-page-id=""
+                            data-page-url=""
+                            data-page-title=""
+                            data-theme="dark"
+                            data-style-override="true"
+                            data-custom-style="compact">
+                        </div>
+                        <div class="approval-notification mt-3" style="display: none;">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Comments will appear after approval. Thank you for your patience!
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,7 +114,7 @@
             </div>
         </div>
     </section>
-      <!-- Footer Container -->
+    <!-- Footer Container -->
     <div id="footer-container"></div>
     
     <!-- jQuery -->
@@ -106,8 +131,7 @@
     
     <!-- Custom JS -->
     <script src="../global/js/components-loader.js"></script>
-    <script src="../resources/js/main.js"></script>
-    <script>
+    <script src="../resources/js/main.js"></script>    <script>
         // Initialize AOS animations
         AOS.init({
             duration: 1000,
@@ -117,5 +141,21 @@
     
     <!-- Artwork Detail JS -->
     <script src="../resources/js/artwork-detail.js"></script>
+    
+    <!-- Cusdis Script -->
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    <script defer data-host="https://cusdis.com" data-app-id="07595cb9-c787-4433-bcca-2bbeba084f03" src="https://cusdis.com/js/cusdis-count.umd.js"></script>
+    <script src="../resources/js/comments.js"></script>
+    <!-- Fallback system for when iframe is blocked -->
+    <script src="../resources/js/fallback-comments.js"></script>
+    <!-- Comments Debug Tool - Uncomment for development -->
+    <!-- We're now using the external comments.js file instead of inline script -->
+    <style>
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    </style>
+
 </body>
 </html>

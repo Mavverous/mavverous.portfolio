@@ -53,6 +53,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Manjari", sans-serif;
   font-weight: 600;
   line-height: 1.3;
   color: var(--light-color);
@@ -62,14 +63,29 @@ img {
   max-width: 100%;
 }
 
+p {
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 a {
   text-decoration: none;
   color: var(--secondary-color);
   transition: color var(--transition-speed) ease;
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 a:hover {
   color: var(--secondary-color);
+}
+
+li {
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 section {
@@ -80,21 +96,28 @@ section.bg-light {
   background-color: var(--bg-color-secondary) !important;
 }
 
-.btn-primary, .btn-outline-primary:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
+.btn-primary {
+  background-color: var(--secondary-accent-color);
   color: var(--light-color);
-}
-
-.btn-outline-primary {
-  color: var(--secondary-color);
-  border-color: var(--secondary-color);
+  border-color: var(--secondary-accent-color);
 }
 
 .btn-primary:hover {
   background-color: var(--secondary-accent-color);
+  color: var(--primary-color);
   border-color: var(--secondary-accent-color);
-  color: var(--dark-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: transparent;
+  color: var(--secondary-accent-color);
+  border-color: var(--secondary-accent-color);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .btn-secondary, .btn-outline-secondary:hover {
@@ -168,12 +191,15 @@ header.scrolled {
 
 /* ===== Hero Section ===== */
 #hero {
-  background: linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(32, 36, 56, 0.8) 100%), 
-              url('../images/hero-bg.jpg') center/cover no-repeat;
+  /* Vaporwave background with dark overlay to maintain text readability */
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.75) 0%, rgba(32, 36, 56, 0.65) 100%), 
+              url('../images/media.png') center/cover fixed no-repeat;
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding-top: 120px;
+  position: relative;
+  overflow: hidden;
 }
 
 #hero h1 {
@@ -301,10 +327,21 @@ header.scrolled {
   margin: 15px 0;
 }
 
-.project-card .tag {
+.tag {
   display: inline-block;
   padding: 3px 10px;
-  /* border-radius: 30px; */
+  border-radius: 30px;
+  font-size: 0.8rem;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.artwork-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 3px;
   font-size: 0.8rem;
   margin-right: 5px;
   margin-bottom: 5px;
@@ -317,26 +354,26 @@ header.scrolled {
   padding-right: 10px;
 }
 
-.project-card .tag:nth-child(2n) {
+.tag:nth-child(2n) {
   background-color: var(--secondary-color);
 }
 
-.project-card .tag:nth-child(3n) {
+.tag:nth-child(3n) {
   background-color: var(--primary-accent-color);
 }
 
-.project-card .tag:nth-child(4n) {
+.tag:nth-child(4n) {
   background-color: var(--secondary-accent-color);
   color: var(--dark-color);
 }
 
-.project-card .card-title {
+.card-title {
   color: white;
   margin-bottom: 10px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.project-card .card-text {
+.card-text {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
   margin-bottom: 0;
@@ -386,6 +423,14 @@ header.scrolled {
   transform: scale(1.1);
 }
 
+.text-mono-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.text-mono-accent {
+    color: var(--secondary-accent-color) !important;
+}
+
 /* ===== About Section ===== */
 .about-image {
   border-radius: 10px;
@@ -393,6 +438,23 @@ header.scrolled {
 }
 
 /* ===== Contact Section ===== */
+.galaxy {
+  background: url('../images/media.png') center/cover fixed no-repeat;
+  background-color: rgb(50, 28, 56);
+  background-blend-mode: overlay;
+  position: relative;
+}
+
+#contact .form-control {
+  background-color: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--light-color);
+}
+
+#contact .form-label {
+  color: var(--light-color);
+}
+
 .form-control, .form-control:focus {
   background-color: var(--card-bg-color);
   border-color: rgba(255, 255, 255, 0.1);
@@ -409,7 +471,6 @@ header.scrolled {
 
 /* ===== Footer ===== */
 footer {
-  background-color: var(--dark-color);
   color: var(--light-color);
   padding: 40px 0;
   text-align: center;
@@ -420,14 +481,15 @@ footer {
 }
 
 .social-links a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
   font-size: 1.2rem;
-  line-height: 40px;
   margin: 0 5px;
   transition: background-color var(--transition-speed) ease;
 }
@@ -721,4 +783,141 @@ body::before {
 
 .breadcrumb-item+.breadcrumb-item::before {
   color: var(--gray-color);
+}
+
+/* ===== About Me Section Styles ===== */
+.about-card {
+  border-radius: 10px;
+  background-color: var(--card-bg-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--box-shadow);
+  height: 100%;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.about-card h3 {
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--secondary-accent-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-card h5 {
+  color: var(--light-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.about-card .text-muted {
+  color: var(--gray-color) !important;
+  font-size: 0.9rem;
+}
+
+.about-card .fas.fa-check-circle {
+  font-size: 0.9rem;
+}
+
+/* Software icons styling */
+.about-card [class*="devicon-"] {
+  font-size: 1.4rem;
+  width: 26px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.about-card ul li:hover [class*="devicon-"],
+.about-card ul li:hover .fas,
+.about-card ul li:hover .fab {
+  transform: scale(1.2);
+}
+
+.about-details {
+  margin-top: 2rem;
+}
+
+.about-card ul li {
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.info-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    /* border-radius: 6px; Uncomment if you want rounded corners */
+    position: relative;
+    overflow: visible; /* Changed from hidden to allow dropdowns to display properly */
+}
+
+/* Add subtle background effect */
+.info-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.02) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.02) 75%, 
+        transparent 75%, 
+        transparent
+    );
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Custom Font Styles */
+.ms-madi-thin {
+  font-family: "Ms Madi", cursive;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ms-madi-regular {
+  font-family: "Ms Madi", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ms-madi-bold {
+  font-family: "Ms Madi", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.manjari-thin {
+  font-family: "Manjari", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.manjari-regular {
+  font-family: "Manjari", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.manjari-bold {
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

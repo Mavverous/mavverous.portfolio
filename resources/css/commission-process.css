@@ -1,0 +1,127 @@
+/* Commission Process Timeline Styling */
+
+.process-timeline {
+    position: relative;
+    margin: 30px 0;
+    padding-left: 15px;
+}
+
+/* Timeline vertical line */
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 28px;
+    width: 3px;
+    background-color: var(--secondary-accent-color);
+    opacity: 0.6;
+}
+
+.process-item {
+    position: relative;
+    padding-left: 70px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.process-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Process step number indicator */
+.process-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.process-item:hover .process-icon {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.process-icon i {
+    font-size: 1.5rem;
+}
+
+.process-content {
+    background-color: rgba(30, 30, 30, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.process-item:hover .process-content {
+    transform: translateY(-5px);
+}
+
+.process-content h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--light-color);
+}
+
+.process-content p {
+    color: var(--gray-color);
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .process-timeline::before {
+        left: 20px;
+    }
+    
+    .process-item {
+        padding-left: 50px;
+    }
+    
+    .process-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .process-icon i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Add special effects for hover states */
+.process-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.01) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.process-item:hover .process-content::after {
+    opacity: 1;
+}
+
+.price-factor {
+    margin-top: 10px;
+}
