@@ -21,7 +21,7 @@ function initContactForm() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            //e.preventDefault();
             
             // Get form values
             const name = document.getElementById('name').value;

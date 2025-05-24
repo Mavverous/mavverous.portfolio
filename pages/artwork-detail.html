@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../resources/css/style.css">
     <link rel="stylesheet" href="../resources/css/card-effects.css">
     <link rel="stylesheet" href="../resources/css/comments.css">
+    <link rel="stylesheet" href="../resources/css/custom-comments-ui.css">
 </head>
 <body>
     <!-- Navigation Bar Container -->
@@ -74,18 +75,28 @@
                     
                     <div class="artwork-description mb-4">
                         <h3 class="h5 mb-3 text-mono-secondary">About This Artwork</h3>
-                        <p>Loading artwork details...</p>
-                    </div>                    
-                    <div class="comments-section">
+                        <p class="artwork-description-text">Loading artwork details...</p>
+                    </div>                      
+                    <div class="comments-section">                        
                         <h3 class="h5 text-mono-secondary">
                             <span class="text-mono-primary">💬</span>
                             <span class="text-mono-primary">Comments (</span>
-                            <span data-cusdis-count-page-id="3">0</span>
+                            <span class="comment-count">0</span>
                             <span class="text-mono-primary">)</span>
                         </h3>
 
-                        <!-- Comments will be loaded here dynamically -->                        
-                        <div id="cusdis_thread"
+                        <!-- Custom Comments UI container -->
+                        <div id="custom_comments"
+                            data-host="https://cusdis.com"
+                            data-app-id="07595cb9-c787-4433-bcca-2bbeba084f03"
+                            data-page-id=""
+                            data-page-url=""
+                            data-page-title="">
+                        </div>
+                        
+                        <!-- Fallback to original Cusdis iframe (hidden by default) -->
+                        <div id="cusdis_thread" 
+                            style="display: none;"
                             data-host="https://cusdis.com"
                             data-app-id="07595cb9-c787-4433-bcca-2bbeba084f03"
                             data-page-id=""
@@ -94,10 +105,6 @@
                             data-theme="dark"
                             data-style-override="true"
                             data-custom-style="compact">
-                        </div>
-                        <div class="approval-notification mt-3" style="display: none;">
-                            <i class="fas fa-info-circle me-2"></i>
-                            Comments will appear after approval. Thank you for your patience!
                         </div>
                     </div>
                 </div>
@@ -140,16 +147,17 @@
     </script>
     
     <!-- Artwork Detail JS -->    <script src="../resources/js/artwork-detail.js"></script>
-    <script src="../resources/js/extension-case-checker.js"></script>
-    
-    <!-- Cusdis Script -->
+    <script src="../resources/js/extension-case-checker.js"></script>    <!-- Cusdis Script -->
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-    <script defer data-host="https://cusdis.com" data-app-id="07595cb9-c787-4433-bcca-2bbeba084f03" src="https://cusdis.com/js/cusdis-count.umd.js"></script>
+    <script defer data-host="https://cusdis.com" data-app-id="07595cb9-c787-4433-bcca-2bbeba084f03" src="https://cusdis.com/js/cusdis-count.umd.js"></script>    <!-- Script order is important: load extension first, then main file -->
+    <script src="../resources/js/comment-count.js"></script>
     <script src="../resources/js/comments.js"></script>
-    <!-- Fallback system for when iframe is blocked -->
-    <script src="../resources/js/fallback-comments.js"></script>
-    <!-- Comments Debug Tool - Uncomment for development -->
-    <!-- We're now using the external comments.js file instead of inline script -->
+    <!-- Custom comments UI implementation -->
+    <script src="../resources/js/custom-comments-ui.js"></script>
+    <script src="../resources/js/custom-comments-integration.js"></script>
+    <!-- Fallback system for when iframe is blocked -->    <script src="../resources/js/fallback-comments.js"></script>    <!-- Debug tools for comments investigation -->
+    <script src="../resources/js/comments-debug.js"></script>
+    <script src="../resources/js/fix-comments.js"></script>
     <style>
     @keyframes fadeIn {
         from { opacity: 0; }

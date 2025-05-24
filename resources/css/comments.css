@@ -42,6 +42,14 @@
     border-radius: 8px;
     margin-bottom: 2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-height: 600px;
+
+    /*Make it scrollable*/
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) transparent;
+    border-radius: 5px;
 }
 
 /* Override Cusdis default styles to match our dark theme */
@@ -77,15 +85,15 @@
 
 /* Comments styling */
 .comment-item {
-    background-color: rgba(24, 27, 46, 0.5) !important;
-    border-left: 3px solid rgba(109, 93, 252, 0.7) !important;
+    background-color: var(--primary-color) !important;
+    border-left: 3px solid var(--secondary-accent-color) !important;
     border-radius: 0 5px 5px 0;
     padding: 1rem !important;
     margin-bottom: 1rem !important;
 }
 
 .comment-author {
-    color: rgba(109, 93, 252, 0.9) !important;
+    color: var(--secondary-accent-color) !important;
     font-weight: 600;
 }
 

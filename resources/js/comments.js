@@ -2,13 +2,15 @@
  * Comments System
  * 
  * This script handles the initialization and management of the Cusdis comments system.
- * It also provides a fallback mechanism if the Cusdis iframe is blocked.
+ * It supports both the native iframe and our custom UI implementation.
  */
 
 class CommentsManager {
     constructor() {
         this.cusdisThread = document.getElementById('cusdis_thread');
+        this.customComments = document.getElementById('custom_comments');
         this.approvalNotification = document.querySelector('.approval-notification');
+        this.useCustomUI = !!this.customComments; // Use custom UI if element exists
         this.customStyles = `
             /* Reduce input field sizes */
             .comment-form .input {
@@ -44,12 +46,11 @@ class CommentsManager {
                 margin-bottom: 8px !important;
             }
         `;
-    }
-
-    /**
+    }    /**
      * Initialize the comments system
      */    init() {
-        if (!this.cusdisThread) return;
+        // Early return if neither comments container exists
+        if (!this.cusdisThread && !this.customComments) return;
         
         // Show the approval notification
         if (this.approvalNotification) {
@@ -57,12 +58,24 @@ class CommentsManager {
                 this.approvalNotification.style.display = 'block';
             }, 2000);
         }
-
-        // Inject custom styles
-        this.injectCustomStyles();
         
-        // Set up a mutation observer to watch for iframe creation/changes
-        this.setupMutationObserver();
+        if (this.useCustomUI) {
+            // Custom UI is handled by custom-comments-ui.js
+            console.log('Using custom comments UI');
+        } else {
+            // Using default Cusdis iframe
+            console.log('Using default Cusdis iframe');
+            // Inject custom styles for iframe
+            this.injectCustomStyles();
+            
+            // Set up a mutation observer to watch for iframe creation/changes
+            this.setupMutationObserver();
+        }
+        
+        // Ensure comment count is properly initialized if the method exists
+        if (typeof this.initCommentCount === 'function') {
+            this.initCommentCount();
+        }
 
         // Listen for Cusdis events
         window.addEventListener('message', (e) => {
@@ -143,6 +156,15 @@ class CommentsManager {
 
 // Initialize comments when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Create instance
     const commentsManager = new CommentsManager();
+    
+    // Store instance in global array for extensions to access
+    if (!window._commentsManagerInstances) {
+        window._commentsManagerInstances = [];
+    }
+    window._commentsManagerInstances.push(commentsManager);
+    
+    // Initialize
     commentsManager.init();
 });

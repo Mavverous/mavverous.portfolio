@@ -748,6 +748,16 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.artwork-description-text {
+  max-height: 100px;
+  /*Make it scrollable*/
+  overflow-y: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-color) transparent;
+  border-radius: 5px;
+}
+
 .artwork-price h2 {
   color: var(--secondary-color);
   font-weight: 600;

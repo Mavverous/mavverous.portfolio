@@ -166,19 +166,32 @@ class ArtworkDetail {
             return;
         }
           // Update document title
-        document.title = `MAVVEROUS | ${artwork.title}`;
-        
-        // Update Cusdis comment attributes with artwork data
+        document.title = `MAVVEROUS | ${artwork.title}`;          // Update Cusdis comment attributes with artwork data
         const cusdisThread = document.getElementById('cusdis_thread');
-        if (cusdisThread) {
-            cusdisThread.setAttribute('data-page-id', this.artworkId);
-            cusdisThread.setAttribute('data-page-url', window.location.href);
-            cusdisThread.setAttribute('data-page-title', artwork.title);
-            
-            // Reload Cusdis comments with new parameters if Cusdis is already loaded
-            if (window.CUSDIS) {
-                window.CUSDIS.initial();
+        const customComments = document.getElementById('custom_comments');
+        
+        // Update both the original Cusdis container and our custom UI container
+        const updateCommentContainer = (container) => {
+            if (container) {
+                container.setAttribute('data-page-id', this.artworkId);
+                container.setAttribute('data-page-url', window.location.href);
+                container.setAttribute('data-page-title', artwork.title);
             }
+        };
+        
+        // Update both containers
+        updateCommentContainer(cusdisThread);
+        updateCommentContainer(customComments);
+        
+        // Update comment count element with dynamic page ID
+        const commentCountEl = document.querySelector('.comment-count');
+        if (commentCountEl) {
+            commentCountEl.setAttribute('data-cusdis-count-page-id', this.artworkId);
+            console.log(`Set comment count page ID to: ${this.artworkId}`);
+        }
+          // Reload Cusdis comments with new parameters if Cusdis is already loaded
+        if (window.CUSDIS) {
+            window.CUSDIS.initial();
         }
         
         // Process image path
@@ -427,7 +440,7 @@ class ArtworkDetail {
                                 <div class="gallery-overlay">
                                     <div class="gallery-info">
                                         <h5>${artwork.title}</h5>
-                                        <p>${artwork.description}</p>
+                                        <p>${artwork.createdDate}</p>
                                     </div>
                                 </div>
                             </a>

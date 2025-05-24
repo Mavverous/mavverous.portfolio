@@ -1,0 +1,344 @@
+/* 
+ * Custom Comments UI Styling
+ */
+
+:root {
+  /* Main Color Palette */
+  --primary-color: #202438;
+  --primary-accent-color: #202438;
+  --secondary-color: #6CBDA3;
+  --secondary-accent-color: #E8275E;
+  
+  /* Dark Mode Colors */
+  --dark-color: #101219;
+  --light-color: #eaeaea;
+  --gray-color: #a0a0a0;
+  --text-color: #e1e1e1;
+  --bg-color: #121212;
+  --bg-color-secondary: #1a1a1a;
+  --card-bg-color: #1e1e1e;
+  
+  /* Status Colors */
+  --success-color: #1cc88a;
+  --info-color: #36b9cc;
+  --warning-color: #f6c23e;
+  --danger-color: #e74a3b;
+}
+
+/* Main container */
+.custom-comments-container {
+    color: var(--text-color);
+}
+
+/* Comments header */
+.custom-comments-header {
+    margin-bottom: 1.5rem;
+}
+
+.custom-comments-title {
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Status messages */
+.custom-comments-status {
+    margin-bottom: 1rem;
+}
+
+.custom-comments-error {
+    background-color: rgba(231, 74, 59, 0.15);
+    border-left: 4px solid var(--danger-color);
+    padding: 1rem;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 1rem;
+}
+
+/* Loading indicator */
+.custom-comments-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.custom-comments-loading .spinner {
+    width: 25px;
+    height: 25px;
+    border: 3px solid rgba(109, 93, 252, 0.3);
+    border-top-color: rgba(109, 93, 252, 0.9);
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Comments list */
+.custom-comments-list {
+    margin-bottom: 2rem;
+}
+
+.comments-empty-state {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--gray-color);
+    font-style: italic;
+}
+
+/* Comment item */
+.comment-item {
+    background-color: rgba(24, 27, 46, 0.5);
+    border-left: 3px solid var(--secondary-accent-color);
+    border-radius: 0 5px 5px 0;
+    padding: 1rem;
+    margin-top: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.comment-item:hover {
+    transform: translateY(-2px);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    color: rgba(109, 93, 252, 0.9);
+    font-weight: 600;
+}
+
+.comment-date {
+    color: var(--gray-color);
+    font-size: 0.85rem;
+}
+
+.comment-content {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+/* Pending comment */
+.pending-comment {
+    border-left: 3px solid var(--warning-color);
+    background-color: rgba(246, 194, 62, 0.1);
+}
+
+.comment-pending-badge {
+    display: inline-block;
+    background-color: var(--warning-color);
+    color: #121212;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-top: 0.75rem;
+}
+
+/* Comment form */
+.custom-comment-form {
+    background-color: transparent;
+    margin-top: 0rem;
+}
+
+.form-title {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.custom-input,
+.custom-textarea {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-input {
+    height: 38px;
+}
+
+.custom-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.custom-input:focus,
+.custom-textarea:focus {
+    border-color: rgba(109, 93, 252, 0.8);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(109, 93, 252, 0.2);
+}
+
+.form-text {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    color: var(--gray-color);
+}
+
+/* Submit button */
+.custom-submit-btn {
+    background-color: var(--primary-accent-color);
+    border: none;
+    color: var(--text-color);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.custom-submit-btn:hover {
+    background-color: rgba(109, 93, 252, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-submit-btn:disabled {
+    background-color: rgba(109, 93, 252, 0.5);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Form status messages */
+.submit-status {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.status-success {
+    background-color: rgba(28, 200, 138, 0.15);
+    border-left: 3px solid var(--success-color);
+    color: #e1e1e1;
+}
+
+.status-error {
+    background-color: rgba(231, 74, 59, 0.15);
+    border-left: 3px solid var(--danger-color);
+    color: #e1e1e1;
+}
+
+.status-info {
+    background-color: rgba(54, 185, 204, 0.15);
+    border-left: 3px solid var(--info-color);
+    color: #e1e1e1;
+}
+
+/* Approval notification */
+.approval-notification {
+    background-color: rgba(246, 194, 62, 0.15);
+    border-left: 3px solid var(--warning-color);
+    padding: 0.75rem;
+    border-radius: 0 5px 5px 0;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.approval-notification i {
+    margin-right: 0.5rem;
+    color: var(--warning-color);
+}
+
+/* Pagination */
+.custom-comments-pagination {
+    margin: 2rem 0;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 0.25rem;
+}
+
+.page-item.active .page-link {
+    background-color: rgba(109, 93, 252, 0.8);
+    border-color: rgba(109, 93, 252, 0.8);
+}
+
+.page-item.disabled .page-link {
+    background-color: rgba(24, 27, 46, 0.3);
+    border-color: rgba(24, 27, 46, 0.5);
+    color: var(--gray-color);
+    cursor: not-allowed;
+}
+
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(24, 27, 46, 0.5);
+    border: 1px solid rgba(24, 27, 46, 0.7);
+    border-radius: 4px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.page-link:hover:not(.disabled .page-link) {
+    background-color: rgba(109, 93, 252, 0.5);
+    border-color: rgba(109, 93, 252, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .custom-comments-container {
+        padding: 1rem;
+    }
+    
+    .custom-comment-form {
+        padding: 1rem;
+    }
+    
+    .comment-header {
+        flex-direction: column;
+    }
+    
+    .comment-date {
+        margin-top: 0.25rem;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.custom-comments-container {
+    animation: fadeIn 0.5s ease-in-out;
+}
