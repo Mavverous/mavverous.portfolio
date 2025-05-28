@@ -34,10 +34,10 @@ function initFeaturedWorks() {
     // Show loading spinner if the helper is available
     if (window.featuredWorksHelpers && window.featuredWorksHelpers.showLoadingSpinner) {
         window.featuredWorksHelpers.showLoadingSpinner();
-    }        // Check if ArtworkUtils is available, if not retry after a delay
+    }    // Check if ArtworkUtils is available, if not retry after a delay
     if (typeof ArtworkUtils === 'undefined') {
         console.warn('ArtworkUtils not available yet, waiting...');
-        if (window.retryCount < window.MAX_RETRIES) {
+        if (window.retryCount < MAX_RETRIES) {
             window.retryCount++;
             setTimeout(initFeaturedWorks, 500 * window.retryCount); // Exponential backoff
             return;
