@@ -206,6 +206,15 @@
       "imagePath": "Olympus Mons.png",
       "createdDate": "1/1/2024",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+    },
+    {
+      "id": "24",
+      "title": "Harold",
+      "medium": "Painting",
+      "tags": ["Character"],
+      "imagePath": "IMG_1078.png",
+      "createdDate": "5/28/2025",
+      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
     }
   ]
 }
