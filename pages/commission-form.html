@@ -243,12 +243,23 @@
                 // Build a formatted message from the form fields
                 const formData = new FormData(commissionForm);
                 let referenceLinksText = formData.get('reference-links');
-                let messageContent = "<h2>Reference Images</h2>";
+                let messageContent = "";
+
+                messageContent += `
+                    <!DOCTYPE html>
+                    <html>
+                    <body>
+                `;
 
                 if (referenceLinksText) {
                     const links = referenceLinksText.split('\n').map(link => link.trim()).filter(link => link);
                     messageContent += links.map(link => `<img src="${link}" alt="Reference Image" style="max-width: 100%; height: auto; margin-top: 10px;">`).join('');
                 }
+
+                messageContent += `
+                    </html>
+                    </body>
+                `
                 
                 // Add the formatted message to a hidden field
                 const hiddenMessage = document.createElement('input');
