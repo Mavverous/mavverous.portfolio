@@ -271,6 +271,9 @@
                     <p><strong>Found Through:</strong> ${formData.get('found-through')}</p>
                 `;
 
+                // Set the message body in the form
+                formData.set('message', messageBody);
+
                 commissionForm.submit();
             });
         });
