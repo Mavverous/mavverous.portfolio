@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commission Request Form for MAVVEROUS - Request custom digital artwork">
+    <title>MAVVEROUS | Commission Form</title>
+    <link rel="icon" href="../resources/images/logo.png" type="image/png">
+    <meta name="author" content="Blu_Bear">
+    <meta name="keywords" content="Mavverous, Art, Design, Portfolio, Commission Request, Form, Custom Art, Digital Art">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../resources/css/style.css">
+    <link rel="stylesheet" href="../resources/css/commission-process.css">
+</head>
+<body>
+    <!-- Navigation Bar Container -->
+    <div id="nav-container"></div>
+    
+    <!-- Commission Form Hero Section -->
+    <section class="py-5 galaxy" style="padding-top: 150px !important;">
+        <div class="container">
+            <h1 class="text-center display-4 mb-3 ms-madi-bold" data-aos="fade-up">Commission Request</h1>
+            <p class="text-center lead mb-5" data-aos="fade-up" data-aos-delay="100">Let's turn your vision into reality</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card shadow info-card">
+                        <div class="card-body p-4">
+                            <h5 class="card-title text-mono-secondary mb-4">
+                                <i class="fas fa-paint-brush me-2"></i>Commission Request Form
+                            </h5>
+                            
+                            <form id="commission-form" action="https://api.web3forms.com/submit" method="POST">
+                                <!-- Replace with your Access Key -->
+                                <input type="hidden" name="access_key" value="631ca84e-c9a4-40b5-9280-2f6ad5ecc314">
+                                <input type="hidden" name="subject" value="New Commission Request from Website">
+                                <input type="hidden" name="from_name" value="MAVVEROUS Commission Form">
+                                
+                                <!-- Personal Information Section -->
+                                <div class="mb-4">
+                                    <h5 class="form-section-title"><i class="fas fa-user-circle me-2"></i>Personal Information</h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="discord" class="form-label">Discord Username (preferred for communication)</label>
+                                        <input type="text" class="form-control" id="discord" name="discord">
+                                        <div class="form-text">Format: username#0000 or just username</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Commission Details Section -->
+                                <div class="mb-4">
+                                    <h5 class="form-section-title"><i class="fas fa-file-alt me-2"></i>Commission Details</h5>
+                                    <div class="mb-3">
+                                        <label for="commission-type" class="form-label">Type of Commission <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="commission-type" name="commission-type" required>
+                                            <option value="" selected disabled>Select a type...</option>
+                                            <option value="character">Character Art/Design</option>
+                                            <option value="illustration">Full Illustration</option>
+                                            <option value="concept">Concept Art</option>
+                                            <option value="logo">Logo Design</option>
+                                            <option value="other">Other (please specify)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3" id="other-type-container" style="display: none;">
+                                        <label for="other-type" class="form-label">Please Specify Type</label>
+                                        <input type="text" class="form-control" id="other-type" name="other-type">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="style" class="form-label">Art Style <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="style" name="style" required>
+                                            <option value="" selected disabled>Select a style...</option>
+                                            <option value="cartoon">Cartoon/Stylized</option>
+                                            <option value="semi-realistic">Semi-Realistic</option>
+                                            <option value="anime">Anime/Manga</option>
+                                            <option value="realistic">Realistic</option>
+                                            <option value="chibi">Chibi</option>
+                                            <option value="other">Other (please specify)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3" id="other-style-container" style="display: none;">
+                                        <label for="other-style" class="form-label">Please Specify Style</label>
+                                        <input type="text" class="form-control" id="other-style" name="other-style">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="deadline" class="form-label">Deadline (if any)</label>
+                                        <input type="date" class="form-control" id="deadline" name="deadline">
+                                        <div class="form-text">Leave blank if flexible. Rush fees may apply for tight deadlines.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="budget" class="form-label">Budget Range <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="budget" name="budget" required>
+                                            <option value="" selected disabled>Select budget range...</option>
+                                            <option value="under-50">Under $50</option>
+                                            <option value="50-100">$50 - $100</option>
+                                            <option value="100-200">$100 - $200</option>
+                                            <option value="200-500">$200 - $500</option>
+                                            <option value="over-500">Over $500</option>
+                                        </select>
+                                        <div class="form-text">This helps me determine the scope of work possible within your budget</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Project Description Section -->
+                                <div class="mb-4">
+                                    <h5 class="form-section-title"><i class="fas fa-align-left me-2"></i>Project Description</h5>
+                                    <div class="mb-3">
+                                        <label for="project-title" class="form-label">Project Title <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="project-title" name="project-title" placeholder="Give your commission a name" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="project-description" class="form-label">Detailed Description <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="project-description" name="project-description" rows="4" placeholder="Please provide as much detail as possible about what you want..." required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="reference-links" class="form-label">Reference Links</label>
+                                        <textarea class="form-control" id="reference-links" name="reference-links" rows="2" placeholder="Links to any reference images, Pinterest boards, or examples of styles you like..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="special-requirements" class="form-label">Special Requirements or Notes</label>
+                                        <textarea class="form-control" id="special-requirements" name="special-requirements" rows="2" placeholder="Any additional details, requests, or concerns..."></textarea>
+                                    </div>
+                                </div>
+                                
+                                <!-- How did you find me -->
+                                <div class="mb-4">
+                                    <h5 class="form-section-title"><i class="fas fa-search me-2"></i>Additional Information</h5>
+                                    <div class="mb-3">
+                                        <label for="found-through" class="form-label">How did you find me?</label>
+                                        <select class="form-select" id="found-through" name="found-through">
+                                            <option value="" selected disabled>Please select...</option>
+                                            <option value="social-media">Social Media</option>
+                                            <option value="portfolio-website">Portfolio Website</option>
+                                            <option value="friend-referral">Friend Referral</option>
+                                            <option value="art-platform">Art Platform</option>
+                                            <option value="search-engine">Search Engine</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Consent and Submit Section -->
+                                <div class="mb-4">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="terms-consent" name="terms-consent" required>
+                                        <label class="form-check-label" for="terms-consent">
+                                            I understand that submitting this form does not guarantee acceptance of my commission request. 
+                                            MAVVEROUS reserves the right to decline requests at her discretion.
+                                        </label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit Commission Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../global/js/components-loader.js"></script>
+    <script src="../resources/js/extension-handler.js"></script>
+    <script src="../resources/js/navbar-fixer.js"></script>
+    
+    <!-- Commission Form JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+            
+            // Show/hide other type field based on selection
+            const commissionTypeSelect = document.getElementById('commission-type');
+            const otherTypeContainer = document.getElementById('other-type-container');
+            
+            commissionTypeSelect.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    otherTypeContainer.style.display = 'block';
+                } else {
+                    otherTypeContainer.style.display = 'none';
+                }
+            });
+            
+            // Show/hide other style field based on selection
+            const styleSelect = document.getElementById('style');
+            const otherStyleContainer = document.getElementById('other-style-container');
+            
+            styleSelect.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    otherStyleContainer.style.display = 'block';
+                } else {
+                    otherStyleContainer.style.display = 'none';
+                }
+            });
+            
+            // Format the submission message
+            const commissionForm = document.getElementById('commission-form');
+            commissionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Build a formatted message from the form fields
+                const formData = new FormData(commissionForm);
+                let messageContent = "*** COMMISSION REQUEST DETAILS ***\n\n";
+                
+                // Personal Information
+                messageContent += "---- PERSONAL INFORMATION ----\n";
+                messageContent += `Name: ${formData.get('name')}\n`;
+                messageContent += `Email: ${formData.get('email')}\n`;
+                messageContent += `Discord: ${formData.get('discord') || 'Not provided'}\n\n`;
+                
+                // Commission Details
+                messageContent += "---- COMMISSION DETAILS ----\n";
+                let commissionType = formData.get('commission-type');
+                if (commissionType === 'other') {
+                    commissionType = formData.get('other-type');
+                }
+                messageContent += `Type: ${commissionType}\n`;
+                
+                let artStyle = formData.get('style');
+                if (artStyle === 'other') {
+                    artStyle = formData.get('other-style');
+                }
+                messageContent += `Style: ${artStyle}\n`;
+                messageContent += `Deadline: ${formData.get('deadline') || 'Flexible'}\n`;
+                messageContent += `Budget: ${formData.get('budget')}\n\n`;
+                
+                // Project Description
+                messageContent += "---- PROJECT DESCRIPTION ----\n";
+                messageContent += `Title: ${formData.get('project-title')}\n`;
+                messageContent += `Description: ${formData.get('project-description')}\n`;
+                messageContent += `References: ${formData.get('reference-links') || 'None provided'}\n`;
+                messageContent += `Special Requirements: ${formData.get('special-requirements') || 'None provided'}\n\n`;
+                
+                // Additional Information
+                messageContent += "---- ADDITIONAL INFORMATION ----\n";
+                messageContent += `Found Through: ${formData.get('found-through') || 'Not specified'}\n`;
+                
+                // Add the formatted message to a hidden field
+                const hiddenMessage = document.createElement('input');
+                hiddenMessage.type = 'hidden';
+                hiddenMessage.name = 'message';
+                hiddenMessage.value = messageContent;
+                commissionForm.appendChild(hiddenMessage);
+                
+                // Submit the form
+                commissionForm.submit();
+            });
+        });
+    </script>
+</body>
+</html>
