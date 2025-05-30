@@ -43,8 +43,8 @@
         const isInSubfolder = currentLocation.includes('/pages/');
         
         // Update the navbar links based on the current page location
-        function updateNavLinks() {        // Set the brand link to point to the correct home page path
-            brandLink.href = isInSubfolder ? '../index.html' : 'index.html';
+        function updateNavLinks() {        // Set the brand link to point to the correct home page path - use root path instead of index.html
+            brandLink.href = isInSubfolder ? '../' : '/';
             
             // Fix the logo image src based on location
             const logoImg = document.querySelector('.logo-img');
@@ -57,11 +57,10 @@
                 
                 // Skip if there's no data-path
                 if (!path) return;
-                
-                // Handle different types of links
+                  // Handle different types of links
                 if (path === 'index.html') {
-                    // Home link
-                    link.href = isInSubfolder ? '../index.html' : 'index.html';
+                    // Home link - use root path instead of index.html
+                    link.href = isInSubfolder ? '../' : '/';
                     
                     // Set active state for home page
                     if (currentLocation.includes('index.html') || 

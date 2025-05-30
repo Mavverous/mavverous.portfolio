@@ -15,13 +15,14 @@
     const isLocal = window.location.hostname === 'localhost' || 
                     window.location.hostname === '127.0.0.1';
     
-    // Special handling for index.html and index
-    const indexRegex = /\/(index(\.html)?)$/i;
+    // Special handling for index.html and index - highest priority
+    const indexRegex = /(.*\/)?index(\.html)?$/i;
     if (indexRegex.test(path)) {
         // Replace index or index.html with just the base path
-        const basePath = path.replace(indexRegex, '/');
-        console.log(`Redirecting from ${path} to ${basePath}`);
-        window.history.replaceState(null, document.title, basePath + window.location.search + window.location.hash);
+        const basePath = path.replace(indexRegex, '$1');
+        const finalPath = basePath || '/'; // Ensure we have at least a slash
+        console.log(`Redirecting from ${path} to ${finalPath}`);
+        window.history.replaceState(null, document.title, finalPath + window.location.search + window.location.hash);
     }
     // For GitHub Pages (in production), handle clean URLs
     else if (!isLocal && path.endsWith('.html')) {

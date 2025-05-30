@@ -29,24 +29,22 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.error('Logo image not found');
         }
-        
-        // Fix navbar brand link
+          // Fix navbar brand link
         const brandLink = document.querySelector('.navbar-brand');
         if (brandLink) {
-            brandLink.href = isSubPage ? '../index.html' : 'index.html';
+            brandLink.href = isSubPage ? '../' : '/';
             console.log('Fixed navbar brand link:', brandLink.href);
         }
           // Fix all navigation links
-        fixNavLink('.nav-link.home-link', isSubPage ? '../index.html' : 'index.html');
+        fixNavLink('.nav-link.home-link', isSubPage ? '../' : '/');
         
         // Try to find gallery link with both class names (works-link or gallery-link)
         fixNavLink('.nav-link.gallery-link', isSubPage ? './gallery.html' : 'pages/gallery.html');
         fixNavLink('.nav-link.works-link', isSubPage ? './gallery.html' : 'pages/gallery.html');
-        
-        if (isSubPage) {
+          if (isSubPage) {
             // Fix about and contact links when in subpages
-            fixNavLink('.nav-link.about-link', '../index.html#about');
-            fixNavLink('.nav-link.contact-link', '../index.html#contact');
+            fixNavLink('.nav-link.about-link', '../#about');
+            fixNavLink('.nav-link.contact-link', '../#contact');
         } else {
             // Fix about and contact links when on main page
             fixNavLink('.nav-link.about-link', '#about');
