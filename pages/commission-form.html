@@ -239,52 +239,6 @@
             const commissionForm = document.getElementById('commission-form');
             commissionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                // Build a formatted message from the form fields
-                const formData = new FormData(commissionForm);
-                let messageContent = "*** COMMISSION REQUEST DETAILS ***\n\n";
-                
-                // Personal Information
-                messageContent += "---- PERSONAL INFORMATION ----\n";
-                messageContent += `Name: ${formData.get('name')}\n`;
-                messageContent += `Email: ${formData.get('email')}\n`;
-                messageContent += `Discord: ${formData.get('discord') || 'Not provided'}\n\n`;
-                
-                // Commission Details
-                messageContent += "---- COMMISSION DETAILS ----\n";
-                let commissionType = formData.get('commission-type');
-                if (commissionType === 'other') {
-                    commissionType = formData.get('other-type');
-                }
-                messageContent += `Type: ${commissionType}\n`;
-                
-                let artStyle = formData.get('style');
-                if (artStyle === 'other') {
-                    artStyle = formData.get('other-style');
-                }
-                messageContent += `Style: ${artStyle}\n`;
-                messageContent += `Deadline: ${formData.get('deadline') || 'Flexible'}\n`;
-                messageContent += `Budget: ${formData.get('budget')}\n\n`;
-                
-                // Project Description
-                messageContent += "---- PROJECT DESCRIPTION ----\n";
-                messageContent += `Title: ${formData.get('project-title')}\n`;
-                messageContent += `Description: ${formData.get('project-description')}\n`;
-                messageContent += `References: ${formData.get('reference-links') || 'None provided'}\n`;
-                messageContent += `Special Requirements: ${formData.get('special-requirements') || 'None provided'}\n\n`;
-                
-                // Additional Information
-                messageContent += "---- ADDITIONAL INFORMATION ----\n";
-                messageContent += `Found Through: ${formData.get('found-through') || 'Not specified'}\n`;
-                
-                // Add the formatted message to a hidden field
-                const hiddenMessage = document.createElement('input');
-                hiddenMessage.type = 'hidden';
-                hiddenMessage.name = 'message';
-                hiddenMessage.value = messageContent;
-                commissionForm.appendChild(hiddenMessage);
-                
-                // Submit the form
                 commissionForm.submit();
             });
         });
