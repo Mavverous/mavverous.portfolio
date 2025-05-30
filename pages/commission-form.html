@@ -239,6 +239,38 @@
             const commissionForm = document.getElementById('commission-form');
             commissionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
+
+                // Create a submission message
+                const formData = new FormData(commissionForm);
+
+                // The "Message" of the submission should contain <img> tags for any images that were linked in the Reference Links field
+                let referenceLinksText = formData.get('reference-links');
+                let referenceContent = '';
+
+                if (referenceLinksText) {
+                    // Split by new lines and create <img> tags
+                    const links = referenceLinksText.split('\n').map(link => link.trim()).filter(link => link);
+                    referenceContent = links.map(link => `<img src="${link}" alt="Reference Image" style="max-width: 100%; height: auto; margin-top: 10px;">`).join('');
+                } else {
+                    referenceContent = '';
+                }
+                
+                // Create the message body
+                const messageBody = `
+                    <h3>Commission Request Details</h3>
+                    <p><strong>Full Name:</strong> ${formData.get('name')}</p>
+                    <p><strong>Email:</strong> ${formData.get('email')}</p>
+                    <p><strong>Discord:</strong> ${formData.get('discord')}</p>
+                    <p><strong>Commission Type:</strong> ${formData.get('commission-type') === 'other' ? formData.get('other-type') : formData.get('commission-type')}</p>
+                    <p><strong>Art Style:</strong> ${formData.get('style') === 'other' ? formData.get('other-style') : formData.get('style')}</p>
+                    <p><strong>Project Title:</strong> ${formData.get('project-title')}</p>
+                    <p><strong>Description:</strong> ${formData.get('project-description')}</p>
+                    <div>${referenceContent}</div>
+                    <p><strong>Special Requirements:</strong> ${formData.get('special-requirements')}</p>
+                    <p><strong>Budget Range:</strong> ${formData.get('budget')}</p>
+                    <p><strong>Found Through:</strong> ${formData.get('found-through')}</p>
+                `;
+
                 commissionForm.submit();
             });
         });
