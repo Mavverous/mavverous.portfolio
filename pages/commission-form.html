@@ -24,10 +24,10 @@
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
+      <!-- Custom CSS -->
     <link rel="stylesheet" href="../resources/css/style.css">
     <link rel="stylesheet" href="../resources/css/commission-process.css">
+    <link rel="stylesheet" href="../resources/css/commission-form.css">
 </head>
 <body>
     <!-- Navigation Bar Container -->
@@ -52,6 +52,7 @@
                                 <input type="hidden" name="access_key" value="631ca84e-c9a4-40b5-9280-2f6ad5ecc314">
                                 <input type="hidden" name="subject" value="New Commission Request from Website">
                                 <input type="hidden" name="from_name" value="MAVVEROUS Commission Form">
+                                <input type="hidden" name="redirect" value="commission-success.html">
                                 
                                 <!-- Personal Information Section -->
                                 <div class="mb-4">
@@ -234,32 +235,147 @@
                     otherStyleContainer.style.display = 'none';
                 }
             });
-            
-            // Format the submission message
+              // Format the submission message
             const commissionForm = document.getElementById('commission-form');
             commissionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 // Build a formatted message from the form fields
                 const formData = new FormData(commissionForm);
-                let referenceLinksText = formData.get('reference-links');
                 let messageContent = "";
-
-                messageContent += `
+                
+                // Personal Information
+                let name = formData.get('name');
+                let email = formData.get('email');
+                let discord = formData.get('discord') || 'Not provided';
+                
+                // Commission Details
+                let commissionType = formData.get('commission-type');
+                if (commissionType === 'other') {
+                    commissionType = formData.get('other-type');
+                }
+                
+                let artStyle = formData.get('style');
+                if (artStyle === 'other') {
+                    artStyle = formData.get('other-style');
+                }
+                
+                let deadline = formData.get('deadline') || 'Flexible';
+                let budget = formData.get('budget');
+                
+                // Project Description
+                let projectTitle = formData.get('project-title');
+                let projectDescription = formData.get('project-description');
+                let referenceLinksText = formData.get('reference-links') || 'None provided';
+                let specialRequirements = formData.get('special-requirements') || 'None provided';
+                
+                // Additional Information
+                let foundThrough = formData.get('found-through') || 'Not specified';
+                
+                // Create formatted HTML email
+                messageContent = `
                     <!DOCTYPE html>
                     <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                line-height: 1.6;
+                                color: #333;
+                                max-width: 800px;
+                                margin: 0 auto;
+                            }
+                            h2 {
+                                color: #663399;
+                                border-bottom: 1px solid #ddd;
+                                padding-bottom: 5px;
+                            }
+                            .section {
+                                margin-bottom: 25px;
+                            }
+                            .label {
+                                font-weight: bold;
+                            }
+                            .reference-images {
+                                margin-top: 15px;
+                            }
+                            .reference-images img {
+                                max-width: 100%;
+                                height: auto;
+                                margin-bottom: 10px;
+                                border: 1px solid #ddd;
+                            }
+                            pre {
+                                white-space: pre-wrap;
+                                background: #f5f5f5;
+                                padding: 10px;
+                                border-radius: 5px;
+                            }
+                        </style>
+                    </head>
                     <body>
-                `;
-
-                if (referenceLinksText) {
+                        <h1>New Commission Request: ${projectTitle}</h1>
+                        
+                        <div class="section">
+                            <h2>Personal Information</h2>
+                            <p><span class="label">Name:</span> ${name}</p>
+                            <p><span class="label">Email:</span> ${email}</p>
+                            <p><span class="label">Discord:</span> ${discord}</p>
+                        </div>
+                        
+                        <div class="section">
+                            <h2>Commission Details</h2>
+                            <p><span class="label">Type:</span> ${commissionType}</p>
+                            <p><span class="label">Style:</span> ${artStyle}</p>
+                            <p><span class="label">Deadline:</span> ${deadline}</p>
+                            <p><span class="label">Budget Range:</span> ${budget}</p>
+                        </div>
+                        
+                        <div class="section">
+                            <h2>Project Description</h2>
+                            <p><span class="label">Project Title:</span> ${projectTitle}</p>
+                            <pre>${projectDescription}</pre>
+                            
+                            <p><span class="label">Special Requirements:</span></p>
+                            <pre>${specialRequirements}</pre>
+                        </div>
+                        
+                        <div class="section">
+                            <h2>Reference Images</h2>`;
+                
+                // Handle reference links to create proper image tags
+                if (referenceLinksText && referenceLinksText !== 'None provided') {
+                    messageContent += `<p>Reference links provided:</p><div class="reference-images">`;
+                    
+                    // Extract links and convert to image tags if they look like image URLs
                     const links = referenceLinksText.split('\n').map(link => link.trim()).filter(link => link);
-                    messageContent += links.map(link => `<img src="${link}" alt="Reference Image" style="max-width: 100%; height: auto; margin-top: 10px;">`).join('');
+                    
+                    links.forEach(link => {
+                        // Check if it's likely an image URL (ends with common image extensions)
+                        const isLikelyImageUrl = /\.(jpg|jpeg|png|gif|webp)($|\?)/i.test(link);
+                        
+                        if (isLikelyImageUrl) {
+                            messageContent += `<img src="${link}" alt="Reference Image"><br>`;
+                        } else {
+                            messageContent += `<a href="${link}" target="_blank">${link}</a><br>`;
+                        }
+                    });
+                    
+                    messageContent += `</div>`;
+                } else {
+                    messageContent += `<p>No reference links provided</p>`;
                 }
-
+                
                 messageContent += `
-                    </html>
+                        </div>
+                        
+                        <div class="section">
+                            <h2>Additional Information</h2>
+                            <p><span class="label">Found Through:</span> ${foundThrough}</p>
+                        </div>
                     </body>
-                `
+                    </html>
+                `;
                 
                 // Add the formatted message to a hidden field
                 const hiddenMessage = document.createElement('input');

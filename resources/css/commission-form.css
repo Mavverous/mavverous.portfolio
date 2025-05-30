@@ -1,0 +1,135 @@
+/* Commission Form Styles */
+
+.form-section-title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    color: var(--mono-secondary);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Custom styles for select dropdowns in dark theme */
+.form-select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.form-select option {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Custom styles for form inputs */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--mono-accent);
+    box-shadow: 0 0 0 0.25rem rgba(var(--mono-accent-rgb), 0.25);
+    color: var(--text-color);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Custom checkbox styling */
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-check-input:checked {
+    background-color: var(--mono-accent);
+    border-color: var(--mono-accent);
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+}
+
+/* Form text helper styling */
+.form-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* Submit button styling */
+#commission-form .btn-primary {
+    background: linear-gradient(135deg, var(--mono-accent), var(--mono-secondary));
+    border: none;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#commission-form .btn-primary:hover, 
+#commission-form .btn-primary:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Required field indicator */
+.text-danger {
+    color: var(--mono-accent) !important;
+}
+
+/* Success and error message styling */
+.form-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.form-message.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    color: #2ad45e;
+}
+
+.form-message.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #ff6b6b;
+}
+
+/* Form animation effects */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+#commission-form .mb-3 {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+#commission-form .mb-3:nth-child(1) { animation-delay: 0.1s; }
+#commission-form .mb-3:nth-child(2) { animation-delay: 0.2s; }
+#commission-form .mb-3:nth-child(3) { animation-delay: 0.3s; }
+#commission-form .mb-3:nth-child(4) { animation-delay: 0.4s; }
+#commission-form .mb-3:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #commission-form .btn-primary {
+        width: 100%;
+    }
+    
+    .form-section-title {
+        font-size: 1.1rem;
+    }
+}
