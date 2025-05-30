@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Redirect "/index.html" to "/"
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Serve HTML files when extensionless URL is requested 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Prevent direct access to certain directories
+RewriteRule ^resources/data/ - [F,L]
