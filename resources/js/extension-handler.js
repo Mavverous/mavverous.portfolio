@@ -15,14 +15,19 @@
     const isLocal = window.location.hostname === 'localhost' || 
                     window.location.hostname === '127.0.0.1';
     
+    // Special handling for index.html and index
+    const indexRegex = /\/(index(\.html)?)$/i;
+    if (indexRegex.test(path)) {
+        // Replace index or index.html with just the base path
+        const basePath = path.replace(indexRegex, '/');
+        console.log(`Redirecting from ${path} to ${basePath}`);
+        window.history.replaceState(null, document.title, basePath + window.location.search + window.location.hash);
+    }
     // For GitHub Pages (in production), handle clean URLs
-    if (!isLocal) {
-        // If accessed with .html extension, redirect to clean URL
-        if (path.endsWith('.html')) {
-            const cleanPath = path.slice(0, -5); // Remove .html
-            console.log(`Redirecting from ${path} to ${cleanPath}`);
-            window.history.replaceState(null, document.title, cleanPath + window.location.search + window.location.hash);
-        }
+    else if (!isLocal && path.endsWith('.html')) {
+        const cleanPath = path.slice(0, -5); // Remove .html
+        console.log(`Redirecting from ${path} to ${cleanPath}`);
+        window.history.replaceState(null, document.title, cleanPath + window.location.search + window.location.hash);
     }
     
     // PART 2: FIX ALL INTERNAL LINKS

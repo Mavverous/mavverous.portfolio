@@ -88,14 +88,17 @@ function Update-HtmlLinks {
     foreach ($file in $htmlFiles) {
         $content = Get-Content -Path $file.FullName -Raw
         $originalContent = $content
-        
-        if ($mode -eq "add") {
+          if ($mode -eq "add") {
             # Add .html extension to links without it (for local testing)
             $content = $content -replace '(href="[^"]*?/[^"/.#?]+)(")', '$1.html$2'
+            # Special case: Don't add .html to root-level index (homepage)
+            $content = $content -replace '(href=")index\.html(")', '$1$2'
         }
         elseif ($mode -eq "remove") {
             # Remove .html extension from links (for GitHub Pages)
             $content = $content -replace '(href="[^"]+)\.html(")', '$1$2'
+            # Special case: Clean up index links
+            $content = $content -replace '(href=")index(")', '$1$2'
         }
         
         if ($content -ne $originalContent) {
