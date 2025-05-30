@@ -242,6 +242,7 @@
                 
                 // Build a formatted message from the form fields
                 const formData = new FormData(commissionForm);
+                let referenceLinksText = formData.get('reference-links');
                 let referenceImagesHTML = "";
                 
                 // Create formatted HTML email
