@@ -18,7 +18,7 @@
 
 .form-select option {
     background-color: var(--card-bg);
-    color: var(--text-color);
+    color: black;
 }
 
 /* Custom styles for form inputs */
