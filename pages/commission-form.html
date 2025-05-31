@@ -53,6 +53,7 @@
                                 <input type="hidden" name="subject" value="New Commission Request: MAVVEROUS Portfolio">
                                 <input type="hidden" name="from_name" value="MAVVEROUS Commission Form">
                                 <input type="hidden" name="redirect" value="commission-success.html">
+                                <input type="hidden" name="html_message" value="true">
                                 <input type="checkbox" name="botcheck" style="display: none;">
                                 
                                 <!-- Personal Information Section -->
@@ -232,8 +233,7 @@
                     otherStyleContainer.style.display = 'none';
                 }
             });
-            
-            // Format reference links for the email
+              // Format reference links for the email and try to display images
             const commissionForm = document.getElementById('commission-form');
             commissionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -245,12 +245,27 @@
                 if (refLinks && refLinks.trim().length > 0) {
                     const linkArray = refLinks.trim().split('\n').filter(link => link.trim() !== '');
                     
-                    // Create a field for plain reference links
-                    const refLinksField = document.createElement('input');
-                    refLinksField.type = 'hidden';
-                    refLinksField.name = 'reference_links';
-                    refLinksField.value = linkArray.join('\n');
-                    commissionForm.appendChild(refLinksField);
+                    // Create HTML with image tags for each link
+                    let imageHtml = '';
+                    linkArray.forEach((link, index) => {
+                        const trimmedLink = link.trim();
+                        if (trimmedLink) {
+                            // For image links, create an img tag
+                            if (/\.(jpg|jpeg|png|gif|webp|bmp)(\?|$)/i.test(trimmedLink)) {
+                                imageHtml += `<div><img src="${trimmedLink}" alt="Reference Image ${index+1}" style="max-width:100%; height:auto; margin:10px 0;"></div>\n`;
+                            } else {
+                                imageHtml += `<div><a href="${trimmedLink}" target="_blank">${trimmedLink}</a></div>\n`;
+                            }
+                        }
+                    });
+                    
+                    // Create a message that contains the HTML images
+                    // Web3Forms will use this as email content
+                    const hiddenMessage = document.createElement('input');
+                    hiddenMessage.type = 'hidden';
+                    hiddenMessage.name = 'message';
+                    hiddenMessage.value = imageHtml;
+                    commissionForm.appendChild(hiddenMessage);
                 }
                 
                 // Submit the form
