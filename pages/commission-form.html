@@ -50,9 +50,10 @@
                             <form id="commission-form" action="https://api.web3forms.com/submit" method="POST">
                                 <!-- Replace with your Access Key -->
                                 <input type="hidden" name="access_key" value="631ca84e-c9a4-40b5-9280-2f6ad5ecc314">
-                                <input type="hidden" name="subject" value="New Commission Request from Website">
+                                <input type="hidden" name="subject" value="New Commission Request: MAVVEROUS Portfolio">
                                 <input type="hidden" name="from_name" value="MAVVEROUS Commission Form">
                                 <input type="hidden" name="redirect" value="commission-success.html">
+                                <input type="checkbox" name="botcheck" style="display: none;">
                                 
                                 <!-- Personal Information Section -->
                                 <div class="mb-4">
@@ -137,10 +138,10 @@
                                     <div class="mb-4">
                                         <label for="project-description" class="form-label">Detailed Description <span class="text-danger">*</span></label>
                                         <textarea class="form-control" id="project-description" name="project-description" rows="4" placeholder="Please provide as much detail as possible about what you want..." required></textarea>
-                                    </div>
-                                    <div class="mb-3">
+                                    </div>                                    <div class="mb-3">
                                         <label for="reference-links" class="form-label">Reference Links</label>
                                         <textarea class="form-control" id="reference-links" name="reference-links" rows="2" placeholder="Links to any reference images, Pinterest boards, or examples of styles you like..."></textarea>
+                                        <div class="form-text">Enter each link on a separate line. For best results, use direct image links (ending in .jpg, .png, etc.)</div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="special-requirements" class="form-label">Special Requirements or Notes</label>
@@ -197,13 +198,10 @@
     
     <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Custom JS -->
+      <!-- Custom JS -->
     <script src="../global/js/components-loader.js"></script>
     <script src="../resources/js/extension-handler.js"></script>
     <script src="../resources/js/navbar-fixer.js"></script>
-    
-    <!-- Commission Form JS -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Initialize AOS animations
@@ -211,8 +209,7 @@
                 duration: 1000,
                 once: true
             });
-            
-            // Show/hide other type field based on selection
+              // Show/hide other type field based on selection
             const commissionTypeSelect = document.getElementById('commission-type');
             const otherTypeContainer = document.getElementById('other-type-container');
             
@@ -235,57 +232,26 @@
                     otherStyleContainer.style.display = 'none';
                 }
             });
-              // Format the submission message
+            
+            // Format reference links for the email
             const commissionForm = document.getElementById('commission-form');
             commissionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Build a formatted message from the form fields
                 const formData = new FormData(commissionForm);
-                let referenceLinksText = formData.get('reference-links');
-                let referenceImagesHTML = "";
+                let refLinks = formData.get('reference-links');
                 
-                // Create formatted HTML email
-                referenceImagesHTML = `
-                    <!DOCTYPE html>
-                    <html>
-                    <body>
-                `;
-                
-                // Handle reference links to create proper image tags
-                if (referenceLinksText && referenceLinksText !== 'None provided') {
-                    referenceImagesHTML += `<p>Reference links provided:</p><div class="reference-images">`;
+                // Only process if there are reference links
+                if (refLinks && refLinks.trim().length > 0) {
+                    const linkArray = refLinks.trim().split('\n').filter(link => link.trim() !== '');
                     
-                    // Extract links and convert to image tags if they look like image URLs
-                    const links = referenceLinksText.split('\n').map(link => link.trim()).filter(link => link);
-                    
-                    links.forEach(link => {
-                        // Check if it's likely an image URL (ends with common image extensions)
-                        const isLikelyImageUrl = /\.(jpg|jpeg|png|gif|webp)($|\?)/i.test(link);
-                        
-                        if (isLikelyImageUrl) {
-                            referenceImagesHTML += `<img src="${link}" alt="Reference Image"><br>`;
-                        } else {
-                            referenceImagesHTML += `<a href="${link}" target="_blank">${link}</a><br>`;
-                        }
-                    });
-                    
-                    referenceImagesHTML += `</div>`;
-                } else {
-                    referenceImagesHTML += `<p>No reference links provided</p>`;
+                    // Create a field for plain reference links
+                    const refLinksField = document.createElement('input');
+                    refLinksField.type = 'hidden';
+                    refLinksField.name = 'reference_links';
+                    refLinksField.value = linkArray.join('\n');
+                    commissionForm.appendChild(refLinksField);
                 }
-                
-                referenceImagesHTML += `
-                    </body>
-                    </html>
-                `;
-                
-                // Add the formatted message to a hidden field
-                const hiddenMessage = document.createElement('input');
-                hiddenMessage.type = 'hidden';
-                hiddenMessage.name = 'reference images';
-                hiddenMessage.value = referenceImagesHTML;
-                commissionForm.appendChild(hiddenMessage);
                 
                 // Submit the form
                 commissionForm.submit();
