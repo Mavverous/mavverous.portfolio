@@ -34,17 +34,15 @@
     border-color: var(--mono-accent);
     box-shadow: 0 0 0 0.25rem rgba(var(--mono-accent-rgb), 0.25);
     color: var(--text-color);
+
+    /* corrects the form-control's input icon's color in the case of things like date widgets */
+    caret-color: var(--text-color);
 }
 
 .form-control::placeholder {
     color: rgba(255, 255, 255, 0.5);
     font-style: italic;
     font-size: 0.9rem;
-}
-
-/* corrects the form-control's icon in the case of things like date widgets */
-.form-control .form-control-icon {
-    color: rgba(255, 255, 255, 0.5);
 }
 
 /* Custom checkbox styling */
