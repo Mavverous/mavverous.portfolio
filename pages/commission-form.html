@@ -50,10 +50,10 @@
                             <form id="commission-form" action="https://api.web3forms.com/submit" method="POST">
                                 <!-- Replace with your Access Key -->
                                 <input type="hidden" name="access_key" value="631ca84e-c9a4-40b5-9280-2f6ad5ecc314">
-                                <input type="hidden" name="subject" value="New Commission Request: MAVVEROUS Portfolio">
+
+                                <input type="hidden" name="subject" value="New Commission Request">
                                 <input type="hidden" name="from_name" value="MAVVEROUS Commission Form">
                                 <input type="hidden" name="redirect" value="commission-success.html">
-                                <input type="hidden" name="html_message" value="true">
                                 <input type="checkbox" name="botcheck" style="display: none;">
                                 
                                 <!-- Personal Information Section -->
@@ -81,7 +81,7 @@
                                     <h5 class="form-section-title"><i class="fas fa-file-alt me-2"></i>Commission Details</h5>
                                     <div class="mb-3">
                                         <label for="commission-type" class="form-label">Type of Commission <span class="text-danger">*</span></label>
-                                        <select class="form-select" id="commission-type" name="commission-type" required>
+                                        <select class="form-select" id="commission-type" name="commission type" required>
                                             <option value="" selected disabled>Select a type...</option>
                                             <option value="character">Character Art/Design</option>
                                             <option value="illustration">Full Illustration</option>
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="mb-3" id="other-type-container" style="display: none;">
                                         <label for="other-type" class="form-label">Please Specify Type</label>
-                                        <input type="text" class="form-control" id="other-type" name="other-type">
+                                        <input type="text" class="form-control" id="other-type" name="other type">
                                     </div>
                                     <div class="mb-3">
                                         <label for="style" class="form-label">Art Style <span class="text-danger">*</span></label>
@@ -108,45 +108,26 @@
                                     </div>
                                     <div class="mb-3" id="other-style-container" style="display: none;">
                                         <label for="other-style" class="form-label">Please Specify Style</label>
-                                        <input type="text" class="form-control" id="other-style" name="other-style">
+                                        <input type="text" class="form-control" id="other-style" name="other style">
                                     </div>
                                     <div class="mb-3">
                                         <label for="deadline" class="form-label">Deadline (if any)</label>
                                         <input type="date" class="form-control" id="deadline" name="deadline">
                                         <div class="form-text">Leave blank if flexible. Rush fees may apply for tight deadlines.</div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="budget" class="form-label">Budget Range <span class="text-danger">*</span></label>
-                                        <select class="form-select" id="budget" name="budget" required>
-                                            <option value="" selected disabled>Select budget range...</option>
-                                            <option value="under-50">Under $50</option>
-                                            <option value="50-100">$50 - $100</option>
-                                            <option value="100-200">$100 - $200</option>
-                                            <option value="200-500">$200 - $500</option>
-                                            <option value="over-500">Over $500</option>
-                                        </select>
-                                        <div class="form-text">This helps me determine the scope of work possible within your budget</div>
-                                    </div>
                                 </div>
                                 
                                 <!-- Project Description Section -->
                                 <div class="mb-4">
                                     <h5 class="form-section-title"><i class="fas fa-align-left me-2"></i>Project Description</h5>
-                                    <div class="mb-3">
-                                        <label for="project-title" class="form-label">Project Title <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="project-title" name="project-title" placeholder="Give your commission a name" required>
-                                    </div>
                                     <div class="mb-4">
                                         <label for="project-description" class="form-label">Detailed Description <span class="text-danger">*</span></label>
                                         <textarea class="form-control" id="project-description" name="project-description" rows="4" placeholder="Please provide as much detail as possible about what you want..." required></textarea>
-                                    </div>                                    <div class="mb-3">
+                                    </div>                                    
+                                    <div class="mb-3">
                                         <label for="reference-links" class="form-label">Reference Links</label>
                                         <textarea class="form-control" id="reference-links" name="reference-links" rows="2" placeholder="Links to any reference images, Pinterest boards, or examples of styles you like..."></textarea>
                                         <div class="form-text">Enter each link on a separate line. For best results, use direct image links (ending in .jpg, .png, etc.)</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="special-requirements" class="form-label">Special Requirements or Notes</label>
-                                        <textarea class="form-control" id="special-requirements" name="special-requirements" rows="2" placeholder="Any additional details, requests, or concerns..."></textarea>
                                     </div>
                                 </div>
                                 
