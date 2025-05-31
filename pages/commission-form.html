@@ -81,7 +81,7 @@
                                     <h5 class="form-section-title"><i class="fas fa-file-alt me-2"></i>Commission Details</h5>
                                     <div class="mb-3">
                                         <label for="commission-type" class="form-label">Type of Commission <span class="text-danger">*</span></label>
-                                        <select class="form-select" id="commission-type" name="commission type" required>
+                                        <select class="form-select" id="commission-type" name="Commission Type" required>
                                             <option value="" selected disabled>Select a type...</option>
                                             <option value="character">Character Art/Design</option>
                                             <option value="illustration">Full Illustration</option>
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="mb-3" id="other-type-container" style="display: none;">
                                         <label for="other-type" class="form-label">Please Specify Type</label>
-                                        <input type="text" class="form-control" id="other-type" name="other type">
+                                        <input type="text" class="form-control" id="other-type" name="Other Type">
                                     </div>
                                     <div class="mb-3">
                                         <label for="style" class="form-label">Art Style <span class="text-danger">*</span></label>
@@ -108,12 +108,14 @@
                                     </div>
                                     <div class="mb-3" id="other-style-container" style="display: none;">
                                         <label for="other-style" class="form-label">Please Specify Style</label>
-                                        <input type="text" class="form-control" id="other-style" name="other style">
+                                        <input type="text" class="form-control" id="other-style" name="Other Style">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="deadline" class="form-label">Deadline (if any)</label>
-                                        <input type="date" class="form-control" id="deadline" name="deadline">
-                                        <div class="form-text">Leave blank if flexible. Rush fees may apply for tight deadlines.</div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="deadline" class="form-label">Deadline (if any)</label>
+                                            <input type="date" class="form-control" id="deadline" name="deadline">
+                                            <div class="form-text">Leave blank if flexible. Rush fees may apply for tight deadlines.</div>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -122,11 +124,11 @@
                                     <h5 class="form-section-title"><i class="fas fa-align-left me-2"></i>Project Description</h5>
                                     <div class="mb-4">
                                         <label for="project-description" class="form-label">Detailed Description <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" id="project-description" name="project-description" rows="4" placeholder="Please provide as much detail as possible about what you want..." required></textarea>
+                                        <textarea class="form-control" id="project-description" name="Project Description" rows="4" placeholder="Please provide as much detail as possible about what you want..." required></textarea>
                                     </div>                                    
                                     <div class="mb-3">
                                         <label for="reference-links" class="form-label">Reference Links</label>
-                                        <textarea class="form-control" id="reference-links" name="reference-links" rows="2" placeholder="Links to any reference images, Pinterest boards, or examples of styles you like..."></textarea>
+                                        <textarea class="form-control" id="reference-links" name="Reference Links" rows="2" placeholder="Links to any reference images, Pinterest boards, or examples of styles you like..."></textarea>
                                         <div class="form-text">Enter each link on a separate line. For best results, use direct image links (ending in .jpg, .png, etc.)</div>
                                     </div>
                                 </div>
@@ -136,7 +138,7 @@
                                     <h5 class="form-section-title"><i class="fas fa-search me-2"></i>Additional Information</h5>
                                     <div class="mb-3">
                                         <label for="found-through" class="form-label">How did you find me?</label>
-                                        <select class="form-select" id="found-through" name="found-through">
+                                        <select class="form-select" id="found-through" name="Found Through">
                                             <option value="" selected disabled>Please select...</option>
                                             <option value="social-media">Social Media</option>
                                             <option value="portfolio-website">Portfolio Website</option>
@@ -151,7 +153,7 @@
                                 <!-- Consent and Submit Section -->
                                 <div class="mb-4">
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="terms-consent" name="terms-consent" required>
+                                        <input class="form-check-input" type="checkbox" id="terms-consent" name="Terms Consent" required>
                                         <label class="form-check-label" for="terms-consent">
                                             I understand that submitting this form does not guarantee acceptance of my commission request. 
                                             MAVVEROUS reserves the right to decline requests at her discretion.
