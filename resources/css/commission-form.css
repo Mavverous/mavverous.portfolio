@@ -42,6 +42,11 @@
     font-size: 0.9rem;
 }
 
+/* corrects the form-control's icon in the case of things like date widgets */
+.form-control .form-control-icon {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 /* Custom checkbox styling */
 .form-check-input {
     background-color: rgba(255, 255, 255, 0.1);
