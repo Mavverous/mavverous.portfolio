@@ -79,32 +79,36 @@
                                 <!-- Commission Details Section -->
                                 <div class="mb-4">
                                     <h5 class="form-section-title"><i class="fas fa-file-alt me-2"></i>Commission Details</h5>
-                                    <div class="mb-3">
-                                        <label for="commission-type" class="form-label">Type of Commission <span class="text-danger">*</span></label>
-                                        <select class="form-select" id="commission-type" name="Commission Type" required>
-                                            <option value="" selected disabled>Select a type...</option>
-                                            <option value="character">Character Art/Design</option>
-                                            <option value="illustration">Full Illustration</option>
-                                            <option value="concept">Concept Art</option>
-                                            <option value="logo">Logo Design</option>
-                                            <option value="other">Other (please specify)</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="commission-type" class="form-label">Type of Commission <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="commission-type" name="Commission Type" required>
+                                                <option value="" selected disabled>Select a type...</option>
+                                                <option value="character">Character Art/Design</option>
+                                                <option value="illustration">Full Illustration</option>
+                                                <option value="concept">Concept Art</option>
+                                                <option value="logo">Logo Design</option>
+                                                <option value="other">Other (please specify)</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="mb-3" id="other-type-container" style="display: none;">
                                         <label for="other-type" class="form-label">Please Specify Type</label>
                                         <input type="text" class="form-control" id="other-type" name="Other Type">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="style" class="form-label">Art Style <span class="text-danger">*</span></label>
-                                        <select class="form-select" id="style" name="style" required>
-                                            <option value="" selected disabled>Select a style...</option>
-                                            <option value="cartoon">Cartoon/Stylized</option>
-                                            <option value="semi-realistic">Semi-Realistic</option>
-                                            <option value="anime">Anime/Manga</option>
-                                            <option value="realistic">Realistic</option>
-                                            <option value="chibi">Chibi</option>
-                                            <option value="other">Other (please specify)</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="style" class="form-label">Art Style <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="style" name="style" required>
+                                                <option value="" selected disabled>Select a style...</option>
+                                                <option value="cartoon">Cartoon/Stylized</option>
+                                                <option value="semi-realistic">Semi-Realistic</option>
+                                                <option value="anime">Anime/Manga</option>
+                                                <option value="realistic">Realistic</option>
+                                                <option value="chibi">Chibi</option>
+                                                <option value="other">Other (please specify)</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="mb-3" id="other-style-container" style="display: none;">
                                         <label for="other-style" class="form-label">Please Specify Style</label>
