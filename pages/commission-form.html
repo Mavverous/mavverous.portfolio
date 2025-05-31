@@ -86,24 +86,21 @@
                                             <label for="commission-type" class="form-label">Type of Commission <span class="text-danger">*</span></label>
                                             <select class="form-select" id="commission-type" name="Commission Type" required>
                                                 <option value="" selected disabled>Select a type...</option>
-                                                <option value="character">Character Art/Design</option>
-                                                <option value="illustration">Full Illustration</option>
+                                                <option value="character">Logo</option>
+                                                <option value="illustration">YouTube Thumbnail</option>
                                                 <option value="concept">Concept Art</option>
-                                                <option value="logo">Logo Design</option>
+                                                <option value="logo">Icon Set</option>
+                                                <option value="thumbnail">Sketch</option>
+                                                <option value="icon">Recreate Your Drawing</option>
+                                                <option value="sketch">Character Sheet</option>
+                                                <option value="recreate">Poster</option>
+                                                <option value="character-sheet">Painting</option>
                                                 <option value="other">Other (please specify)</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="style" class="form-label">Art Style <span class="text-danger">*</span></label>
-                                            <select class="form-select" id="style" name="style" required>
-                                                <option value="" selected disabled>Select a style...</option>
-                                                <option value="cartoon">Cartoon/Stylized</option>
-                                                <option value="semi-realistic">Semi-Realistic</option>
-                                                <option value="anime">Anime/Manga</option>
-                                                <option value="realistic">Realistic</option>
-                                                <option value="chibi">Chibi</option>
-                                                <option value="other">Other (please specify)</option>
-                                            </select>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="deadline" class="form-label">Deadline (if any)</label>
+                                            <input type="date" class="form-control" id="deadline" name="deadline">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -113,24 +110,7 @@
                                                 <input type="text" class="form-control" id="other-type" name="Other Type">
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <div class="mb-3" id="other-style-container" style="display: none;">
-                                                <label for="other-style" class="form-label">Other Style</label>
-                                                <input type="text" class="form-control" id="other-style" name="Other Style">
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="deadline" class="form-label">Deadline (if any)</label>
-                                            <input type="date" class="form-control" id="deadline" name="deadline">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Project Description Section -->
-                                <div class="mb-4">
-                                    <h5 class="form-section-title"><i class="fas fa-align-left me-2"></i>Project Description</h5>
                                     <div class="mb-4">
                                         <label for="project-description" class="form-label">Detailed Description <span class="text-danger">*</span></label>
                                         <textarea class="form-control" id="project-description" name="Project Description" rows="4" placeholder="Please provide as much detail as possible about what you want..." required></textarea>
