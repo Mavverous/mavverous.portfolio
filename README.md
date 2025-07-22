@@ -1,7 +1,3 @@
-# Artist Portfolio Website
-
-A fast, fluid, dark-themed portfolio website for showcasing artwork.
-
 ## How to Add New Artwork
 
 ### Step 1: Add Image Files
@@ -18,16 +14,18 @@ A fast, fluid, dark-themed portfolio website for showcasing artwork.
    {
      "id": "unique-id",
      "title": "Artwork Title",
-     "description": "Medium, Year",
-     "category": "category1 category2",
+     "medium": "Illustration",
+     "tags": ["tag1", "tag2"],
      "imagePath": "resources/images/artwork/your-filename.jpg"
+     "createdDate": "1/1/2024",
+     "fullDescription": "full length description of the image"
    }
    ```
 3. Save the file.
 
 Notes:
 - The `id` should be unique for each artwork
-- The `category` field can contain multiple categories separated by spaces
+- The `tags` field can contain multiple tags separated by commas
 - The `imagePath` should be the relative path to your image
 
 ## Website Structure
