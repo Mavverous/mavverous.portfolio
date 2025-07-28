@@ -4,7 +4,7 @@
       "id": "1",
       "title": "CRT",
       "medium": "Sketch",
-      "tags": ["Character", "Commission"],
+      "tags": ["Character"],
       "imagePath": "television.png",
       "createdDate": "1/1/2023",
       "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
@@ -222,7 +222,7 @@
       "medium": "Painting",
       "tags": ["Character"],
       "imagePath": "image_2025-07-21_201401624.png",
-      "createdDate": "9/26/2025",
+      "createdDate": "9/26/2024",
       "fullDescription": "A digital painting of a fantasy medieval knight. Painted with charcoal brushes in Procreate and colored using gradient maps. The proportions are a little off but I'm still very proud of how it turned out."
     }
   ]
