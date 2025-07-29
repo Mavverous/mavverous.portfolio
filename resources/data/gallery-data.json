@@ -209,12 +209,12 @@
     },
     {
       "id": "24",
-      "title": "Harold",
-      "medium": "Painting",
-      "tags": ["Character"],
-      "imagePath": "IMG_1078.png",
-      "createdDate": "5/28/2025",
-      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+      "title": "Paris Prom Poster",
+      "medium": "Illustration",
+      "tags": ["Poster", "Commission"],
+      "imagePath": "Paris Prom poster2025s@0.75x.png",
+      "createdDate": "1/26/2025",
+      "fullDescription": "A Paris-themed prom poster for Greater Atlanta Christian School. Commissioned by The GAC Prom Committee. Made using Adobe Illustrator and Photoshop."
     },
 {
       "id": "25",
