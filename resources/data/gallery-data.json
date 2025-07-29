@@ -110,12 +110,12 @@
     },
     {
       "id": "13",
-      "title": "Self Portrait",
-      "medium": "Painting",
-      "tags": [""],
-      "imagePath": "image_2024-03-25_161610582.png",
-      "createdDate": "1/1/2024",
-      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+      "title": "Titan Poster",
+      "medium": "Illustration", "Environment",
+      "tags": ["Poster"],
+      "imagePath": "TITAN Poster@3x.png",
+      "createdDate": "5/10/2023",
+      "fullDescription": "A poster of Saturn's largest moon, Titan. Made in Adobe Illustrator. Inspired by NASA space travel posters."
     },
     {
       "id": "14",
