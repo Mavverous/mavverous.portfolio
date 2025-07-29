@@ -92,12 +92,12 @@
     },
     {
       "id": "11",
-      "title": "Cerberus Hound of Hades",
-      "medium": "Sketch",
-      "tags": ["Animal"],
-      "imagePath": "image_2024-03-04_203259791.png",
-      "createdDate": "3/4/2024",
-      "fullDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt massa et nisi accumsan, at consectetur magna euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ac velit ac massa pharetra pharetra sit amet ac est. Cras lobortis nec lorem sed consequat. Duis malesuada."
+      "title": "HexVR Logo - V3",
+      "medium": "Illustration",
+      "tags": ["Logo", "Hex VR", "Game"],
+      "imagePath": "HEXVRlogo.png",
+      "createdDate": "4/29/2024",
+      "fullDescription": "The third iteration of a logo created for the game HexVR. Created in Adobe Illustrator. The logo blends styles such as Art Deco, Modern Athletic, and Fantasy."
     },
     {
       "id": "12",
@@ -193,7 +193,7 @@
       "id": "22",
       "title": "Comm. for @gblnszn",
       "medium": "Illustration",
-      "tags": ["Game", "Commission"],
+      "tags": ["Logo", "Commission"],
       "imagePath": "Xesports@2x.png",
       "createdDate": "12/4/2023",
       "fullDescription": "Logo for X Esports, commissioned by @gblnszn on Discord. Made in Adobe Illustrator."
@@ -224,6 +224,42 @@
       "imagePath": "image_2025-07-21_201401624.png",
       "createdDate": "9/26/2024",
       "fullDescription": "A digital painting of a fantasy medieval knight. Painted with charcoal brushes in Procreate and colored using gradient maps. The proportions are a little off but I'm still very proud of how it turned out."
+    },
+    {
+      "id": "26",
+      "title": "Astra Navigant Logo",
+      "medium": "Illustration",
+      "tags": ["Logo"],
+      "imagePath": "ASTRA logo@3x.png",
+      "createdDate": "8/26/2024",
+      "fullDescription": "A logo created for the concept brand Astra Navigant. Made in Adobe Illustrator."
+    },
+{
+      "id": "27",
+      "title": "ULTRAKILL Gabriel Fan Poster",
+      "medium": "Illustration",
+      "tags": ["Fan Art", "Game", "Poster", "Character"],
+      "imagePath": "gabriel.png",
+      "createdDate": "4/29/2024",
+      "fullDescription": "A digital illustration of a poster of Gabriel from the game ULTRAKILL. Drawn in Procreate and rendered in IbisPaintX. One of my favorite pieces I've done so far."
+    },
+    {
+      "id": "28",
+      "title": "RIOT Poster",
+      "medium": "Illustration",
+      "tags": ["Poster", "Character"],
+      "imagePath": "RIOT.png",
+      "createdDate": "7/29/2025",
+      "fullDescription": "a poster of some random stuff i threw together when i was bored idk. Created in Procreate."
+    },
+{
+      "id": "29",
+      "title": "Doctor - Face Study",
+      "medium": "Sketch",
+      "tags": ["Character"],
+      "imagePath": "doctor.png",
+      "createdDate": "5/27/2025",
+      "fullDescription": "A young man with glasses I made while studying faces and shading. Drawn in Procreate."
     }
   ]
 }
