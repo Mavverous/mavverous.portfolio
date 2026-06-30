@@ -362,8 +362,41 @@
       "imagePath": "EVRV_Maddie_FULL.PNG",
       "createdDate": "2026-04-30",
       "fullDescription": "Rhythm Queen Maddison Jones, created for my AP art concentration in Adobe Illustrator."
+    },
+    {
+      "id": "38",
+      "title": "Astronaut Sketch",
+      "medium": "Sketch",
+      "tags": [
+        "Character"
+      ],
+      "imagePath": "9.JPG",
+      "createdDate": "2025-09-11",
+      "fullDescription": "An astronaut I drew as a drawing exercise while hiking in Alaska."
+    },
+    {
+      "id": "39",
+      "title": "Titan's Horizon",
+      "medium": "Sketch",
+      "tags": [
+        "Environment",
+        "Character"
+      ],
+      "imagePath": "10.JPG",
+      "createdDate": "2025-10-16",
+      "fullDescription": "A sketch I made depicting an astronaut floating above Saturn's moon Titan."
+    },
+    {
+      "id": "40",
+      "title": "Dragon Bones",
+      "medium": "",
+      "tags": [
+        "Environment"
+      ],
+      "imagePath": "5.JPG",
+      "createdDate": "2025-03-01",
+      "fullDescription": ""
     }
-
 
   ]
 }
