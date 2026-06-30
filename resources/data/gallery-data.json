@@ -260,6 +260,21 @@
       "imagePath": "doctor.png",
       "createdDate": "5/27/2025",
       "fullDescription": "A young man with glasses I made while studying faces and shading. Drawn in Procreate."
+    },
+     {
+      "id": "1",
+      "title": "ULRAKILL V1 Fan Poster (Updated)",
+      "medium": "Illustration",
+      "tags": [
+        "Character",
+        "Fan Art",
+        "Game",
+        "Poster"
+      ],
+      "imagePath": "v1deadposter.PNG",
+      "createdDate": "2026-06-30",
+      "fullDescription": "A remastered version of my original V1 poster. Inspired by the game's death screen. Rendered in Procreate and finalized in IbisPaintX."
     }
+
   ]
 }
