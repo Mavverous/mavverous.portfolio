@@ -297,7 +297,73 @@
       "imagePath": "synergy.JPG",
       "createdDate": "2025-12-06",
       "fullDescription": "I painted this piece for my AP art concentration. It is meant to visualize the synergy between two performers playing on stage. Painted in acrylic on a hi-hat cymbal."
+    },
+    {
+      "id": "33",
+      "title": "The Interlude",
+      "medium": "Illustration",
+      "tags": [
+        "Character",
+        "School Project",
+        "Poster"
+      ],
+      "imagePath": "bandroom.PNG",
+      "createdDate": "2025-10-30",
+      "fullDescription": "I created this piece for my AP art concentration. Its meant to depict a drummer and a bassist in the back of the recording studio together, hanging out after a long day of practicing. Created in Procreate."
+    },
+    {
+      "id": "34",
+      "title": "The Electric Revival: Mahira",
+      "medium": "Illustration",
+      "tags": [
+        "Character",
+        "School Project",
+        "Poster"
+      ],
+      "imagePath": "EVRV_Mahira_FULL.PNG",
+      "createdDate": "2026-04-30",
+      "fullDescription": "Bass Master Mahira Mamea, created for my AP art concentration in Adobe Illustrator."
+    },
+    {
+      "id": "35",
+      "title": "The Electric Revival: Cameron",
+      "medium": "Illustration",
+      "tags": [
+        "Character",
+        "School Project",
+        "Poster"
+      ],
+      "imagePath": "EVRV_Cameron_FULL.PNG",
+      "createdDate": "2026-04-30",
+      "fullDescription": "The Rockin' Sensation: Cameron Ripley, created for my AP art concentration in Adobe Illustrator."
+    },
+    {
+      "id": "36",
+      "title": "The Electric Revival: Gabriel",
+      "medium": "Illustration",
+      "tags": [
+        "Character",
+        "School Project",
+        "Poster"
+      ],
+      "imagePath": "EVRV_Gabriel_FULL.PNG",
+      "createdDate": "2026-04-30",
+      "fullDescription": "King of Swing: Gabriel De Luca, created for my AP art concentration in Adobe Illustrator."
+    },
+    {
+      "id": "37",
+      "title": "The Electric Revival: Maddie",
+      "medium": "",
+      "tags": [
+        "Character",
+        "School Project",
+        "Poster"
+      ],
+      "imagePath": "EVRV_Maddie_FULL.PNG",
+      "createdDate": "2026-04-30",
+      "fullDescription": "Rhythm Queen Maddison Jones, created for my AP art concentration in Adobe Illustrator."
     }
+
 
   ]
 }
