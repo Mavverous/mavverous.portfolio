@@ -262,7 +262,7 @@
       "fullDescription": "A young man with glasses I made while studying faces and shading. Drawn in Procreate."
     },
      {
-      "id": "1",
+      "id": "30",
       "title": "ULRAKILL V1 Fan Poster (Updated)",
       "medium": "Illustration",
       "tags": [
@@ -274,6 +274,29 @@
       "imagePath": "v1deadposter.PNG",
       "createdDate": "2026-06-30",
       "fullDescription": "A remastered version of my original V1 poster. Inspired by the game's death screen. Rendered in Procreate and finalized in IbisPaintX."
+    },
+    {
+      "id": "31",
+      "title": "Grim Reaper",
+      "medium": "Illustration",
+      "tags": [
+        "Character"
+      ],
+      "imagePath": "skelly.PNG",
+      "createdDate": "2025-10-25",
+      "fullDescription": "An illustration of the Grim Reaper, drawn in Procreate."
+    },
+    {
+      "id": "32",
+      "title": "Synergy",
+      "medium": "Painting",
+      "tags": [
+        "Character",
+        "School Project"
+      ],
+      "imagePath": "synergy.JPG",
+      "createdDate": "2025-12-06",
+      "fullDescription": "I painted this piece for my AP art concentration. It is meant to visualize the synergy between two performers playing on stage. Painted in acrylic on a hi-hat cymbal."
     }
 
   ]
